@@ -1,0 +1,121 @@
+{
+  "Headers": {
+    "Tải ứng dụng": "Tải ứng dụng",
+    "Thông báo": "Thông báo",
+    "Hỗ trợ": "Hỗ trợ",
+    "Giới thiệu": "Giới thiệu",
+    "Ứng dụng": "Ứng dụng",
+    "Tin tức": "Tin tức",
+    "Ngôn ngữ": "Ngôn ngữ",
+    "Về chúng tôi": "Về chúng tôi",
+    "Hoạt động danh mục": "Hoạt động danh mục",
+    "Thành tựu": "Thành tựu",
+    "Tư vấn miễn phí": "Tư vấn miễn phí"
+  },
+  "HomePage": {
+    "Bắt đầu": "Bắt đầu",
+    "Giải pháp truy xuất nguồn gốc nông sản minh bạch, bảo mật cao bằng công nghệ Blockchain": "Giải pháp truy xuất nguồn gốc nông sản minh bạch, bảo mật cao bằng công nghệ Blockchain",
+    "Truy xuất nguồn gốc nông sản": "Truy xuất nguồn gốc nông sản",
+    "Khám phá": "Khám phá",
+    "Công cụ tài chính": "Công cụ tài chính",
+
+    "Xuất khẩu nông sản": "Xuất khẩu nông sản",
+    "Với những tính năng cho phép": "Với những tính năng cho phép tạo niềm tin ở những bên lạ, Blockchain Ramm giúp giảm thiểu các khâu trong không gian, thủ tục phức tạp tốn thời gian và công sức. Mọi giao dịch có thể diễn ra nhanh chóng, dễ dàng với độ chính xác cao.",
+
+    "Báo cáo chăn nuôi mới": "Báo cáo chăn nuôi mới",
+
+
+    "Với công nghệ": "Với công nghệ nhận diện bằng Ai, nhanh chóng ghi chép lại hoạt động.",
+
+
+    "TÌM HIỂU":"TÌM HIỂU",
+    "Với khả năng lưu trữ":"Với khả năng lưu trữ thông tin chi tiết về quy trình sản xuất, bạn có thể đảm bảo rằng các sản phẩm nông nghiệp của mình tuân thủ các tiêu chuẩn chất lượng và an toàn thực phẩm.",
+    "Theo dõi quy trình nông nghiệp":"Theo dõi quy trình nông nghiệp",
+
+
+    "Đặc điểm của Tobe Farm":"Đặc điểm của Tobe Farm là dữ liệu được lưu trữ trên Blockchain sẽ không bị ghi đè, sửa đổi, mỗi khối dữ liệu sẽ tồn tại mãi mãi. Vì vậy, việc ứng dụng công nghệ Blockchain cho nông nghiệp giải quyết được bài toán xác nhận thông tin về nguồn gốc, chất lượng sản phẩm.",
+    "Các hoạt động trên Tobe Farm":"Các hoạt động trên Tobe Farm đều được thực hiện tự động, điều này giúp giảm chi phí từ các khâu vận hành thủ công thông thường. Hợp đồng thông minh (Smart Contract) giảm thiểu sai sót trong quy trình.",
+    "Với những tính năng":"Với những tính năng cho phép tạo niềm tin ở những bên lạ, Blockchain Fram giúp giảm thiểu các khâu trong không gian, thủ tục phức tạp tốn thời gian và công sức. Mọi giao dịch có thể diễn ra nhanh chóng, dễ dàng với độ chính xác cao.",
+
+    "Cập nhật tin tức nhanh chóng":"Cập nhật tin tức nhanh chóng",
+     "Ghi chép": "Ghi chép lại quá trình sản xuất, vận chuyển đến cả quá trình vận chuyển đến tay người tiêu dùng.",
+    "Tăng cường hiệu quả và tiết kiệm chi phí":"Tăng cường hiệu quả và tiết kiệm chi phí",
+    "Giảm thiểu rủi ro":"Giảm thiểu rủi ro gian lận trong  chuỗi cung ứng, tự động hóa nhiều quy trình.",
+    "Cải thiện quản lý nông sản tiêu dùng":"Cải thiện quản lý nông sản tiêu dùng",
+    "Theo dõi sản phẩm":"Theo dõi sản phẩm trong suốt chuỗi cung ứng, giúp phát hiện và giải quyết các vấn đề một cách nhanh chóng. Khi có sự cố xảy ra (như vấn đề về an toàn thực phẩm), blockchain cho phép truy xuất nhanh chóng để xác định và giải quyết nguồn gốc vấn đề.",
+    "Khi có sự cố xảy ra":"Khi có sự cố xảy ra (như vấn đề về an toàn thực phẩm), cho phép truy xuất nhanh chóng để xác định và giải quyết nguồn gốc vấn đề. Công nghệ Ai cho phép ghi chép lại hoạt động nhanh chóng. Bảo mật thông tin và không thể làm giả hay xóa.",
+    "Sử dụng công nghệ Blockchain và Ai":"Sử dụng công nghệ Blockchain và Ai",
+    "Đặc điểm của Tobe Farm ":"Đặc điểm của Tobe Farm ",
+    "Xác nhận":"Xác nhận",
+    "Nhập email":"Nhập email",
+    "Giới thiệu":"Giới thiệu",
+    "Liên hệ":"Liên hệ",
+    "Về chúng tôi":"Về chúng tôi",
+    "Blog":"Blog",
+    "Hỗ trợ":"Hỗ trợ",
+    "FAQ":"FAQ",
+    "Điều khoản":"Điều khoản",
+    "Chính sách bảo mật":"Chính sách bảo mật",
+    "Blockchain":"Blockchain: Tương lai minh bạch cho nông nghiệp bền vững.",
+    "Một khi thông tin được ghi trên blockchain":"Một khi thông tin được ghi trên blockchain, đảm bảo rằng dữ liệu luôn chính xác và đáng tin cậy. Cho phép theo dõi toàn bộ quá trình từ sản xuất, chế biến đến phân phối, giúp người tiêu dùng và các bên liên quan có thể truy xuất nguồn gốc một cách minh bạch.",
+    "Minh bạch và tin cậy":"Minh bạch và tin cậy",
+    "":"",
+    "":"",
+    "":"",
+    "":"",
+    "":""
+
+
+
+
+  },
+  "Register": {
+    "Vui lòng nhập họ và tên": "Vui lòng nhập họ và tên",
+    "Họ và tên": "Họ và tên",
+    "Email hoặc số điện thoại": "Email hoặc số điện thoại",
+    "Vui lòng nhập email hoặc số điện thoại": "Vui lòng nhập email hoặc số điện thoại",
+    "Tên công ty": "Tên công ty",
+    "Vui lòng nhập tên công ty": "Vui lòng nhập tên công ty",
+    "Ngày sinh": "Ngày sinh",
+    "Vui lòng nhập ngày sinh": "Vui lòng nhập ngày sinh",
+    "Mật khẩu": "Mật khẩu",
+    "Nhập mật khẩu": "Nhập mật khẩu",
+    "Nhập lại mật khẩu": "Nhập lại mật khẩu",
+    "Đăng ký": "Đăng ký",
+    "Bạn đã có tài khoản?": "Bạn đã có tài khoản?",
+    "Đăng nhập": "Đăng nhập",
+    "Vui lòng nhập mật khẩu": "Vui lòng nhập mật khẩu",
+    "Vui lòng nhập lại mật khẩu": "Vui lòng nhập lại mật khẩu",
+    "Vai trò": "Vai trò"
+  },
+  "a": {
+    "Vùng sản xuất": "Vùng sản xuất",
+    "Tên vùng": "Tên vùng",
+    "Vùng nuôi trồng": "Vùng nuôi trồng",
+    "Loại": "Loại",
+    "Vùng chế biến": "Vùng chế biến",
+    "Trạng thái": "Trạng thái",
+    "Hoạt động": "Hoạt động",
+    "Ngừng hoạt động": "Ngừng hoạt động",
+    "Địa chỉ": "Địa chỉ",
+    "Sản phẩm": "Sản phẩm",
+    "Hành Động": "Hành Động",
+    "Đã cập nhật trạng thái khu vực": "Đã cập nhật trạng thái khu vực",
+    "Có lỗi xảy ra khi cập nhật trạng thái khu vực": "Có lỗi xảy ra khi cập nhật trạng thái khu vực",
+    "Tắt": "Tắt",
+    "Bật": "Bật",
+    "Thêm Mới": "Thêm Mới",
+    "Thêm": "Thêm",
+    "Xem sản phẩm": "Xem sản phẩm",
+    "id":"id",
+    "Trạng Thái":"Trạng Thái",
+    "Tên đối tượng":"Tên đối tượng",
+    "Tìm kiếm":"Tìm kiếm",
+    "Đang hoạt động":"Đang hoạt động",
+    "":"",
+    "":"",
+    "":"",
+    "":"",
+    "":""
+
+  }}
