@@ -32,7 +32,7 @@ const Banner = () => {
   }));
   const t = useTranslations('HomePage');
   return (
-    <div className="imgHome bg-no-repeat bg-cover h-[100%] ">
+  <div className="imgHome bg-no-repeat bg-cover bg-center h-screen w-screen">
       <div className=" py-20 w-11/12 mx-auto">
         <Grid container spacing={10}>
           <Grid item xs={12} lg={6}>

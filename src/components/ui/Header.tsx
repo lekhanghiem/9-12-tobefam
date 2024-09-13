@@ -8,6 +8,19 @@ import React, { useState } from 'react';
 import { IoMenu, IoClose } from 'react-icons/io5';
 import LocalSwitcher from './local-switcher';
 import CheckToken from '../Pages/user/checkToken';
+import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import Button from '@mui/material/Button';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
+import MenuIcon from '@mui/icons-material/Menu';
+type Anchor = 'right';
 const Page = () => {
   const t = useTranslations('Headers');
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -19,7 +32,54 @@ const Page = () => {
   const handleMenuToggle = () => {
     setMenuOpen(!menuOpen);
   };
+ const [state, setState] = React.useState({
+    right: false,
+  });
 
+  const toggleDrawer =
+    (anchor: Anchor, open: boolean) =>
+    (event: React.KeyboardEvent | React.MouseEvent) => {
+      if (
+        event.type === 'keydown' &&
+        ((event as React.KeyboardEvent).key === 'Tab' ||
+          (event as React.KeyboardEvent).key === 'Shift')
+      ) {
+        return;
+      }
+
+      setState({ ...state, [anchor]: open });
+    };
+
+  const list = (anchor: Anchor) => (
+     <Box
+
+
+      sx={{ width:"250px" ,height:'100vh' ,backgroundColor:'#7bffd76a'}}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <List
+
+      >
+        {['Hổ trợ', 'Tin tức', 'Ứng dụng', 'về chúng tôi','Đăng nhập'].map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton
+
+            >
+              {/* <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon> */}
+              {/* <ListItemText primary={text} /> */}
+              <Link href='#' >{text}</Link>
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+
+    </Box>
+  );
   return (
     <div className="w-full sticky top-0 xl:top-[-87px] z-50">
       <div className="flex lg:flex-row flex-col justify-between bgheader py-3 lg:px-20 px-10 w-full gap-y-3">
@@ -88,13 +148,17 @@ const Page = () => {
             height={91}
           />
         </Link>
-        <div className="pt-3 lg:hidden" onClick={handleMenuToggle}>
-          {menuOpen ? (
-            <IoClose className="w-16 h-16 cursor-pointer" />
-          ) : (
-            <IoMenu className="w-16 h-16 cursor-pointer" />
-          )}
-        </div>
+            <div>
+      <Button className='lg:hidden' onClick={toggleDrawer('right', true)}>  <MenuIcon  sx={{fontSize:'40px',color:'black'}}/></Button>
+      <Drawer
+        anchor="right"
+        open={state.right}
+        onClose={toggleDrawer('right', false)}
+      >
+        {list('right')}
+      </Drawer>
+    </div>
+
         <div className="hidden lg:flex w-8/12 justify-center gap-4">
           {[
             [t('Hỗ trợ'), '/'],
@@ -157,29 +221,7 @@ const Page = () => {
           <CheckToken />
         </div>
       </nav>
-      <nav className={menuOpen ? 'block' : 'hidden'}>
-        {[
-          ['Giới thiệu', '/'],
-          ['Ứng dụng', '/team'],
-          ['Tin tức', '/projects'],
-          ['Về chúng tôi', '#'],
-          ['Đăng nhập', '/login'],
-        ].map(([title, url]) => (
-          <nav key={url} className="lg:hidden">
-            <ul className="bg-[#d6e8fe]">
-              <li className=" ">
-                <Link
-                  key={url}
-                  href={url}
-                  className=" hover:scale-125 rounded-lg   text-slate-700 font-medium  hover:text-slate-900 text-xl whitespace-nowrap"
-                >
-                  <span className="hover:scale-125"> {title}</span>
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        ))}
-      </nav>
+
     </div>
   );
 };
