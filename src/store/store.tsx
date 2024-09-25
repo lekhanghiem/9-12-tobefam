@@ -3,20 +3,26 @@ import auth from "./features/todos/authSlice";
 import { useDispatch } from "react-redux";
 import locationSlice from "./features/todos/locationSlice";
 import registerSlice from "./features/todos/registerSlice";
+import { ListAreaRTK } from "./features/todos/ListAreaRTK";
+import ChangeStatusSlice from "./features/todos/ChangeStatusSlice";
+import SearchAreaRTK from "./features/todos/SearchAreaRTK";
 
 
 const store = configureStore({
   reducer: {
     auth: auth,
     locationSlice: locationSlice,
+    ChangeStatusSlice,ChangeStatusSlice,
+
     registerSlice:registerSlice,
-  [SearchAreaRTK]: SearchAreaRTK,
-    [SearchAreaRTK]: SearchAreaRTK,
+     [ListAreaRTK.reducerPath]: ListAreaRTK.reducer,
+     [SearchAreaRTK.reducerPath]: SearchAreaRTK.reducer,
+
   },
-   middleware: (getDefaultMiddleware) =>
+    middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
-      .concat(SearchAreaRTK.middleware)
-      .concat(SearchAreaRTK.middleware),
+    .concat(ListAreaRTK.middleware)
+    .concat(SearchAreaRTK.middleware),
 });
 
 export default store;

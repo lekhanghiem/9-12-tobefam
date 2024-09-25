@@ -1,12 +1,12 @@
+import { ChangeStatus } from "@/store/api";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import {  ListArea } from "../../api/index";
 const actionChangeStatus = createAsyncThunk(
-  "auth/register",
-  async () => {
+  "status",
+  async (id:string) => {
     try {
 
-      const res = await ListArea.doListArea();
+      const res = await ChangeStatus.doChangeStatus(id);
       if (res.status === 200) {
 
         toast.success(res.data.message);
@@ -22,9 +22,9 @@ const actionChangeStatus = createAsyncThunk(
 );
 
 const { reducer, actions } = createSlice({
-  name: "area",
+  name: "status",
   initialState: {
-    register: {
+    status: {
       loading: false,
       data: [],
       error: "",
@@ -34,17 +34,17 @@ const { reducer, actions } = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(actionChangeStatus.pending, (state: any) => {
-        state.register.loading = true;
+        state.status.loading = true;
       })
       .addCase(actionChangeStatus.rejected, (state: any, action: any) => {
-        state.register.loading = false;
-        state.register.error = action.payload;
-        state.register.data = {};
+        state.status.loading = false;
+        state.status.error = action.payload;
+        state.status.data = {};
       })
       .addCase(actionChangeStatus.fulfilled, (state: any, action: any) => {
-        state.register.loading = false;
-        state.register.data = action.payload;
-        state.register.error = "";
+        state.status.loading = false;
+        state.status.data = action.payload;
+        state.status.error = "";
       });
   },
 

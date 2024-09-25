@@ -57,14 +57,15 @@ export interface IconProps {
 }
 //thunk
 export interface Area {
-  id: number
+  data: any;
+  id: string
   User_id: number
-  Area_type: number
+  Area_type: String
   Name: string
   Address: string
   Image: Image
   description: string
-  Area_status: number
+  Area_status: string
 }
 
 export interface Image {
@@ -100,3 +101,7 @@ export interface Province {
   districts: District[];
 }
 
+export interface Search {
+  search: string;
+  category: number;
+}

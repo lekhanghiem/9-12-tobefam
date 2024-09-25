@@ -8,8 +8,7 @@ import { Button, CircularProgress, Snackbar, Alert } from '@mui/material';
 import AreaStatusToggle from './changeproductstatus';
 import EditProductForm from './productEditForm';
 import RegisterProduct from './registerProduct';
-import SearchProduct from '../searchproduct/searchproduct';
-import {} from './../farm/EditAreaForm';
+import SearchProduct from './searchproduct';
 import Image from 'next/image';
 interface AreaStatusToggleProps {
   areaId: number;

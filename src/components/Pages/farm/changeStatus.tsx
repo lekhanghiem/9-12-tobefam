@@ -3,26 +3,23 @@ import { AppDispatch } from '@/store/store';
 import { Box, Button } from '@mui/material';
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { Area } from '@/types/types';
 interface ChangeStatusProps {
-  id: number;
+  id: string;
   Area_status: string;
   refetch: any;
-  handleSearch: () => void;
 
 }
 
-
-const ChangeStatus: React.FC<ChangeStatusProps> = ({ id, Area_status, refetch ,handleSearch}) => {
+const ChangeStatus: React.FC<ChangeStatusProps> = ({ id, Area_status, refetch }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleClick = async () => {
     try {
 
-      // await dispatch(actionChangeStatus(id)).unwrap();
-      // await handleUpdateSuccess();
-      handleSearch();
-
-      console.log(handleSearch);
+      await dispatch(actionChangeStatus(id)).unwrap();
+      await handleUpdateSuccess();
+      console.log(id);
     } catch (error) {
       console.error("Lỗi khi thay đổi trạng thái:", error);
     }
@@ -30,18 +27,12 @@ const ChangeStatus: React.FC<ChangeStatusProps> = ({ id, Area_status, refetch ,h
 
   const handleUpdateSuccess = () => {
     refetch();
-
   };
-const handleClicks = () => {
-      handleSearch();
-};
+
   return (
     <div>
-<button onClick={handleClicks}>123</button>
 
-
-
-      <Box onClick={handleClicks}>
+      <Box onClick={handleClick}>
         {Area_status === 'In production' ? (
           <Button
             variant="contained"

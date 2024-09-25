@@ -8,7 +8,6 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import { Area } from '@/types/types';
 import { useListAreaQuery } from '@/store/features/todos/ListAreaRTK';
 import ChangeStatus from './ChangeStatus';
@@ -24,7 +23,7 @@ interface AreasResponse{
 }
 export default function BasicTable() {
   const [page, setPage] = useState<number>(1);
-   const { data,refetch  } = useListAreaQuery<AreasResponse>(?page=${page});
+   const { data,refetch  } = useListAreaQuery<AreasResponse>(`?page=${page}`);
    const [isOpen, setIsOpen] = useState(false);
 const [searchResults, setSearchResults] = useState<Area[]>([])
   const areas: Area[] = data?.data?.areas || [];
@@ -54,7 +53,9 @@ const totalPages=data?.data?.totalPages;
     <Box sx={{ py:'20px',backgroundColor:'#f9faff' }} >
  <Box sx={{ width:'90%',mx:'auto',backgroundColor:'#ffffff', boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',  borderRadius: '12px',pb:'30px' }}>
   <Box sx={{ display:'flex', justifyContent:'space-between',width:'90%',mx:'auto',py:'50px' }}>
-<Box><SearchArea setSearchResults={setSearchResults} /></Box>
+<Box>
+  <SearchArea />
+</Box>
 <Box><Createfram/></Box>
  </Box>
 
@@ -92,8 +93,10 @@ const totalPages=data?.data?.totalPages;
               <TableCell align="left">{row.Area_status}</TableCell>
                <TableCell align="left"><Edit />
                </TableCell>
-               <TableCell align="left"><ChangeStatus Area_status={row.Area_status} id={row.id} refetch={refetch}  /></TableCell>
-              <TableCell align="left">{row.description}</TableCell>
+               <TableCell align="left">
+                <ChangeStatus  id={row.id} refetch={refetch} Area_status={row.Area_status}  />
+                </TableCell>
+              <TableCell align="left">{row.description} {row.Area_status}</TableCell>
             </TableRow>
           ))}
         </TableBody>

@@ -2,7 +2,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import { AuthService, Register } from "../../api/index";
-import { useRouter } from "next/navigation";
 const actionRegister = createAsyncThunk(
   "auth/register",
   async (data: {  password?: string | undefined; username: string; email: string; company_name: string; confirmPassword: string; role_id: number;}) => {
@@ -26,7 +25,7 @@ const actionRegister = createAsyncThunk(
 const { reducer, actions } = createSlice({
   name: "auth",
   initialState: {
-    register: {
+    register1: {
       loading: false,
       data: [],
       error: "",

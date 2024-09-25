@@ -1,176 +1,136 @@
-// import React, { useState, useEffect } from 'react';
-// import SearchIcon from '@mui/icons-material/Search';
-// import InputBase from '@mui/material/InputBase';
-// import { styled, alpha } from '@mui/material/styles';
-// import Box from '@mui/material/Box';
-// import FormControl from '@mui/material/FormControl';
-// import Select from '@mui/material/Select';
-// import MenuItem from '@mui/material/MenuItem';
-// import { useTranslations } from 'next-intl';
-// import { useCreateSearchAreaMutation } from '@/store/features/todos/SearchAreaRTK';
-// import { Area } from '@/types/types';
+import React, { useEffect, useState } from 'react';
+import Paper from '@mui/material/Paper';
+import InputBase from '@mui/material/InputBase';
+import IconButton from '@mui/material/IconButton';
+import SearchIcon from '@mui/icons-material/Search';
+import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { useSearchAreaMutation } from '@/store/features/todos/SearchAreaRTK';
+import { Area } from '@/types/types';
+import { useAppRouterContext } from '@/context/AppContext';
 
-// const Search = styled('div')(({ theme }) => ({
-//   position: 'relative',
-//   borderRadius: theme.shape.borderRadius,
-//   backgroundColor: alpha(theme.palette.common.white, 0.15),
-//   '&:hover': {
-//     backgroundColor: '#E0FFFF',
-//   },
-//   marginRight: theme.spacing(2),
-//   marginLeft: 0,
-//   width: '100%',
-//   [theme.breakpoints.up('sm')]: {
-//     marginLeft: theme.spacing(3),
-//     width: 'auto',
-//   },
-// }));
+function SearchArea() {
+  const [search, setSearch] = useState('');
+  const [category, setCategory] = useState(1);
+  const [type, setType] = useState<number | string>('');
+  const [status, setStatus] = useState<number | string>('');
 
-// const SearchIconWrapper = styled('div')(({ theme }) => ({
-//   padding: theme.spacing(0, 2),
-//   height: '100%',
-//   position: 'absolute',
-//   pointerEvents: 'none',
-//   display: 'flex',
-//   alignItems: 'center',
-//   justifyContent: 'center',
-//   '&:hover': {
-//     transform: 'scale(1.25)',
-//   },
-// }));
+  const [searchArea, { data, error, isLoading }] = useSearchAreaMutation();
 
-// const StyledInputBase = styled(InputBase)(({ theme }) => ({
-//   color: 'inherit',
-//   '& .MuiInputBase-input': {
-//     padding: theme.spacing(1, 1, 1, 0),
-//     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-//     transition: theme.transitions.create('width'),
-//     width: '100%',
-//     [theme.breakpoints.up('md')]: {
-//       width: '20ch',
-//     },
-//   },
-// }));
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      handleSearch();
+    }, 300);
 
-// interface SearchAreaProps {
-//   setSearchResults: React.Dispatch<React.SetStateAction<Area[]>>;
-// }
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [search, type, status]);
 
-// const SearchArea: React.FC<SearchAreaProps> = ({ setSearchResults }) => {
-//   const [category, setCategory] = useState<'1' | '2' | '3'>('1');
-//   const [search, setSearch] = useState<string>('');
-//   const [type, setType] = useState<string>('1');
-//   const [status, setStatus] = useState<string>('1');
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
+  };
 
-//   const [createSearchArea, { data }] = useCreateSearchAreaMutation();
-//   const t = useTranslations('a');
+  const handleCategoryChange = (event: any) => {
+    setCategory(event.target.value as number);
+    setSearch('');
+    setType('');
+    setStatus('');
+  };
 
-//   const handleSearch = async () => {
-//     const data = { category, search, type, status };
-//     try {
-//       const result = await createSearchArea(data).unwrap();
-//       setSearchResults(result?.data?.areas || []);
-//       setSearch(''); // Clear search input after success
-//       console.log('Search successful:', result?.data?.areas);
-//     } catch (error) {
-//       console.error('Error during search:', error);
-//     }
-//   };
+  const handleSearch = async () => {
+    let payload: any = {};
 
-//   useEffect(() => {
-//     if (search) {
-//       const timer = setTimeout(() => {
-//         handleSearch();
-//       }, 300); // Debounce delay
-//       return () => clearTimeout(timer);
-//     }
-//   }, [category, search, type, status]);
+    if (category === 1 && search.trim()) {
+      payload = { search, category };
+    } else if (category === 2 && type) {
+      payload = { search: type, category };
+    } else if (category === 3 && status) {
+      payload = { search: status, category };
+    }
 
-//   useEffect(() => {
-//     if (data?.data?.areas) {
-//       setSearchResults(data.data.areas);
-//       console.log('Search results updated:', data.data.areas);
-//     }
-//   }, [data]);
+    if (Object.keys(payload).length > 0) {
+      try {
+        await searchArea(payload);
+        console.log('Searching with payload:', payload);
+      } catch (err) {
+        console.error('Error during search:', err);
+      }
+    } else {
+      console.log('Please fill in the required fields');
+    }
+  };
 
-//   return (
-//     <div>
-//       <div className="flex gap-10">
-//         <Box sx={{ minWidth: 120 }}>
-//           <FormControl fullWidth>
-//             <Select
-//               labelId="demo-simple-select-label"
-//               id="demo-simple-select"
-//               className="h-10 bg-[#1a76d3] text-white rounded-md"
-//               value={category}
-//               onChange={(e) => {
-//                 const newCategory = e.target.value as '1' | '2' | '3';
-//                 setCategory(newCategory);
-//                 setSearch(''); // Reset search on category change
-//                 setType('1');
-//                 setStatus('1');
-//               }}
-//             >
-//               <MenuItem value="1">{t('Tên đối tượng')}</MenuItem>
-//               <MenuItem value="2">{t('Vùng sản xuất')}</MenuItem>
-//               <MenuItem value="3">{t('Trạng Thái')}</MenuItem>
-//             </Select>
-//           </FormControl>
-//         </Box>
+  return (
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+      <Box sx={{ display: 'flex', gap: 3 }}>
+        <FormControl sx={{ minWidth: 120 }}>
+          <Select
+            value={category}
+            onChange={handleCategoryChange}
+            displayEmpty
+            inputProps={{ 'aria-label': 'Category' }}
+          >
+            <MenuItem value={1}>Name</MenuItem>
+            <MenuItem value={2}>Type</MenuItem>
+            <MenuItem value={3}>Status</MenuItem>
+          </Select>
+        </FormControl>
 
-//         {category === '1' && (
-//           <Search>
-//             <SearchIconWrapper>
-//               <SearchIcon />
-//             </SearchIconWrapper>
-//             <StyledInputBase
-//               type="text"
-//               value={search}
-//               onChange={(e) => setSearch(e.target.value)}
-//               placeholder={t('Tìm kiếm')}
-//               inputProps={{ 'aria-label': 'Search' }}
-//             />
-//           </Search>
-//         )}
+        {category === 1 ? (
+          <Paper
+            component="form"
+            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
+            onSubmit={(e) => {
+              e.preventDefault(); // Prevent the form from reloading the page
+              handleSearch();
+            }}
+          >
+            <InputBase
+              sx={{ ml: 1, flex: 1 }}
+              placeholder="Search by name ..."
+              inputProps={{ 'aria-label': 'search' }}
+              value={search}
+              onChange={handleSearchChange}
+            />
+            <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+              <SearchIcon />
+            </IconButton>
+          </Paper>
+        ) : category === 2 ? (
+          <FormControl variant="outlined" sx={{ minWidth: 120 }}>
+            <Select
+              labelId="type-select-label"
+              value={type}
+              onChange={(e) => setType(e.target.value)}
+            >
+              <MenuItem value="" disabled>
+                Select Region
+              </MenuItem>
+              <MenuItem value="1">Region A</MenuItem>
+              <MenuItem value="2">Region B</MenuItem>
+            </Select>
+          </FormControl>
+        ) : (
+          <FormControl variant="outlined" sx={{ minWidth: 120 }}>
+            <InputLabel id="status-select-label">Status</InputLabel>
+            <Select
+              labelId="status-select-label"
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+              label="Status"
+            >
+              <MenuItem value="">Select Status</MenuItem>
+              <MenuItem value="1">Active</MenuItem>
+              <MenuItem value="2">Inactive</MenuItem>
+            </Select>
+          </FormControl>
+        )}
+      </Box>
 
-//         {category === '2' && (
-//           <Box sx={{ minWidth: 120 }}>
-//             <FormControl fullWidth>
-//               <Select
-//                 labelId="demo-simple-select-label"
-//                 id="demo-simple-select"
-//                 className="h-10 bg-[#1a76d3] text-white rounded-md"
-//                 value={type}
-//                 onChange={(e) => setType(e.target.value as string)}
-//               >
-//                 <MenuItem value="1">{t('Vùng nuôi trồng')}</MenuItem>
-//                 <MenuItem value="2">{t('Vùng chế biến')}</MenuItem>
-//               </Select>
-//             </FormControl>
-//           </Box>
-//         )}
+      {/* Display search results */}
+      {/* You can add a component here to display searchResults */}
+    </Box>
+  );
+}
 
-//         {category === '3' && (
-//           <Box sx={{ minWidth: 120 }}>
-//             <FormControl fullWidth>
-//               <Select
-//                 labelId="demo-simple-select-label"
-//                 id="demo-simple-select"
-//                 className="h-10 bg-[#1a76d3] text-white rounded-md"
-//                 value={status}
-//                 onChange={(e) => setStatus(e.target.value as string)}
-//               >
-//                 <MenuItem value="1">{t('Đang hoạt động')}</MenuItem>
-//                 <MenuItem value="2">{t('Ngừng hoạt động')}</MenuItem>
-//               </Select>
-//             </FormControl>
-//           </Box>
-//         )}
-
-
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default SearchArea;
+export default SearchArea;
