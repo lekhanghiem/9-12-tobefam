@@ -3,8 +3,6 @@ import auth from "./features/todos/authSlice";
 import { useDispatch } from "react-redux";
 import locationSlice from "./features/todos/locationSlice";
 import registerSlice from "./features/todos/registerSlice";
-import ListAreaSlice from "./features/todos/ListAreaSlice";
-import TextSlice from "./features/todos/TextSlice";
 
 
 const store = configureStore({
@@ -12,10 +10,13 @@ const store = configureStore({
     auth: auth,
     locationSlice: locationSlice,
     registerSlice:registerSlice,
-    ListAreaSlice:ListAreaSlice,
-    TextSlice:TextSlice,
-
+  [SearchAreaRTK]: SearchAreaRTK,
+    [SearchAreaRTK]: SearchAreaRTK,
   },
+   middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware()
+      .concat(SearchAreaRTK.middleware)
+      .concat(SearchAreaRTK.middleware),
 });
 
 export default store;

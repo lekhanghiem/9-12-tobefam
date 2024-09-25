@@ -1,0 +1,19 @@
+// apiSlice.ts
+import { Area } from '@/types/types';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
+export const apiSlice = createApi({
+  reducerPath: 'api',
+  baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
+  endpoints: (builder) => ({
+    createSearchArea: builder.mutation<Area, Partial<Area>>({
+      query: (newArea) => ({
+        url: 'areas',
+        method: 'POST',
+        body: newArea,
+      }),
+    }),
+  }),
+});
+
+export const { useCreateSearchAreaMutation } = apiSlice;

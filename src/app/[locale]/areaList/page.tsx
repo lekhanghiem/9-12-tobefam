@@ -1,4 +1,4 @@
-import AreaList from '@/components/Pages/farm/AreaList';
+import AreaList from '@/components/Pages/farm/ListArea';
 import React from 'react';
 
 const page = () => {

@@ -1,99 +1,81 @@
-'use client';
-import React, { useState } from 'react';
-import axiosIns from '../../../store/api/axiosIns';
+import { actionChangeStatus } from '@/store/features/todos/ChangeStatusSlice';
+import { AppDispatch } from '@/store/store';
+import { Box, Button } from '@mui/material';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+interface ChangeStatusProps {
+  id: number;
+  Area_status: string;
+  refetch: any;
+  handleSearch: () => void;
 
-import { Button, CircularProgress, Snackbar } from '@mui/material';
-import { Alert } from '@mui/material';
-import { toast } from 'react-toastify';
-import { useTranslations } from 'next-intl';
-
-interface AreaStatusToggleProps {
-  areaId: number;
-  initialStatus: boolean;
-  setIsUpdate: any;
 }
 
-const AreaStatusToggle: React.FC<AreaStatusToggleProps> = ({
-  setIsUpdate,
-  areaId,
-  initialStatus,
-}) => {
-  const [isActive, setIsActive] = useState(initialStatus);
-  const [loading, setLoading] = useState(false);
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const t = useTranslations('a');
 
-  const handleToggleStatus = async () => {
-    setLoading(true);
+const ChangeStatus: React.FC<ChangeStatusProps> = ({ id, Area_status, refetch ,handleSearch}) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleClick = async () => {
     try {
-      const token = localStorage.getItem('accessToken');
-      if (!token) {
-        toast.error('Không tìm thấy token');
-        return;
-      }
 
-      const newStatus = !isActive;
-      const response = await axiosIns.patch(
+      // await dispatch(actionChangeStatus(id)).unwrap();
+      // await handleUpdateSuccess();
+      handleSearch();
 
-        `/area/${areaId}/status`, // Sửa URL API
-        { status: newStatus },
-        {
-          headers: {
-            Authorization: token,
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-      if (response.status === 200) {
-
-
-        toast.success(`${t('Đã cập nhật trạng thái khu vực')}`);
-        setIsActive(newStatus);
-        setIsUpdate((prev: boolean) => !prev);
-      } else {
-        throw new Error(
-          `${t('Có lỗi xảy ra khi cập nhật trạng thái khu vực')}`
-        );
-      }
+      console.log(handleSearch);
     } catch (error) {
-      console.error('Lỗi khi gửi yêu cầu cập nhật trạng thái:', error);
-      setSnackbarOpen(true); // Hiển thị snackbar khi có lỗi
-    } finally {
-      setLoading(false);
+      console.error("Lỗi khi thay đổi trạng thái:", error);
     }
   };
 
-  const handleSnackbarClose = () => {
-    setSnackbarOpen(false);
-  };
+  const handleUpdateSuccess = () => {
+    refetch();
 
+  };
+const handleClicks = () => {
+      handleSearch();
+};
   return (
-    <>
-      <Button
-        variant="contained"
-        color={isActive ? 'primary' : 'secondary'}
-        onClick={handleToggleStatus}
-        disabled={loading}
-      >
-        {loading ? (
-          <CircularProgress size={24} />
-        ) : isActive ? (
-          `${t('Tắt')}`
+    <div>
+<button onClick={handleClicks}>123</button>
+
+
+
+      <Box onClick={handleClicks}>
+        {Area_status === 'In production' ? (
+          <Button
+            variant="contained"
+            style={{
+              backgroundColor: '#b2e0e0',
+              color: '#00796b', // Màu chữ
+              border: '1px solid #00796b',
+              borderRadius: '4px',
+              width: '80px',
+              height: '35px',
+              textTransform: 'none',
+            }}
+          >
+            Active
+          </Button>
         ) : (
-          `${t('Bật')}`
+          <Button
+            variant="contained"
+            style={{
+              backgroundColor: '#f8d7da',
+              color: 'red', // Màu chữ
+              border: '1px solid red',
+              borderRadius: '4px',
+              width: '80px',
+              height: '35px',
+              textTransform: 'none',
+            }}
+          >
+            Inactive
+          </Button>
         )}
-      </Button>
-      <Snackbar
-        open={snackbarOpen}
-        autoHideDuration={6000}
-        onClose={handleSnackbarClose}
-      >
-        <Alert severity="error" onClose={handleSnackbarClose}>
-          {t('Có lỗi xảy ra khi cập nhật trạng thái khu vực')}
-        </Alert>
-      </Snackbar>
-    </>
+      </Box>
+    </div>
   );
 };
 
-export default AreaStatusToggle;
+export default ChangeStatus;
