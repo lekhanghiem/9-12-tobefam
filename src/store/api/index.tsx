@@ -52,3 +52,17 @@ export const ChangeStatus = {
     });
   },
 };
+
+
+
+export const SearchArea = {
+  doSearchArea:  (data: { category: number; search: string }) => {
+    const token = localStorage.getItem('accessToken');
+    return API.post("search/area", data, { headers : {
+      Authorization:  token,
+    } });
+
+  },
+};
+
+

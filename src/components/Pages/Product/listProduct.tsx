@@ -37,12 +37,11 @@ interface Product {
 
 type ApiResponse = {
   status: string;
-  data: Product[];
+  data:any;
+  products: Product[];
 };
 const ProductList: React.FC<AreaStatusToggleProps> = ({
-  // setIsUpdate,
   areaId,
-  initialStatus,
 }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
@@ -57,36 +56,38 @@ const ProductList: React.FC<AreaStatusToggleProps> = ({
   });
   const [isUpdate, setIsUpdate] = useState<boolean>(false);
 
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     try {
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
 
-  //       const token = localStorage.getItem('accessToken') || '';
-  //       const response = await axiosIns.get<ApiResponse>(
-  //         'product/19/list/',
-  //         {
-  //           headers: {
-  //             Authorization: token,
-  //           },
-  //         }
-  //       );
+        const token = localStorage.getItem('accessToken') || '';
+        const response = await axiosIns.get<ApiResponse>(
+          'product/19/list/',
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
 
-  //       if (response.data.status === 'success') {
-  //         setProducts(response.data.data);
-  //         setFilteredProducts(response.data.data);
-  //       } else {
-  //         toast.error('Failed to fetch products');
-  //       }
-  //     } catch (err) {
-  //       console.error('Error fetching products:', err);
-  //       setError('Failed to fetch products');
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
+        if (response.data.status === 'success') {
+          setProducts(response.data.data.products);
+          setFilteredProducts(response.data.data.products);
+          console.log(response.data.data.products,'products');
+          console.log(filteredProducts,'sdasd');
 
-  //   fetchProducts();
-  // }, [isUpdate]);
+
+        } else {
+          toast.error('Failed to fetch products');
+        }
+      } catch (err) {
+        console.error('Error fetching products:', err);
+        setError('Failed to fetch products');
+      }
+    };
+
+    fetchProducts();
+  }, [isUpdate]);
 
   const handleEdit = useCallback((product: Product) => {
     setEditProduct({ data: product, isOpen: true });
@@ -187,7 +188,7 @@ const ProductList: React.FC<AreaStatusToggleProps> = ({
     },
   ];
   // console.log('filteredProducts', filteredProducts);
-  const rows = filteredProducts.map((product) => ({
+  const rows = filteredProducts?.map((product) => ({
     id: product.product_code,
     Name: product.Name,
     Description: product.Description,

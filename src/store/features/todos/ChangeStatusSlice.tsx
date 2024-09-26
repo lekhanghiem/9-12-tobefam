@@ -8,10 +8,7 @@ const actionChangeStatus = createAsyncThunk(
 
       const res = await ChangeStatus.doChangeStatus(id);
       if (res.status === 200) {
-
         toast.success(res.data.message);
-
-
       }
     } catch (error: any) {
 
@@ -37,7 +34,7 @@ const { reducer, actions } = createSlice({
         state.status.loading = true;
       })
       .addCase(actionChangeStatus.rejected, (state: any, action: any) => {
-        state.status.loading = false;
+        // state.status.loading = false;
         state.status.error = action.payload;
         state.status.data = {};
       })

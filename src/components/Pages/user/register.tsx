@@ -33,7 +33,6 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-// Define the schema for validation using Yup
 
 
 type FormValues = { password?: string | undefined; username: string; email: string; company_name: string; confirmPassword: string; role_id: number; };
