@@ -105,3 +105,20 @@ export interface Search {
   search: string;
   category: number;
 }
+
+
+
+  export interface Product {
+  Name: string;
+  Description: string;
+  Image: Image;
+  product_code: string;
+  Expiry_date: string; // Assuming this is a string representing the date
+  Unit: string;
+  Product_status: string;
+  certify: Image;
+  Product_date: string; // Assuming this is a string representing the date
+  Product_type: number;
+  Product_packing: number;
+  qr_code: string; // Assuming qr_code is a URL or string
+}

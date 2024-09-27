@@ -39,16 +39,17 @@ export const Register = {
 
 };
 
+  export  const token = localStorage.getItem('accessToken');
 
-
+export const headers={
+    Authorization: token,
+}
 
 export const ChangeStatus = {
   doChangeStatus: (id:string) => {
     const token = localStorage.getItem('accessToken');
     return API.patch(`area/${id}/status`, {},{
-      headers: {
-        Authorization: token,
-      },
+     headers
     });
   },
 };
@@ -56,11 +57,9 @@ export const ChangeStatus = {
 
 
 export const SearchArea = {
-  doSearchArea:  (data: { category: number; search: string }) => {
+  doSearchArea:  (payload: { category: number; search: string }) => {
     const token = localStorage.getItem('accessToken');
-    return API.post("search/area", data, { headers : {
-      Authorization:  token,
-    } });
+    return API.post("search/area", payload, { headers });
 
   },
 };

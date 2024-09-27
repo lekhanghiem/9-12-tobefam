@@ -1,26 +1,41 @@
-'use client'
-import React, { createContext, ReactNode, useState, useContext, useEffect } from "react";
-const AppRouterContext = createContext<any>(null);
-
-export const useAppRouterContext = () => {
-  return useContext(AppRouterContext);
-};
-
-interface AppProviderProps {
-  children: ReactNode;
-}
+'use client';
+import React, { createContext, useState, useContext, useEffect } from 'react';
+import { Area } from '@/types/types';
+import { AppDispatch } from '@/store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { searchArea } from '@/store/features/Area/SearchAreaSlice';
 
 interface SearchContextType {
-
+  searchAreas: Area[];
+  handleSearch: (search: string, category: number) => void;
 }
 
-export const AppProvider = ({ children }: AppProviderProps) => {
+// Tạo context
+export const SearchContext = createContext<SearchContextType | undefined>(undefined);
 
-  const contextValue: SearchContextType = {
+export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [searchAreas, setSearchAreas] = useState<Area[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
+
+  // Lấy dữ liệu tìm kiếm từ Redux store
+  const data = useSelector((state: any) => state.Search.data);
+
+  const handleSearch = (search: string, category: number) => {
+    const payload = { category, search };
+    dispatch(searchArea(payload)); // Dispatch hành động tìm kiếm
   };
+
+  useEffect(() => {
+
+    if (data?.areas) {
+      setSearchAreas(data.areas);
+
+    }
+  }, [data]);
+  console.log(data?.areas,'data');
   return (
-    <AppRouterContext.Provider value={contextValue}>
+    <SearchContext.Provider value={{ searchAreas, handleSearch }}>
       {children}
-    </AppRouterContext.Provider>
+    </SearchContext.Provider>
   );
 };

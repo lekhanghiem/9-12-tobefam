@@ -8,7 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Area } from '@/types/types';
-import { useListAreaQuery } from '@/store/features/todos/ListAreaRTK';
+import { useListAreaQuery } from '@/store/features/Area/ListAreaRTK';
 import ChangeStatus from './ChangeStatus';
 import Edit from './Edit';
 
@@ -16,6 +16,8 @@ import { Box, Typography, Pagination, Tooltip } from '@mui/material';
 import SearchArea from './SearchArea';
 import { useContext, useEffect, useState } from 'react';
 import Createfram from './Createfram';
+import { useAppSelector } from '@/store/hooks';
+import { SearchContext } from '@/context/AppContext';
 interface AreasResponse{
   data:any;
   areas:Area[];
@@ -23,43 +25,38 @@ interface AreasResponse{
 
 export default function BasicTable() {
   const [page, setPage] = useState<number>(1);
+const  {searchAreas}  = useContext(SearchContext)||{};
 
    const { data,refetch  } = useListAreaQuery<AreasResponse>(`?page=${page}`);
   const areas: Area[] = data?.data?.areas || [];
 const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
-
   };
 const totalPages=data?.data?.totalPages;
 
    useEffect(() => {
-
     refetch();
   }, [page, refetch]);
 
-const [searchResults, setSearchResults] = useState<Area[]>([])
- const callbackFunction = (childData: Area[]) => {
-    setSearchResults(childData)
-  }
 
-  const rows =
-  (searchResults ? searchResults : areas
-).map((area) => ({
-        id: area.id,
-        Name: area.Name,
-        Area_type: area.Area_type,
-        Area_status: area.Area_status,
-        Address: area.Address,
-        Image: area.Image?.url,
-        description: area.description,
-      }))
+console.log(searchAreas);
+const rows = (searchAreas && searchAreas.length === 0 ? areas : searchAreas || [])?.map((area: Area) => ({
+  id: area.id,
+  Name: area.Name,
+  Area_type: area.Area_type,
+  Area_status: area.Area_status,
+  Address: area.Address,
+  Image: area.Image?.url,  // Safely access Image URL if it exists
+  description: area.description,
+})) || [];
+
 
   return (
     <Box sx={{ py:'20px',backgroundColor:'#f9faff' }} >
  <Box sx={{ width:'90%',mx:'auto',backgroundColor:'#ffffff', boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',  borderRadius: '12px',pb:'30px' }}>
   <Box sx={{ display:'flex', justifyContent:'space-between',width:'90%',mx:'auto',py:'50px' }}>
 <Box>
-  <SearchArea parentCallback={callbackFunction}/>
+  <SearchArea />
 </Box>
 <Box><Createfram/></Box>
  </Box>
@@ -96,7 +93,8 @@ const [searchResults, setSearchResults] = useState<Area[]>([])
               <TableCell align="left"><Image src={row.Image} width='40' height='40' alt="Customer" /></TableCell>
               <TableCell align="left">{row.Area_type} </TableCell>
               <TableCell align="left">{row.Area_status}</TableCell>
-               <TableCell align="left"><Edit />
+               <TableCell align="left">
+                <Edit />
                </TableCell>
                <TableCell align="left">
                 <ChangeStatus  id={row.id} refetch={refetch} Area_status={row.Area_status}  />

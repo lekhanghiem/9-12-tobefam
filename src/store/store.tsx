@@ -1,20 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
-import auth from "./features/todos/authSlice";
+import auth from "./features/Area/authSlice";
 import { useDispatch } from "react-redux";
-import locationSlice from "./features/todos/locationSlice";
-import registerSlice from "./features/todos/registerSlice";
-import { ListAreaRTK } from "./features/todos/ListAreaRTK";
-import ChangeStatusSlice from "./features/todos/ChangeStatusSlice";
-import SearchAreaSlice from "./features/todos/SearchAreaSlice";
+import { ListAreaRTK } from "./features/Area/ListAreaRTK";
+import ChangeStatusSlice from "./features/Area/ChangeStatusSlice";
+import SearchAreaSlice from "./features/Area/SearchAreaSlice";
+import RegisterSlice from "./features/Area/RegisterSlice";
 
 
 const store = configureStore({
   reducer: {
     auth: auth,
-    locationSlice: locationSlice,
-    registerSlice:registerSlice,
+    RegisterSlice:RegisterSlice,
      ChangeStatusSlice,ChangeStatusSlice,
-    SearchAreaSlice,SearchAreaSlice,
+      Search: SearchAreaSlice,
      [ListAreaRTK.reducerPath]: ListAreaRTK.reducer,
 
   },

@@ -1,10 +1,10 @@
-import { actionChangeStatus } from '@/store/features/todos/ChangeStatusSlice';
+import { actionChangeStatus } from '@/store/features/Area/ChangeStatusSlice';
 import { AppDispatch } from '@/store/store';
 import { Box, Button } from '@mui/material';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { Area } from '@/types/types';
-import { useAppRouterContext } from '@/context/AppContext';
+import { SearchContext } from '@/context/AppContext';
 interface ChangeStatusProps {
   id: string;
   Area_status: string;
@@ -14,6 +14,7 @@ interface ChangeStatusProps {
 
 const ChangeStatus: React.FC<ChangeStatusProps> = ({ id, Area_status, refetch }) => {
   const dispatch = useDispatch<AppDispatch>();
+
   const handleClick = async () => {
     try {
 

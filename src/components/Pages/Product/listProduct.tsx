@@ -125,7 +125,7 @@ const ProductList: React.FC<AreaStatusToggleProps> = ({
         <div>{params.row.Name}</div>
         <div>
 
-          <img src={params.row.Image} alt={params.row.Image} width={50} height={50} className='rounded-3xl'/>
+          <Image src={params.row.Image} alt={params.row.Image} width={50} height={50} className='rounded-3xl'/>
 
         </div>
       </div>
@@ -136,7 +136,7 @@ const ProductList: React.FC<AreaStatusToggleProps> = ({
       headerName: 'Loại',
       width: 130,
       renderCell: (params) =>
-        params.row.Product_type === 1 ? (
+        params.row.Product_type === 'Fruits' ? (
           <div className="text-green-500">Vùng nuôi trồng</div>
         ) : (
           <div className="text-green-600">Vùng chế biến</div>
@@ -147,7 +147,7 @@ const ProductList: React.FC<AreaStatusToggleProps> = ({
       headerName: 'Trạng thái',
       width: 130,
       renderCell: (params) =>
-        params.row.Product_status === 1 ? (
+        params.row.Product_status === 'stop production' ? (
           <div className="text-green-500">Hoạt động</div>
         ) : (
           <div className="text-red-500">Ngừng hoạt động</div>

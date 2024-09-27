@@ -23,7 +23,7 @@ import Checkbox from '@mui/material/Checkbox';
 import CustomButton from '@/components/ui/Custombutton';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/store/store';
-import { actionLogin } from '@/store/features/todos/authSlice';
+import { actionLogin } from '@/store/features/Area/authSlice';
 import { useAppSelector } from '@/store/hooks';
 import isAuthu from '../../../middleware/isAuth'
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };

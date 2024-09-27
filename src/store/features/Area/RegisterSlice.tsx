@@ -25,7 +25,7 @@ const actionRegister = createAsyncThunk(
 const { reducer, actions } = createSlice({
   name: "auth",
   initialState: {
-    register1: {
+    register: {
       loading: false,
       data: [],
       error: "",

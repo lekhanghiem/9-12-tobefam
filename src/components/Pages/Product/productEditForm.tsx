@@ -216,7 +216,7 @@ const EditProductForm: React.FC<EditProductFormProps> = ({
             />
             {imagePreview && (
               <div className="flex justify-center mt-2">
-                <img
+                <Image
                   src={imagePreview}
                   alt="Image Preview"
                   style={{ maxWidth: '100px', maxHeight: '100px' }}
