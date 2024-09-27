@@ -141,6 +141,8 @@ const CreateAreaForm: React.FC = () => {
               </Button>
               {imagePreview && (
                 <Image
+                width={40}
+                height={40}
                   src={imagePreview as string}
                   alt="Image Preview"
                   style={{ marginTop: 10, maxWidth: '50px',borderRadius:'10px' }}

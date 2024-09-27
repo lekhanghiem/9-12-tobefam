@@ -25,9 +25,11 @@ const ChangeStatus: React.FC<ChangeStatusProps> = ({ id, Area_status, refetch })
       console.error("Lỗi khi thay đổi trạng thái:", error);
     }
   };
+const  {handleSearch}  = useContext(SearchContext)||{};
 
   const handleUpdateSuccess = () => {
     refetch();
+    // handleSearch()
   };
 
   return (

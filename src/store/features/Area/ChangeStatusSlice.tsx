@@ -1,53 +1,55 @@
 import { ChangeStatus } from "@/store/api";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-const actionChangeStatus = createAsyncThunk(
-  "status",
-  async (id:string) => {
-    try {
 
+// Thunk for changing status
+export const actionChangeStatus = createAsyncThunk(
+  "status/change",
+  async (id: string, { rejectWithValue }) => {
+    try {
       const res = await ChangeStatus.doChangeStatus(id);
       if (res.status === 200) {
         toast.success(res.data.message);
+        return res.data; // Return the response data for the fulfilled case
       }
     } catch (error: any) {
-
-      const message = error.response.data?.message || error.message;
+      const message = error.response?.data?.message || error.message;
       toast.error(message);
+      return rejectWithValue(message); // Return the error message
     }
   }
 );
 
-const { reducer, actions } = createSlice({
+// Slice for status
+const statusSlice = createSlice({
   name: "status",
   initialState: {
     status: {
       loading: false,
-      data: [],
+      data: {},
       error: "",
     },
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(actionChangeStatus.pending, (state: any) => {
+      // Pending case
+      .addCase(actionChangeStatus.pending, (state) => {
         state.status.loading = true;
+        state.status.error = ""; // Clear previous error
       })
-      .addCase(actionChangeStatus.rejected, (state: any, action: any) => {
-        // state.status.loading = false;
-        state.status.error = action.payload;
-        state.status.data = {};
-      })
-      .addCase(actionChangeStatus.fulfilled, (state: any, action: any) => {
+      // Rejected case
+      .addCase(actionChangeStatus.rejected, (state, action) => {
         state.status.loading = false;
-        state.status.data = action.payload;
-        state.status.error = "";
+        state.status.error = action.payload as string; // Store the error message
+      })
+      // Fulfilled case
+      .addCase(actionChangeStatus.fulfilled, (state, action) => {
+        state.status.loading = false;
+        state.status.data = action.payload; // Update the status with the returned data
+        state.status.error = ""; // Clear the error
       });
   },
-
-
-
-
 });
-export default reducer;
-export { actionChangeStatus };
+
+export default statusSlice.reducer;

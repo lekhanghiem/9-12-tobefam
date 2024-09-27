@@ -17,12 +17,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [searchAreas, setSearchAreas] = useState<Area[]>([]);
   const dispatch = useDispatch<AppDispatch>();
 
-  // Lấy dữ liệu tìm kiếm từ Redux store
   const data = useSelector((state: any) => state.Search.data);
 
   const handleSearch = (search: string, category: number) => {
     const payload = { category, search };
-    dispatch(searchArea(payload)); // Dispatch hành động tìm kiếm
+    dispatch(searchArea(payload));
   };
 
   useEffect(() => {
