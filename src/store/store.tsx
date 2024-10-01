@@ -2,9 +2,10 @@ import { configureStore } from "@reduxjs/toolkit";
 import auth from "./features/Area/authSlice";
 import { useDispatch } from "react-redux";
 import { ListAreaRTK } from "./features/Area/ListAreaRTK";
-import ChangeStatusSlice from "./features/Area/ChangeStatusSlice";
 import SearchAreaSlice from "./features/Area/SearchAreaSlice";
 import RegisterSlice from "./features/Area/RegisterSlice";
+import ChangeStatusSlice from "./features/Area/ChangeStatusSlice";
+import EditAreaSlice from "./features/Area/EditAreaSlice";
 
 
 const store = configureStore({
@@ -13,6 +14,7 @@ const store = configureStore({
     RegisterSlice:RegisterSlice,
      ChangeStatusSlice,ChangeStatusSlice,
       Search: SearchAreaSlice,
+      EditAreaSlice:EditAreaSlice,
      [ListAreaRTK.reducerPath]: ListAreaRTK.reducer,
 
   },

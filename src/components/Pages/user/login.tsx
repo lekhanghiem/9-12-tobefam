@@ -7,7 +7,6 @@ import {schemalogin} from '../../../app/[locale]/utility/schema'
 import React, { useState, ChangeEvent, MouseEvent } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import Image from 'next/image';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -16,7 +15,6 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useRouter } from 'next/navigation';
-import { toast } from 'react-toastify';
 import Link from 'next/link';
 import { Button, Grid, Paper, styled } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';

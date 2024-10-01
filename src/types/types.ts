@@ -122,3 +122,25 @@ export interface Search {
   Product_packing: number;
   qr_code: string; // Assuming qr_code is a URL or string
 }
+export interface Product {
+  id: number
+  User_id: number
+  Area_type: string
+  Name: string
+  Address: string
+  Image: Image
+  description: string
+  Area_status: string
+}
+
+export interface Image {
+  id: string
+  url: string
+}
+
+export interface FormData {
+  Name: string;
+  Address: string;
+  Image: File | null;
+  Description: string;
+}

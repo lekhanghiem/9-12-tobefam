@@ -18,28 +18,12 @@ import { useContext, useEffect, useState } from 'react';
 import Createfram from './Createfram';
 import { useAppSelector } from '@/store/hooks';
 import { SearchContext } from '@/context/AppContext';
-interface AreasResponse{
-  data:any;
-  areas:Area[];
-}
+
 
 export default function BasicTable() {
-  const [page, setPage] = useState<number>(1);
-const  {searchAreas}  = useContext(SearchContext)||{};
-
-   const { data,refetch  } = useListAreaQuery<AreasResponse>(`?page=${page}`);
-  const areas: Area[] = data?.data?.areas || [];
-const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    setPage(value);
-  };
-const totalPages=data?.data?.totalPages;
-
-   useEffect(() => {
-    refetch();
-  }, [page, refetch]);
+const  {searchAreas,areas,refetch,totalPages,page,handlePageChange}  = useContext(SearchContext)||{};
 
 
-console.log(searchAreas);
 const rows = (searchAreas && searchAreas.length === 0 ? areas : searchAreas || [])?.map((area: Area) => ({
   id: area.id,
   Name: area.Name,
@@ -50,8 +34,10 @@ const rows = (searchAreas && searchAreas.length === 0 ? areas : searchAreas || [
   description: area.description,
 })) || [];
 
-
   return (
+    <div style={{ backgroundImage: `url('/img/home/Group48096598.png')` }}>
+
+
     <Box sx={{ py:'20px',backgroundColor:'#f9faff' }} >
  <Box sx={{ width:'90%',mx:'auto',backgroundColor:'#ffffff', boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',  borderRadius: '12px',pb:'30px' }}>
   <Box sx={{ display:'flex', justifyContent:'space-between',width:'90%',mx:'auto',py:'50px' }}>
@@ -61,17 +47,17 @@ const rows = (searchAreas && searchAreas.length === 0 ? areas : searchAreas || [
 <Box><Createfram/></Box>
  </Box>
 
-    <TableContainer  sx={{}}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    <TableContainer >
+      <Table sx={{ minWidth: 300 }} aria-label="simple table">
         <TableHead>
-          <TableRow>
-            <TableCell align="left" colSpan={2}>Name of product type</TableCell>
-            <TableCell align="left">type</TableCell>
-            <TableCell align="left">Status</TableCell>
-            <TableCell align="left" colSpan={2}>Actions</TableCell>
-            <TableCell align="left">description</TableCell>
+         <TableRow>
+  <TableCell align="left" colSpan={2} sx={{ fontSize: '15px' }}>Name</TableCell>
+  <TableCell align="left" sx={{ fontSize: '15px' }}>type</TableCell>
+  <TableCell align="left" sx={{ fontSize: '15px' }}>Status</TableCell>
+  <TableCell align="left" colSpan={2} sx={{ fontSize: '15px' }}>Actions</TableCell>
+  <TableCell align="left" sx={{ fontSize: '15px' }}>Address</TableCell>
+</TableRow>
 
-          </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
@@ -94,12 +80,12 @@ const rows = (searchAreas && searchAreas.length === 0 ? areas : searchAreas || [
               <TableCell align="left">{row.Area_type} </TableCell>
               <TableCell align="left">{row.Area_status}</TableCell>
                <TableCell align="left">
-                <Edit />
+                <Edit id={row.id} row={row}    />
                </TableCell>
                <TableCell align="left">
-                <ChangeStatus  id={row.id} refetch={refetch} Area_status={row.Area_status}  />
+                <ChangeStatus  id={row.id}  refetch={refetch} Area_status={row.Area_status}  />
                 </TableCell>
-              <TableCell align="left">{row.description} </TableCell>
+              <TableCell align="left">{row.Address} </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -116,5 +102,6 @@ const rows = (searchAreas && searchAreas.length === 0 ? areas : searchAreas || [
       />
  </Box>
     </Box>
+      </div>
   );
 }

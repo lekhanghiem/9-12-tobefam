@@ -47,7 +47,6 @@ export const headers={
 
 export const ChangeStatus = {
   doChangeStatus: (id:string) => {
-    const token = localStorage.getItem('accessToken');
     return API.patch(`area/${id}/status`, {},{
      headers
     });
@@ -58,10 +57,19 @@ export const ChangeStatus = {
 
 export const SearchArea = {
   doSearchArea:  (payload: { category: number; search: string }) => {
-    const token = localStorage.getItem('accessToken');
     return API.post("search/area", payload, { headers });
 
   },
 };
 
 
+
+
+
+export const EditArea = {
+  doEditArea: ({ id, data }: { id: string; data: FormData }) => {
+    return API.put(`area/edit/${id}`, data, {
+      headers
+    });
+  },
+};

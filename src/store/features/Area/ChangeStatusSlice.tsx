@@ -1,7 +1,11 @@
 import { ChangeStatus } from "@/store/api";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-
+interface ChangeStatusSlice {
+  loading: boolean;
+  data: any; // Define a specific type based on your API response
+  error: string;
+}
 // Thunk for changing status
 export const actionChangeStatus = createAsyncThunk(
   "status/change",
@@ -21,7 +25,7 @@ export const actionChangeStatus = createAsyncThunk(
 );
 
 // Slice for status
-const statusSlice = createSlice({
+const ChangeStatusSlice = createSlice({
   name: "status",
   initialState: {
     status: {
@@ -52,4 +56,4 @@ const statusSlice = createSlice({
   },
 });
 
-export default statusSlice.reducer;
+export default ChangeStatusSlice.reducer;
