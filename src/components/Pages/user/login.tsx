@@ -61,7 +61,6 @@ const Loginn: React.FC = () => {
 
   const handleClickShowPassword = () => setShowPassword(prev => !prev);
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => event.preventDefault();
-// console.log(loading,data);
 
   return (
     <div className='py-20'>

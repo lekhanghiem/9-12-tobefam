@@ -21,11 +21,12 @@ const ChangeStatus: React.FC<ChangeStatusProps> = ({ id, Area_status,  }) => {
       await dispatch(actionChangeStatus(id)).unwrap();
       await handleUpdateSuccess();
       console.log(id);
+
     } catch (error) {
       console.error("Lỗi khi thay đổi trạng thái:", error);
     }
   };
-const  {refetch}  = useContext(SearchContext)||{};
+const  {refetch,handleSearch}  = useContext(SearchContext)||{};
 
   const handleUpdateSuccess = () => {
     refetch?.();

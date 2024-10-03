@@ -39,9 +39,9 @@ export const Register = {
 
 };
 
-  export  const token = localStorage.getItem('accessToken');
+ const token = localStorage.getItem('accessToken');
 
-export const headers={
+ const headers={
     Authorization: token,
 }
 

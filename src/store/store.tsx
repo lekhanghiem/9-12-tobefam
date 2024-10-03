@@ -12,7 +12,7 @@ const store = configureStore({
   reducer: {
     auth: auth,
     RegisterSlice:RegisterSlice,
-     ChangeStatusSlice,ChangeStatusSlice,
+     ChangeStatusSlice:ChangeStatusSlice,
       Search: SearchAreaSlice,
       EditAreaSlice:EditAreaSlice,
      [ListAreaRTK.reducerPath]: ListAreaRTK.reducer,

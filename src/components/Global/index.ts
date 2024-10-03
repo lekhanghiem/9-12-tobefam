@@ -2,7 +2,7 @@ import Accordion from "./Accordion";
 import Banner from "./Banner";
 import CounterElement from "./CounterElement";
 import CustomCursor from "./CustomCursor";
-import Footer from "./Footer";
+// import Footer from "./Footer";
 import Modal from "./Modal";
 import NavBar from "./NavBar";
 import ProgressBar from "./ProgressBar";
@@ -13,7 +13,7 @@ export {
   Banner,
   CounterElement,
   CustomCursor,
-  Footer,
+  // Footer,
   Modal,
   NavBar,
   ProgressBar,

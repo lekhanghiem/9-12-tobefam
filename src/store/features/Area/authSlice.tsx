@@ -12,7 +12,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
                   localStorage.setItem("accessToken", res.data.data.token);
           localStorage.setItem("user", JSON.stringify(res.data.data));
           toast.success(res.data.message);
-window.location.replace('/')
+window.location.replace('/areaList')
           return res.data.data;
         } else {
           toast.error(res.data.message);

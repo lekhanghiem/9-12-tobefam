@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import axiosIns from '../../../store/api/axiosIns';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -8,13 +7,13 @@ import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select, Tooltip } from '@mui/material';
 import { Area } from '@/types/types';
 import { SearchContext } from '@/context/AppContext';
 import { AppDispatch } from '@/store/store';
 import { useDispatch } from 'react-redux';
 import { actionEditArea } from '@/store/features/Area/EditAreaSlice';
-
+import { MdEditNote } from "react-icons/md";
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
@@ -120,9 +119,13 @@ const handleEditSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
   return (
     <div>
-      <Button onClick={handleOpen} variant="contained" color="primary">
-        Edit
+      <Tooltip title="Edit">
+
+      <Button sx={{ backgroundColor:'#82eb87'}} onClick={handleOpen} variant="contained" >
+     <MdEditNote fontSize={23}/>
       </Button>
+      </Tooltip>
+
       <Modal
         open={isOpen}
         onClose={handleClose}

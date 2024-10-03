@@ -60,7 +60,7 @@ const t= useTranslations('HomePage')
 
 >
   <div className="w-11/12 mx-auto">
-    <form className="relative w-full">
+    <form className="relative w-full ">
       <TextField
         sx={{
           width: '100%',
@@ -84,10 +84,10 @@ const t= useTranslations('HomePage')
             borderColor: '#007E94',
           },
             '& .Mui-focused .MuiInputLabel-root': {
-      color: '#007E94',
+      color: '#032c33',
     },
      '& .MuiInputLabel-root': {
-      color: '#007E94', // Màu của label khi không focus
+      color: '#033038', // Màu của label khi không focus
     },
 
 
@@ -96,9 +96,32 @@ const t= useTranslations('HomePage')
         label={t("Nhập email")}
         variant="outlined"
       />
-      <Button className="text-white absolute right-0 ml-2 bg-[#007E94] rounded-[20px] px-10 sm:px-16 py-6 text-sm font-medium hover:from-[#007E94] hover:bg-[#007E94]">
-       {t('Xác nhận')}
-      </Button>
+    <div className='absolute top-0 right-0 w-4/12 lg:w-2/12  '>
+         <Button
+      variant="contained"
+      sx={{
+        backgroundColor: '#007E94',
+        color: 'white',
+        borderRadius: '20px',
+        padding: '10px 20px',
+        textTransform: 'none',
+        height: 50,
+        width: '100%',
+        boxShadow: 'none',
+        border: '2px solid transparent',
+        '&:hover': {
+          backgroundColor: '#007E94', // Darker blue on hover
+          border: '2px solid #007E94', // Add border on hover
+        },
+        '&:active': {
+          backgroundColor: '#007E94', // Darker blue when active
+        },
+      }}
+    >
+      Xác nhận
+    </Button>
+    </div>
+
     </form>
   </div>
 </Item>
