@@ -1,104 +1,286 @@
-'use client'
-import * as React from 'react';
+'use client';
+import React, { useState, useEffect, useMemo } from 'react';
+import axiosIns from '../../../store/api/axiosIns';
 import Image from 'next/image'
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import { Area } from '@/types/types';
-import ChangeStatus from './ChangeStatus';
-import Edit from './Edit';
 
-import { Box, Pagination, Tooltip } from '@mui/material';
-import SearchArea from './SearchArea';
-import { useContext } from 'react';
-import Createfram from './Createfram';
-import { SearchContext } from '@/context/AppContext';
+import { toast } from 'react-toastify';
+import Button from '@mui/material/Button';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import EditAreaForm from './EditAreaForm';
+import SearchArea from '../seacharea/searcharea';
+import Createfram from './createfram';
+import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import AreaStatusToggle from './changeStatus';
+import { styled, Tooltip, tooltipClasses, TooltipProps } from '@mui/material';
+import { AppDispatch, useAppDispatch } from '@/store/store';
+import { useDispatch } from 'react-redux';
+import { actionListArea } from '@/store/features/todos/ListAreaSlice';
+import isAuth from '@/middleware/isAuth';
+
+interface Image {
+  url: string;
+}
+
+interface Area {
+  id: number;
+  User_id: number;
+  Area_type: number;
+  Name: string;
+  Address: string;
+  Image: Image;
+  description: string;
+  Area_status: number;
+}
+const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: theme.palette.common.white,
+    color: 'rgba(0, 0, 0, 0.87)',
+    boxShadow: theme.shadows[1],
+    fontSize: 11,
+  },
+}));
 
 
-export default function BasicTable() {
-const  {searchAreas,totalPages,page,handlePageChange}  = useContext(SearchContext)||{};
-console.log(totalPages,'pagetotltotal');
-const rows = searchAreas?.map((area: Area) => ({
-  id: area.id,
-  Name: area.Name,
-  Area_type: area.Area_type,
-  Area_status: area.Area_status,
-  Address: area.Address,
-  Image: area.Image?.url,
-  description: area.description,
-})) || [];
+const AreaList: React.FC = () => {
+  const [isUpdate, setIsUpdate] = useState(false);
+  const [areas, setAreas] = useState<Area[]>([]);
+  const [selectedArea, setSelectedArea] = useState<Area | null>(null);
+  const [open, setOpen] = useState(false);
+  const [filteredAreas, setFilteredAreas] = useState<Area[]>([]);
+  const dispatch = useDispatch<AppDispatch>()
+
+  useEffect(() => {
+    fetchAreas();
+  }, [isUpdate]);
+
+  const fetchAreas = async () => {
+    try {
+ dispatch(actionListArea()).then((res)=>{
+      if (res.payload ) {
+      }
+    })
+
+    } catch (error) {
+      toast.error('chưa đăng nhập');
+      console.error('Error fetching areas:', error);
+    }
+  };
+
+  const handleOpen = (area: Area) => {
+    setSelectedArea(area);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setSelectedArea(null);
+  };
+
+  const handleUpdateSuccess = () => {
+    fetchAreas();
+    setIsUpdate((prev) => !prev);
+  };
+  const t = useTranslations('a');
+
+  const columns: GridColDef[] = [
+
+    // {
+    //   field: 'ID',
+    //   headerName: `${t('id')}`,
+    //   flex: 0.5,
+    //   minWidth: 50,
+    // },
+
+    {
+      field: 'name',
+      headerName: `${t('Tên vùng')}`,
+      flex: 1,
+      minWidth: 200,
+      renderCell: (params) => {
+        return (
+          <div className="flex w-full">
+              <LightTooltip  title={params.row.Name} placement="top" followCursor>
+            <div className="w-4/12">{params.row.Name}</div>
+            </LightTooltip>
+            <div className="text-green-500 w-8/12 flex items-center justify-end pr-3">
+              <img
+                className="rounded-2xl"
+                src={params.row.Image}
+                alt={params.row.Image}
+                width={40}
+                height={20}
+              />
+            </div>
+          </div>
+        );
+      },
+    },
+    {
+      field: 'Area_type',
+      headerName: `${t('Loại')}`,
+      flex: 1,
+      minWidth: 150,
+      renderCell: (params) =>
+        params.row.Area_type === 1 ? (
+          <div className="text-green-500">{t('Vùng nuôi trồng')}</div>
+        ) : (
+          <div className="text-green-600">{t('Vùng chế biến')}</div>
+        ),
+    },
+    {
+      field: 'Area_status',
+      headerName: `${t('Trạng Thái')}`,
+      flex: 1,
+      minWidth: 150,
+      renderCell: (params) =>
+        params.row.Area_status === 'In production' ? (
+          <div className="text-green-500">{t('Hoạt động')}</div>
+        ) : (
+          <div className="text-red-500">{t('Ngừng hoạt động')}</div>
+        ),
+    },
+    {
+      field: 'Address',
+      headerName: `${t('Địa chỉ')}`,
+      flex: 2,
+      minWidth: 300,
+      renderCell: (params) =>
+
+      (<div>
+         <LightTooltip  title={params.row.Address} placement="top" followCursor>
+        {params.row.Address}
+</LightTooltip>
+      </div>
+
+        ),
+    },
+    {
+      field: 'sum',
+      headerName: `${t('Sản phẩm')}`,
+      flex: 1,
+      minWidth: 150,
+      renderCell: () => (
+        <div className="flex  items-center  ">
+          <Link href="/listproduct">{t('Xem sản phẩm')}</Link>
+        </div>
+      ),
+    },
+    {
+      field: 'action',
+      headerName: `${t('Hành Động')}`,
+      flex: 1,
+      minWidth: 150,
+      renderCell: (params) => (
+        <div className="pt-3">
+          <div className="flex space-x-2 ">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => handleOpen(params.row)}
+            >
+              Edit
+            </Button>
+            <AreaStatusToggle
+              setIsUpdate={setIsUpdate}
+              areaId={params.row.id}
+              initialStatus={params.row.Area_status === 1}
+            />
+          </div>
+        </div>
+      ),
+    },
+  ];
+
+  const rows = useMemo(
+    () =>
+      filteredAreas.map((area,index) => ({
+        id: area.id,
+        Name: area.Name,
+        Area_type: area.Area_type,
+        Area_status: area.Area_status,
+        Address: area.Address,
+        Image: area?.Image?.url,
+        description: area.description,
+      })),
+    [filteredAreas]
+  );
+
+  const handleSearchResults = (results: Area[]) => {
+    setFilteredAreas(results);
+  };
 
   return (
-    <div style={{ backgroundImage: `url('/img/home/Group48096598.png')` }}>
+    <div className="relative"
 
-
-    <Box sx={{ py:'20px',backgroundImage:`url('/img/home/Group48096598.png')` }} >
- <Box sx={{ width:'90%',mx:'auto',backgroundColor:'#ffff', boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',  borderRadius: '32px',pb:'30px' }}>
-  <Box sx={{ display:'flex', justifyContent:'space-between',width:'90%',mx:'auto',py:'50px' }}>
-<Box>
-  <SearchArea />
-</Box>
-<Box><Createfram/></Box>
- </Box>
-
-    <TableContainer >
-      <Table sx={{ minWidth: 300 }} aria-label="simple table">
-        <TableHead>
-         <TableRow>
-  <TableCell align="left" colSpan={2} sx={{ fontSize: '15px' }}>Name</TableCell>
-  <TableCell align="left" sx={{ fontSize: '15px' }}>Type</TableCell>
-  <TableCell align="left" sx={{ fontSize: '15px' }}>Status</TableCell>
-  <TableCell align="left" colSpan={2} sx={{ fontSize: '15px' }}>Actions</TableCell>
-  <TableCell align="left" sx={{ fontSize: '15px' }}>Address</TableCell>
-</TableRow>
-
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-             <TableCell
-  sx={{ maxWidth: '100px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
-  align="left"
-  component="th"
-  scope="row"
->
-  <Tooltip title={row.Name} arrow>
-    <span>{row.Name}</span>
-  </Tooltip>
-</TableCell>
-
-              <TableCell align="left"><Image src={row.Image} width='40' height='40' alt="Customer" /></TableCell>
-              <TableCell align="left">{row.Area_type} </TableCell>
-              <TableCell align="left">{row.Area_status}</TableCell>
-               <TableCell align="left">
-                <Edit id={row.id} row={row}    />
-               </TableCell>
-               <TableCell align="left">
-                <ChangeStatus  id={row.id} Area_status={row.Area_status}  />
-                </TableCell>
-              <TableCell align="left">{row.Address} </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-
-    </TableContainer>
-
-      <Pagination
-      color='primary'
-        count={totalPages}
-        page={page}
-        onChange={handlePageChange}
-        sx={{ marginTop: 2, justifyContent: 'center', display: 'flex' }}
+      >
+       <div>
+         <Image
+        src="/img/home/Group48096598.png"
+        alt="err"
+       layout="fill"
       />
- </Box>
-    </Box>
+       </div>
+      <div className="mx-auto w-11/12 md:w-10/12">
+        <div className="flex flex-col md:flex-row justify-between py-10">
+          <h1 className="text-2xl md:text-4xl text-green-500">
+            {t('Vùng sản xuất')}
+          </h1>
+          <div className="mt-4 md:mt-0 flex gap-4 md:gap-10">
+            <Createfram />
+          </div>
+        </div>
+        <div className="pb-10">
+          <SearchArea onSearchResults={handleSearchResults} />
+        </div>
       </div>
+      <div className="w-11/12 md:w-10/12 mx-auto">
+        <DataGrid
+          sx={{
+//             backgroundColor: '#08344f',
+//             height: '100%',
+//  '& .MuiDataGrid-cell': {
+//             color: 'red',
+
+//           },
+            '& .MuiDataGrid-columnHeaders': {
+              color: '#000',
+            backgroundColor: '#fff',
+
+              fontSize: '16px',
+              lg: { fontSize: '20px' },
+            },
+            '& .MuiDataGrid-root': {
+              fontSize: '14px',
+            },
+
+          }}
+          rows={rows}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                page: 0,
+                pageSize: 10,
+              },
+            },
+          }}
+          pageSizeOptions={[5, 20]}
+        />
+      </div>
+
+      {selectedArea && (
+        <EditAreaForm
+          area={selectedArea}
+          open={open}
+          onClose={handleClose}
+          onUpdateSuccess={handleUpdateSuccess}
+        />
+      )}
+    </div>
   );
-}
+};
+
+export default AreaList;
