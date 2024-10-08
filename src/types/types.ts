@@ -57,14 +57,15 @@ export interface IconProps {
 }
 //thunk
 export interface Area {
-  id: number
+  data: any;
+  id: string
   User_id: number
-  Area_type: number
+  Area_type: String
   Name: string
   Address: string
   Image: Image
   description: string
-  Area_status: number
+  Area_status: string
 }
 
 export interface Image {
@@ -76,27 +77,56 @@ export interface TextState {
   data: Area[]; // Đảm bảo kiểu dữ liệu đúng ở đây
   error: string;
 }
-
-export interface Ward {
-  code: string;
-  name: string;
-  name_en: string;
-  full_name: string;
-  full_name_en: string;
-  code_name: string;
-  district_code: string;
-  administrative_unit_id: number;
+ export  interface City {
+  Id: string;
+  Name: string;
+  Districts: District[];
 }
 
-export interface District {
-  district_code: string;
-  district_name: string;
-  wards: Ward[];
+ export  interface District {
+  Id: string;
+  Name: string;
+  Wards: Ward[];
 }
 
-export interface Province {
-  province_code: string;
-  province_name: string;
-  districts: District[];
+ export  interface Ward {
+  Id: string;
+  Name: string;
 }
 
+  export interface Product {
+  Name: string;
+  Description: string;
+  Image: Image;
+  product_code: string;
+  Expiry_date: string; // Assuming this is a string representing the date
+  Unit: string;
+  Product_status: string;
+  certify: Image;
+  Product_date: string; // Assuming this is a string representing the date
+  Product_type: number;
+  Product_packing: number;
+  qr_code: string; // Assuming qr_code is a URL or string
+}
+export interface Product {
+  id: number
+  User_id: number
+  Area_type: string
+  Name: string
+  Address: string
+  Image: Image
+  description: string
+  Area_status: string
+}
+
+export interface Image {
+  id: string
+  url: string
+}
+
+export interface FormData {
+  Name: string;
+  Address: string;
+  Image: File | null;
+  Description: string;
+}

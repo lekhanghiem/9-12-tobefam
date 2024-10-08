@@ -73,7 +73,7 @@ const SearchProduct: React.FC<SearchProductProps> = ({
       setError(null);
 
       const response = await axiosIns.post<ApiResponse, any>(
-        'http://192.168.0.106:3001/search/19/product',
+        '/search/19/product',
         requestData,
         {
           headers: {
@@ -82,7 +82,7 @@ const SearchProduct: React.FC<SearchProductProps> = ({
         }
       );
 
-      setFilteredProducts(response.data);
+      setFilteredProducts(response.data.products);
     } catch (error) {
       setError('Error fetching search results. Please try again.');
       console.error('Error fetching search results:', error);

@@ -2,10 +2,10 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
 import Image from 'next/image';
 import {
   Button,
+  Grid,
   TextField,
   Typography,
   useMediaQuery,

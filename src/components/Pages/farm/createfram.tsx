@@ -11,6 +11,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image'
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -107,7 +108,7 @@ const CreateAreaForm: React.FC = () => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2" sx={{paddingBottom:'20px'}}>
-            {t('Vùng sản xuất mới')}
+            {t('Vùng sản')}
           </Typography>
           <form onSubmit={handleSubmit}>
             <Box sx={{ mb: 2 }}>
@@ -139,7 +140,9 @@ const CreateAreaForm: React.FC = () => {
                 />
               </Button>
               {imagePreview && (
-                <img
+                <Image
+                width={40}
+                height={40}
                   src={imagePreview as string}
                   alt="Image Preview"
                   style={{ marginTop: 10, maxWidth: '50px',borderRadius:'10px' }}

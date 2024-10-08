@@ -55,7 +55,7 @@ const Minhbach = () => {
           <FadeLeft>
             <Item sx={{height:{
       sx:'200px',
-      md:'200px',
+      md:'300px',
       lg:'200px',
       xl:'200px',
     }}}>

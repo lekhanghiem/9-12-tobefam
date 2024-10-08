@@ -1,6 +1,6 @@
-  import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+  import { AuthService } from "@/store/api";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
   import { toast } from "react-toastify";
-  import { AuthService, Register } from "../../api/index";
 
   const actionLogin = createAsyncThunk(
     "auth/login",
@@ -12,7 +12,7 @@
                   localStorage.setItem("accessToken", res.data.data.token);
           localStorage.setItem("user", JSON.stringify(res.data.data));
           toast.success(res.data.message);
-window.location.replace('/')
+window.location.replace('/areaList')
           return res.data.data;
         } else {
           toast.error(res.data.message);

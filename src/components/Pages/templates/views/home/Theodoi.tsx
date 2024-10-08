@@ -52,16 +52,16 @@ const Theodoi = () => {
         <div style={{ position: 'absolute', right: '40%', bottom: '20px'  }}>
           <FlipAnimationY>
 <Button
-            className="rounded-3xl border-1 border-white bg-custom-folow w-[120px]"
-            variant="outlined"
-            size="large"
-          >
-            <div className="text-white font-bold whitespace-nowrap">
-             {t('TÌM HIỂU')}
-             <div>
-               </div>
-            </div>
-          </Button>
+  className="rounded-[40px] border-1 border-white bg-custom-folow w-[120px]"
+  variant="outlined"
+  size="large"
+>
+  <div className="text-white font-bold whitespace-nowrap">
+    {t('TÌM HIỂU')}
+  </div>
+</Button>
+
+
           </FlipAnimationY>
 
         </div>

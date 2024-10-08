@@ -21,7 +21,7 @@ import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import CustomButton from '@/components/ui/Custombutton';
-import { actionRegister } from '@/store/features/todos/registerSlice';
+import { actionRegister } from '@/store/features/Area/RegisterSlice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/store/store';
 import isAuth from '@/middleware/isAuth';
@@ -33,7 +33,6 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-// Define the schema for validation using Yup
 
 
 type FormValues = { password?: string | undefined; username: string; email: string; company_name: string; confirmPassword: string; role_id: number; };

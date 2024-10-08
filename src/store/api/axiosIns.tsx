@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 // export const baseURL = "https://api-nowblockchain.tocuna.com/";
 // export const baseURL = "https://apizstaking.nowblockchain.io/"
 
-export const baseURL = "http://192.168.0.106:3001"
+export const baseURL = "https://192.168.0.106:3002"
 const axiosIns = axios.create({
   baseURL: baseURL,
   timeout: 5000,

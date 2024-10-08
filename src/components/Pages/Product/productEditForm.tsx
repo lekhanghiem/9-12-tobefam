@@ -13,6 +13,7 @@ import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
 import Image from 'next/image';
 import { Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import { Product } from '@/types/types';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -26,27 +27,8 @@ const style = {
   p: 4,
 };
 
-interface Image {
-  url: string;
-}
-
-interface Product {
-  Name: string;
-  Description: string;
-  Image: Image;
-  product_code: string;
-  Expiry_date: string; // Assuming this is a string representing the date
-  Unit: string;
-  Product_status: string;
-  certify: Image;
-  Product_date: string; // Assuming this is a string representing the date
-  Product_type: number;
-  Product_packing: number;
-  qr_code: string; // Assuming qr_code is a URL or string
-}
-
 interface EditProductFormProps {
-  product: Product | null;
+  product: any;
   isOpen: boolean;
   onCancel: () => void;
   onSave: (updatedProduct: Product) => void;
@@ -65,7 +47,6 @@ const EditProductForm: React.FC<EditProductFormProps> = ({
   const [editProduct, setEditProduct] = useState<Product | null>(product);
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
-  const locale = useLocale();
 
   useEffect(() => {
     if (product) {
@@ -216,11 +197,12 @@ const EditProductForm: React.FC<EditProductFormProps> = ({
             />
             {imagePreview && (
               <div className="flex justify-center mt-2">
-                <img
+                <Image
                   src={imagePreview}
                   alt="Image Preview"
-                  style={{ maxWidth: '100px', maxHeight: '100px' }}
-                />
+                  width={100}
+                  height={100}
+              />
               </div>
             )}
             <TextField

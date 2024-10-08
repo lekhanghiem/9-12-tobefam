@@ -40,7 +40,7 @@ if(!user) return
         </div>
         <div className="flex  xl:gap-10 container">
           <div className="py-7">
-            <SideNav onClose={() => setOpenNav(false)} open={openNav} />
+            {/* <SideNav onClose={() => setOpenNav(false)} open={openNav} /> */}
           </div>
           <div className="w-full overflow-hidden">
             <LayoutRoot>

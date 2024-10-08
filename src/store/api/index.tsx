@@ -1,7 +1,7 @@
 import { getToken } from "@/app/[locale]/utility/auth";
 import axios from "axios";
 
-export const NEXT_BASE_URL = "http://192.168.0.106:3001/";
+export const NEXT_BASE_URL = "https://192.168.0.106:3002/";
 
 const API = axios.create({
   baseURL: NEXT_BASE_URL,
@@ -39,36 +39,36 @@ export const Register = {
 
 };
 
-export const ListArea = {
-  doListArea: () => {
-    const token = localStorage.getItem('accessToken');
-    return API.get('/area/list', {
-      headers: {
-        Authorization: token,
-      },
-    });
-  },
-};
+ const token = localStorage.getItem('accessToken');
+
+ const headers={
+    Authorization: token,
+}
 
 export const ChangeStatus = {
-  doChangeStatus: () => {
-    const token = localStorage.getItem('accessToken');
-    return API.patch('/area/list', {
-      headers: {
-        Authorization: token,
-      },
+  doChangeStatus: (id:string) => {
+    return API.patch(`area/${id}/status`, {},{
+     headers
     });
   },
 };
 
 
-export const Text = {
-  doText: () => {
-    const token = localStorage.getItem('accessToken');
-    return API.get('/area/list', {
-      headers: {
-        Authorization: token,
-      },
+export const SearchArea = {
+  doSearchArea: (payload: { category: string; search: string }, page: number) => {
+    return API.post(`search/area?page=${page}`, payload, { headers });
+  },
+};
+
+
+
+
+
+
+export const EditArea = {
+  doEditArea: ({ id, data }: { id: string; data: FormData }) => {
+    return API.put(`area/edit/${id}`, data, {
+      headers
     });
   },
 };
