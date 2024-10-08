@@ -77,36 +77,22 @@ export interface TextState {
   data: Area[]; // Đảm bảo kiểu dữ liệu đúng ở đây
   error: string;
 }
-
-export interface Ward {
-  code: string;
-  name: string;
-  name_en: string;
-  full_name: string;
-  full_name_en: string;
-  code_name: string;
-  district_code: string;
-  administrative_unit_id: number;
+ export  interface City {
+  Id: string;
+  Name: string;
+  Districts: District[];
 }
 
-export interface District {
-  district_code: string;
-  district_name: string;
-  wards: Ward[];
+ export  interface District {
+  Id: string;
+  Name: string;
+  Wards: Ward[];
 }
 
-export interface Province {
-  province_code: string;
-  province_name: string;
-  districts: District[];
+ export  interface Ward {
+  Id: string;
+  Name: string;
 }
-
-export interface Search {
-  search: string;
-  category: number;
-}
-
-
 
   export interface Product {
   Name: string;

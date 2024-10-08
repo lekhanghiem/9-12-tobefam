@@ -6,6 +6,7 @@ import SearchAreaSlice from "./features/Area/SearchAreaSlice";
 import RegisterSlice from "./features/Area/RegisterSlice";
 import ChangeStatusSlice from "./features/Area/ChangeStatusSlice";
 import EditAreaSlice from "./features/Area/EditAreaSlice";
+import { Location } from "./features/Area/LocationRTK";
 
 
 const store = configureStore({
@@ -16,11 +17,15 @@ const store = configureStore({
       Search: SearchAreaSlice,
       EditAreaSlice:EditAreaSlice,
      [ListAreaRTK.reducerPath]: ListAreaRTK.reducer,
+     [Location.reducerPath]: Location.reducer,
+
 
   },
     middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
     .concat(ListAreaRTK.middleware)
+    .concat(Location.middleware)
+
 });
 
 export default store;

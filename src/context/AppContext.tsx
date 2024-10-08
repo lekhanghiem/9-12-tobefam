@@ -1,28 +1,18 @@
-'use client';
-import React, { createContext, useState, useContext, useEffect } from 'react';
+'use client'
+import React, { createContext, useState, useContext } from 'react';
 import { Area } from '@/types/types';
 import { AppDispatch } from '@/store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchArea } from '@/store/features/Area/SearchAreaSlice';
-import { useListAreaQuery } from '@/store/features/Area/ListAreaRTK';
-
-// Adjust the interface for the Areas response
-interface AreasResponse {
-  data: {
-    data: any;
-    areas: Area[];
-    totalPages: number;
-  };
-}
 
 interface SearchContextType {
   searchAreas: Area[];
-  handleSearch: (search: string, category: number) => void;
-  areas: Area[];
+  handleSearch: any;
   page: number;
-  refetch: () => void;
   handlePageChange: (event: React.ChangeEvent<unknown>, value: number) => void;
   totalPages: number | undefined;
+  category: string;
+  search: string;
 }
 
 // Create context
@@ -30,46 +20,46 @@ export const SearchContext = createContext<SearchContextType | undefined>(undefi
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [searchAreas, setSearchAreas] = useState<Area[]>([]);
-  const dispatch = useDispatch<AppDispatch>();
-
-  const datas = useSelector((state: any) => state.Search.data);
-
-  const handleSearch = (search: string, category: number) => {
-    const payload = { category, search };
-    dispatch(searchArea(payload));
-  };
-
-  useEffect(() => {
-    if (datas?.areas) {
-      setSearchAreas(datas.areas);
-    }
-  }, [datas]);
-
+  const [category, setCategory] = useState<string>('');
+  const [search, setSearch] = useState<string>('');
   const [page, setPage] = useState<number>(1);
 
-  // Query with pagination using RTK Query
-  const { data, refetch } = useListAreaQuery<AreasResponse>(`?page=${page}`);
-  const areas: Area[] = data?.data?.areas || [];
-  const totalPages = data?.data?.totalPages;
+  const dispatch = useDispatch<AppDispatch>();
+  const {error,data} = useSelector((state: any) => state.Search);
 
-  const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    setPage(value);
+  const handleSearch = async (newSearch: string, newCategory: string) => {
+    setSearch(newSearch);
+    setCategory(newCategory);
+
+    const payload = { category: newCategory, search: newSearch, page };
+    const result = await dispatch(searchArea(payload));
+    setSearchAreas(result?.payload?.areas || []);
+    console.log(error,'error');
   };
 
-  // useEffect(() => {
-  //   refetch();
-  // }, [page, refetch]);
+  // Call the API whenever the page changes
+  const handlePageChange = async (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
 
+    // Re-trigger the search with the current search and category
+    const payload = { category, search, page: value }; // Update with new page value
+    const result = await dispatch(searchArea(payload));
+    setSearchAreas(result?.payload?.areas || []);
+  console.log(result?.payload?.areas ,'nghrifh');
+
+  };
+
+  const totalPages =data?.totalPages;
   return (
     <SearchContext.Provider
       value={{
         searchAreas,
         handleSearch,
-        areas,
         page,
-        refetch,
         handlePageChange,
         totalPages,
+        category,
+        search,
       }}
     >
       {children}
@@ -77,7 +67,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   );
 };
 
-// Example usage of the SearchContext in a component
+// Custom hook to use the SearchContext
 export const useSearch = (): SearchContextType => {
   const context = useContext(SearchContext);
   if (context === undefined) {

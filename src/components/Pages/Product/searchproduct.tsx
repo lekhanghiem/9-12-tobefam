@@ -83,7 +83,6 @@ const SearchProduct: React.FC<SearchProductProps> = ({
       );
 
       setFilteredProducts(response.data.products);
-      console.log(response.data.products);
     } catch (error) {
       setError('Error fetching search results. Please try again.');
       console.error('Error fetching search results:', error);

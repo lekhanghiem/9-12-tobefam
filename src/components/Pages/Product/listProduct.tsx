@@ -73,8 +73,7 @@ const ProductList: React.FC<AreaStatusToggleProps> = ({
         if (response.data.status === 'success') {
           setProducts(response.data.data.products);
           setFilteredProducts(response.data.data.products);
-          console.log(response.data.data.products,'products');
-          console.log(filteredProducts,'sdasd');
+
 
 
         } else {
@@ -187,7 +186,6 @@ const ProductList: React.FC<AreaStatusToggleProps> = ({
       ),
     },
   ];
-  // console.log('filteredProducts', filteredProducts);
   const rows = filteredProducts?.map((product) => ({
     id: product.product_code,
     Name: product.Name,

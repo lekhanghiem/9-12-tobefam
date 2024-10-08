@@ -54,13 +54,12 @@ export const ChangeStatus = {
 };
 
 
-
 export const SearchArea = {
-  doSearchArea:  (payload: { category: number; search: string }) => {
-    return API.post("search/area", payload, { headers });
-
+  doSearchArea: (payload: { category: string; search: string }, page: number) => {
+    return API.post(`search/area?page=${page}`, payload, { headers });
   },
 };
+
 
 
 

@@ -8,29 +8,26 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Area } from '@/types/types';
-import { useListAreaQuery } from '@/store/features/Area/ListAreaRTK';
 import ChangeStatus from './ChangeStatus';
 import Edit from './Edit';
 
-import { Box, Typography, Pagination, Tooltip } from '@mui/material';
+import { Box, Pagination, Tooltip } from '@mui/material';
 import SearchArea from './SearchArea';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import Createfram from './Createfram';
-import { useAppSelector } from '@/store/hooks';
 import { SearchContext } from '@/context/AppContext';
 
 
 export default function BasicTable() {
-const  {searchAreas,areas,refetch,totalPages,page,handlePageChange}  = useContext(SearchContext)||{};
-
-
-const rows = (searchAreas && searchAreas.length === 0 ? areas : searchAreas || [])?.map((area: Area) => ({
+const  {searchAreas,totalPages,page,handlePageChange}  = useContext(SearchContext)||{};
+console.log(totalPages,'pagetotltotal');
+const rows = searchAreas?.map((area: Area) => ({
   id: area.id,
   Name: area.Name,
   Area_type: area.Area_type,
   Area_status: area.Area_status,
   Address: area.Address,
-  Image: area.Image?.url,  // Safely access Image URL if it exists
+  Image: area.Image?.url,
   description: area.description,
 })) || [];
 
@@ -38,8 +35,8 @@ const rows = (searchAreas && searchAreas.length === 0 ? areas : searchAreas || [
     <div style={{ backgroundImage: `url('/img/home/Group48096598.png')` }}>
 
 
-    <Box sx={{ py:'20px',backgroundColor:'#f9faff' }} >
- <Box sx={{ width:'90%',mx:'auto',backgroundColor:'#ffffff', boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',  borderRadius: '12px',pb:'30px' }}>
+    <Box sx={{ py:'20px',backgroundImage:`url('/img/home/Group48096598.png')` }} >
+ <Box sx={{ width:'90%',mx:'auto',backgroundColor:'#ffff', boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',  borderRadius: '32px',pb:'30px' }}>
   <Box sx={{ display:'flex', justifyContent:'space-between',width:'90%',mx:'auto',py:'50px' }}>
 <Box>
   <SearchArea />
@@ -52,7 +49,7 @@ const rows = (searchAreas && searchAreas.length === 0 ? areas : searchAreas || [
         <TableHead>
          <TableRow>
   <TableCell align="left" colSpan={2} sx={{ fontSize: '15px' }}>Name</TableCell>
-  <TableCell align="left" sx={{ fontSize: '15px' }}>type</TableCell>
+  <TableCell align="left" sx={{ fontSize: '15px' }}>Type</TableCell>
   <TableCell align="left" sx={{ fontSize: '15px' }}>Status</TableCell>
   <TableCell align="left" colSpan={2} sx={{ fontSize: '15px' }}>Actions</TableCell>
   <TableCell align="left" sx={{ fontSize: '15px' }}>Address</TableCell>
@@ -83,7 +80,7 @@ const rows = (searchAreas && searchAreas.length === 0 ? areas : searchAreas || [
                 <Edit id={row.id} row={row}    />
                </TableCell>
                <TableCell align="left">
-                <ChangeStatus  id={row.id}  refetch={refetch} Area_status={row.Area_status}  />
+                <ChangeStatus  id={row.id} Area_status={row.Area_status}  />
                 </TableCell>
               <TableCell align="left">{row.Address} </TableCell>
             </TableRow>

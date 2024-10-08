@@ -8,23 +8,25 @@ const initialState = {
   loading: false,
   error: null,
 };
+interface SearchPayload {
+  category: string;
+  search: string;
+  page: number;
+}
 
 export const searchArea = createAsyncThunk(
   'search/searchArea',
-  async (payload: { category: number; search: string }, { rejectWithValue }) => {
-    const token = localStorage.getItem('accessToken');
+  async ({ category, search, page }: SearchPayload, { rejectWithValue }) => {
     try {
-      const res = await SearchArea.doSearchArea(payload);
+      const res = await SearchArea.doSearchArea({ category, search }, page);
 
       if (res.status === 200) {
-        toast.success(res.data.message);
-        return res.data.data; // Trả về dữ liệu sản phẩm
+        return res.data.data; // Return the retrieved data
       }
-
     } catch (error: any) {
       const message = error.response?.data?.message || error.message;
       toast.error(message);
-      return rejectWithValue(message); // Trả về lỗi để cập nhật state
+      return rejectWithValue(message); // Return error to update the state
     }
   }
 );
@@ -42,7 +44,6 @@ const searchSlice = createSlice({
       .addCase(searchArea.fulfilled, (state, action) => {
         state.loading = false;
         state.data = action.payload;
-        console.log(state.data);
       })
       .addCase(searchArea.rejected, (state, action) => {
         state.loading = false;
