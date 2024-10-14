@@ -22,6 +22,6 @@
       "~/*": ["./public/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/[locale]/threejs/page.tsx", "src/app/[locale]/text/page.tsx", "src/context/AppContext.tsx", "src/store/store.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/[locale]/threejs/page.tsx", "src/app/[locale]/text/page.tsx", "src/context/AppContext.tsx", "src/store/store.js", "src/components/Global/loading/index.tsx", "src/app/[locale]/Loading.jsx"],
   "exclude": ["node_modules"]
 }

@@ -21,7 +21,7 @@ import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import CustomButton from '@/components/ui/Custombutton';
-import { actionRegister } from '@/store/features/Area/RegisterSlice';
+import { actionRegister } from '@/store/features/Login/RegisterSlice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/store/store';
 import isAuth from '@/middleware/isAuth';

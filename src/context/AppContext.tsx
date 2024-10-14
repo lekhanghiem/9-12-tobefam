@@ -13,6 +13,7 @@ interface SearchContextType {
   totalPages: number | undefined;
   category: string;
   search: string;
+  loading:boolean
 }
 
 // Create context
@@ -25,7 +26,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [page, setPage] = useState<number>(1);
 
   const dispatch = useDispatch<AppDispatch>();
-  const {error,data} = useSelector((state: any) => state.Search);
+  const {error,data,loading} = useSelector((state: any) => state.Search);
 
   const handleSearch = async (newSearch: string, newCategory: string) => {
     setSearch(newSearch);
@@ -34,10 +35,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     const payload = { category: newCategory, search: newSearch, page };
     const result = await dispatch(searchArea(payload));
     setSearchAreas(result?.payload?.areas || []);
-    console.log(error,'error');
   };
 
-  // Call the API whenever the page changes
   const handlePageChange = async (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
 
@@ -45,7 +44,6 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     const payload = { category, search, page: value }; // Update with new page value
     const result = await dispatch(searchArea(payload));
     setSearchAreas(result?.payload?.areas || []);
-  console.log(result?.payload?.areas ,'nghrifh');
 
   };
 
@@ -60,6 +58,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         totalPages,
         category,
         search,
+        loading
       }}
     >
       {children}

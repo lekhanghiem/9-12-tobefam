@@ -53,6 +53,7 @@ const Banner = () => {
                   width={557}
                   height={471}
                   className="w-[557px] h-[471px]"
+                  loading='lazy'
                 />
               </div>
             </FadeRight>

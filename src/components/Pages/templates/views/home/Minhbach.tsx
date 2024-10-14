@@ -39,6 +39,7 @@ const Minhbach = () => {
         height: '100%',
         width: '100%'
       }}>
+
             <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
@@ -82,22 +83,26 @@ const Minhbach = () => {
           <div className='flex flex-col gap-5 '>
            <FadeLeft className='flex justify-center lg:pt-0 pt-10'>
              <Image
+             className='w-11/12'
         src="/img/home/Maskgroup.png"
         alt="err"
         width={457}
-        height={113}
+        height={721}
       />
            </FadeLeft>
-      <FlipAnimationY className='flex justify-center'>
+
+          </div>
+            <FlipAnimationY className=''>
         <Image
+             className='w-12/12 '
         src="/img/home/Group1.svg"
         alt="err"
-        width={457}
-        height={113}
+        width={471}
+        height={552}
       />
       </FlipAnimationY>
           </div>
-          </div>
+
         </Grid>
 
       </Grid>

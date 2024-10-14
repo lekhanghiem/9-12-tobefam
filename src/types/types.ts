@@ -102,25 +102,14 @@ export interface TextState {
   Expiry_date: string; // Assuming this is a string representing the date
   Unit: string;
   Product_status: string;
-  certify: Image;
   Product_date: string; // Assuming this is a string representing the date
   Product_type: number;
-  Product_packing: number;
+  Product_packing: string;
   qr_code: string; // Assuming qr_code is a URL or string
 }
-export interface Product {
-  id: number
-  User_id: number
-  Area_type: string
-  Name: string
-  Address: string
-  Image: Image
-  description: string
-  Area_status: string
-}
+
 
 export interface Image {
-  id: string
   url: string
 }
 
@@ -130,3 +119,4 @@ export interface FormData {
   Image: File | null;
   Description: string;
 }
+

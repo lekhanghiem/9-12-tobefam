@@ -1,179 +1,114 @@
-'use client';
-import React, { useEffect, useState, useCallback } from 'react';
-import axiosIns from '../../../store/api/axiosIns';
-
-import {
-  CircularProgress,
-  MenuItem,
-  Select,
-  TextField,
-  FormControl,
-  InputLabel,
-  FormControlLabel,
-  Checkbox,
-  Typography,
-  Alert,
-} from '@mui/material';
+'use client'
+import React, { useContext, useEffect, useState } from 'react';
+import Paper from '@mui/material/Paper';
+import InputBase from '@mui/material/InputBase';
+import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
-interface Image {
-  url: string;
+import { Box, FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '@/store/store';
+import { searchProduct, setCategory, setSearch } from '@/store/features/Product/SearchSlice';
+import { Product } from '@/types/types';
+import { SearchContext } from '@/context/AppContext';
+interface SearchProps{
+  page:number
+  searchProducts:Product[];
 }
+const SearchProduct: React.FC<SearchProps> = ({ page,searchProducts }) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { category, search  } = useSelector((state: any) => state?.SearchSlice);
 
-interface Product {
-  Name: string;
-  Description: string;
-  Image: Image;
-  product_code: string;
-  Expiry_date: number;
-  Unit: number;
-  Product_status: number;
-  certify: Image;
-  Product_date: string;
-  Product_type: number;
-  Product_packing: number;
-}
+useEffect(() => {
+    const timer = setTimeout(() => {
+      handleClick();
+    }, 500);
 
-type Results = Product[];
-type ApiResponse = /*unresolved*/ any;
+    return () => clearTimeout(timer);
+  }, [category, search, page]);
 
-type Category = '1' | '2' | '3';
-type Type = '' | '1' | '2';
-type Status = '' | '1' | '2';
+const handleClick = async() => {
+    const payload = { category, search, page };
+   await dispatch(searchProduct(payload));
 
-interface SearchProductProps {
-  setFilteredProducts: any | React.Dispatch<React.SetStateAction<Results>>;
-}
+  };
 
-const SearchProduct: React.FC<SearchProductProps> = ({
-  setFilteredProducts,
-}) => {
-  const [category, setCategory] = useState<Category>('1');
-  const [searchTerm, setSearchTerm] = useState<string>('');
-  const [type, setType] = useState<Type>('');
-  const [status, setStatus] = useState<Status>('');
+  const handleCategoryChange = (event:SelectChangeEvent<any>) => {
+    const selectedCategory = event.target.value as number;
+    dispatch(setCategory(selectedCategory)); // Dispatch the action to update the category in Redux
+  };
 
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchResults = useCallback(async () => {
-    try {
-      const token = localStorage.getItem('accessToken') || '';
-
-      let requestData: any = { category };
-
-      if (category === '1') {
-        requestData.search = searchTerm;
-      } else if (category === '2') {
-        requestData.search = type;
-      } else if (category === '3') {
-        requestData.search = status;
-      }
-
-      setLoading(true);
-      setError(null);
-
-      const response = await axiosIns.post<ApiResponse, any>(
-        '/search/19/product',
-        requestData,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
-
-      setFilteredProducts(response.data.products);
-    } catch (error) {
-      setError('Error fetching search results. Please try again.');
-      console.error('Error fetching search results:', error);
-    } finally {
-      setLoading(false);
-    }
-  }, [category, searchTerm, type, status, setFilteredProducts]);
-
-  useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
-      fetchResults();
-    }, 300);
-
-    return () => clearTimeout(delayDebounceFn);
-  }, [fetchResults]);
-
+  const handleSearchChange = (event: any) => {
+    dispatch(setSearch(event.target.value)); // Dispatch the action to update the search input in Redux
+  };
   return (
-    <div className="flex gap-10">
-      <Typography variant="h6" gutterBottom>
-        <FormControl variant="outlined" sx={{ minWidth: 120 }}>
-          <InputLabel id="category-select-label">Category</InputLabel>
-          <Select
-            labelId="category-select-label"
-            value={category}
-            onChange={(e) => {
-              setCategory(e.target.value as Category);
-              setSearchTerm(''); // Reset search input when category changes
-              setType(''); // Reset type when category changes
-              setStatus(''); // Reset status when category changes
-            }}
-            label="Category"
-          >
-            <MenuItem value="1">Tên đối tượng</MenuItem>
-            <MenuItem value="2">Vùng sản xuất</MenuItem>
-            <MenuItem value="3">Trạng thái</MenuItem>
-          </Select>
-        </FormControl>
-      </Typography>
-
-      {category === '1' && (
-        <FormControl
-          variant="outlined"
-          sx={{ minWidth: '200px', width: 400, borderRadius: '40px' }}
+    <Box sx={{ display: 'flex', gap: 3 }}>
+      <FormControl sx={{ minWidth: 100, width: '20%' }}>
+        <Select
+          value={category}
+        onChange={handleCategoryChange}
+          displayEmpty
+          inputProps={{ 'aria-label': 'Category' }}
         >
-          <TextField
-            label="Search"
-            variant="outlined"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </FormControl>
-      )}
+          <MenuItem value={1}>Name</MenuItem>
+          <MenuItem value={2}>Type</MenuItem>
+          <MenuItem value={3}>Status</MenuItem>
+        </Select>
+      </FormControl>
 
-      {category === '2' && (
-        <FormControl variant="outlined" sx={{ minWidth: 120 }}>
-          <InputLabel id="type-select-label">Vùng sản xuất</InputLabel>
+      {category === 1 ? (
+        <Paper
+          component="form"
+          sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '100%' }}
+        >
+          <Box sx={{ display: 'flex', flex: 1, alignItems: 'center' }}>
+            <InputBase
+              sx={{ ml: 1, flex: 1 }}
+              placeholder="Search by name ..."
+              inputProps={{ 'aria-label': 'search' }}
+              value={search}
+               onChange={handleSearchChange}
+            />
+            <IconButton sx={{ ml: 1 }} aria-label="search" >
+              <SearchIcon />
+            </IconButton>
+          </Box>
+        </Paper>
+      ) : category === 2 ? (
+        <FormControl sx={{ minWidth: 120 }}>
           <Select
-            labelId="type-select-label"
-            value={type}
-            onChange={(e) => setType(e.target.value as Type)}
-            label="Vùng sản xuất"
+            sx={{ width: '100%' }}
+            value={search}
+             onChange={handleSearchChange}
+            displayEmpty
+            inputProps={{ 'aria-label': 'Type' }}
           >
-            <MenuItem value="" disabled>
-              Chọn vùng
-            </MenuItem>
-            <MenuItem value="1">Vùng nuôi trồng</MenuItem>
-            <MenuItem value="2">Vùng chế biến</MenuItem>
+     <MenuItem value="" disabled>
+      Select Type
+    </MenuItem>
+
+            <MenuItem value={1}>Fruit Farming (Pomology)</MenuItem>
+            <MenuItem value={2}>Vegetable Farming (Olericulture)</MenuItem>
           </Select>
         </FormControl>
-      )}
-
-      {category === '3' && (
-        <FormControl variant="outlined" sx={{ minWidth: 120 }}>
-          <InputLabel id="status-select-label">Trạng thái</InputLabel>
-          <Select
-            labelId="status-select-label"
-            value={status}
-            onChange={(e) => setStatus(e.target.value as Status)}
-            label="Trạng thái"
-          >
-            <MenuItem value="">Select</MenuItem>
-            <MenuItem value="1">Đang hoạt động</MenuItem>
-            <MenuItem value="2">Ngừng hoạt động</MenuItem>
-          </Select>
-        </FormControl>
-      )}
-
-      {loading && <CircularProgress />}
-      {error && <Alert severity="error">{error}</Alert>}
-    </div>
+      ) : category === 3 ? (
+       <FormControl sx={{ minWidth: 120, width: '95%' }}>
+  <Select
+    sx={{ width: '100%' }}
+    value={search}
+     onChange={handleSearchChange}
+    displayEmpty
+    inputProps={{ 'aria-label': 'Status' }}
+  >
+    <MenuItem value=""disabled>
+      Select status
+    </MenuItem>
+    <MenuItem value={1}>In production</MenuItem>
+    <MenuItem value={2}>Stop production</MenuItem>
+  </Select>
+</FormControl>
+      ) : null}
+    </Box>
   );
-};
+}
 
 export default SearchProduct;

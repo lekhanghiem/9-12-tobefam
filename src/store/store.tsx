@@ -1,12 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import auth from "./features/Area/authSlice";
+import auth from "./features/Login/authSlice";
 import { useDispatch } from "react-redux";
 import { ListAreaRTK } from "./features/Area/ListAreaRTK";
 import SearchAreaSlice from "./features/Area/SearchAreaSlice";
-import RegisterSlice from "./features/Area/RegisterSlice";
+import RegisterSlice from "./features/Login/RegisterSlice";
 import ChangeStatusSlice from "./features/Area/ChangeStatusSlice";
 import EditAreaSlice from "./features/Area/EditAreaSlice";
 import { Location } from "./features/Area/LocationRTK";
+import SearchSlice from "./features/Product/SearchSlice";
+import ChangeStatusProductSlice from "./features/Product/ChangeStatusProductSlice";
+import EditProductSlice from "./features/Product/EditProductSlice";
 
 
 const store = configureStore({
@@ -16,14 +19,17 @@ const store = configureStore({
      ChangeStatusSlice:ChangeStatusSlice,
       Search: SearchAreaSlice,
       EditAreaSlice:EditAreaSlice,
-     [ListAreaRTK.reducerPath]: ListAreaRTK.reducer,
+      SearchSlice: SearchSlice,
+     ChangeStatusProductSlice:ChangeStatusProductSlice,
+     EditProductSlice:EditProductSlice,
+
+
      [Location.reducerPath]: Location.reducer,
 
 
   },
     middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
-    .concat(ListAreaRTK.middleware)
     .concat(Location.middleware)
 
 });

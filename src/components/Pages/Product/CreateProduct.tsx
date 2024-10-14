@@ -63,7 +63,7 @@ const CreateProductForm: React.FC = () => {
       postData.append('Product_packing', formData.Product_packing);
 
       const response = await axiosIns.post(
-        'http://192.168.0.106:3001/product/19/create',
+        '/product/19/create',
         postData,
         {
           headers: {

@@ -89,7 +89,7 @@ const Security = () => {
   </Grid>
 </Grid>
 </Box>
- <Box sx={{ width: '87%',paddingTop:'100px' }}>
+ <Box sx={{ width: '90%',paddingTop:'100px' }}>
       <Grid container rowSpacing={10} columnSpacing={ 10}>
        <Grid item xs={12} lg={6} className=''>
   <Items>

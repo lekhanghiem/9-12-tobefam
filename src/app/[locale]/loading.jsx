@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { SVGRenderer } from 'three/addons/renderers/SVGRenderer.js';
 
-const ThreeJSComponent = () => {
+const Loading = () => {
   const mountRef = useRef(null);
   const loadingRef = useRef(null);
 
@@ -11,14 +11,12 @@ const ThreeJSComponent = () => {
     let camera, scene, renderer;
 
     function init() {
-      // Set up the camera
       camera = new THREE.PerspectiveCamera(33, window.innerWidth / window.innerHeight, 0.1, 100);
       camera.position.z = 10;
 
-      // Create the scene with a green gradient background
       scene = new THREE.Scene();
-      const color1 = new THREE.Color(0x176850); // New green color
-      const color2 = new THREE.Color(0x003300); // Dark green color
+      const color1 = new THREE.Color(0x176850);
+      const color2 = new THREE.Color(0x003300);
       const gradientTexture = new THREE.TextureLoader().load(
         'data:image/svg+xml;base64,' + btoa(`
           <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256">
@@ -33,14 +31,12 @@ const ThreeJSComponent = () => {
       );
       scene.background = gradientTexture;
 
-      // Initialize the SVGRenderer
       renderer = new SVGRenderer();
       renderer.setSize(window.innerWidth, window.innerHeight);
       if (mountRef.current) {
         mountRef.current.appendChild(renderer.domElement);
       }
 
-      // Create vertices
       const vertices = [];
       const divisions = 50;
 
@@ -54,10 +50,9 @@ const ThreeJSComponent = () => {
       const geometry = new THREE.BufferGeometry();
       geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
 
-      // Add lines to the scene with the specified green color
       for (let i = 1; i <= 3; i++) {
         const material = new THREE.LineBasicMaterial({
-          color: new THREE.Color('#02ffac'), // New green color
+          color: new THREE.Color('#02ffac'),
           linewidth: 10,
         });
         const line = new THREE.Line(geometry, material);
@@ -66,7 +61,7 @@ const ThreeJSComponent = () => {
       }
 
       const dashedMaterial = new THREE.LineDashedMaterial({
-        color: '#176850', // New green color
+        color: '#176850',
         linewidth: 1,
         dashSize: 10,
         gapSize: 10,
@@ -75,7 +70,6 @@ const ThreeJSComponent = () => {
       dashedLine.scale.setScalar(2);
       scene.add(dashedLine);
 
-      // Handle window resize
       window.addEventListener('resize', onWindowResize);
 
       animate();
@@ -90,7 +84,7 @@ const ThreeJSComponent = () => {
     }
 
     function animate() {
-      const time = performance.now() / 1; // Adjusted for smooth animation
+      const time = performance.now() / 1;
 
       scene.traverse((child) => {
         if (child instanceof THREE.Line) {
@@ -105,7 +99,6 @@ const ThreeJSComponent = () => {
 
     init();
 
-    // Cleanup on component unmount
     return () => {
       if (mountRef.current) {
         mountRef.current.removeChild(renderer.domElement);
@@ -128,7 +121,7 @@ const ThreeJSComponent = () => {
           fontSize: '24px',
           fontWeight: 'bold',
           zIndex: 1,
-          pointerEvents: 'none', // Prevent interactions with the loading text
+          pointerEvents: 'none',
         }}
       >
         Loading...
@@ -137,4 +130,4 @@ const ThreeJSComponent = () => {
   );
 };
 
-export default ThreeJSComponent;
+export default Loading;
