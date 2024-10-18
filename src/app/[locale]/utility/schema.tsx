@@ -54,13 +54,31 @@ export const schemalogin = yup.object({
 
 
 
+export const phoneRegExp = /^(?:\+84|0)(?:\d{9}|\d{8})$/;
 
-
-// Regex for phone number validation
-export const phoneRegExp = /^((\+[1-9]{1,4}[ \-]*)|(\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
-
-// Validation schema
-export const schemaedituser = yup.object({
-  phone: yup.string().matches(phoneRegExp, 'Vui lòng nhập đúng số điện thoại'),
-  email: yup.string().email('Vui lòng nhập đúng định dạng Email').required('Vui lòng nhập Email')
+export const schemaEditUser = yup.object({
+  Phone: yup
+    .string()
+    .matches(phoneRegExp, 'Vui lòng nhập đúng số điện thoại')
+    .required('Vui lòng nhập số điện thoại'), // Bắt buộc
+  email: yup
+    .string()
+    .email('Vui lòng nhập đúng định dạng Email')
+    .required('Vui lòng nhập Email'),
 }).required();
+
+
+
+export const ChangePassword = yup.object({
+  old_password: yup
+     .string()
+     .matches(passwordRules, { message: "Nhập ít nhất 6 ký tự và bao gồm ít nhất một chữ số, một chữ cái viết thường và một chữ cái viết hoa." }),
+   new_password: yup
+     .string()
+     .matches(passwordRules, { message: "Nhập ít nhất 6 ký tự và bao gồm ít nhất một chữ số, một chữ cái viết thường và một chữ cái viết hoa." }),
+       re_new_password: yup.string()
+    .oneOf([yup.ref('new_password')], 'Mật khẩu chưa trùng khớp')
+    .required('Nhập lại mật khẩu'),
+
+}).required();
+

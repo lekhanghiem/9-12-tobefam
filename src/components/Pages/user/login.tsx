@@ -1,6 +1,5 @@
 'use client';
 import Customicon from '../../ui/Customicon';
-
 import { useLocale } from 'next-intl';
 import {schemalogin} from '../../../app/[locale]/utility/schema'
 
@@ -43,10 +42,7 @@ type FormValues = {
 
 const Loginn: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const router = useRouter();
-  const locale = useLocale();
   const dispatch = useDispatch<AppDispatch>()
-  const {loading,data} = useAppSelector((state)=> state.auth.login)
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({
     resolver: yupResolver(schemalogin),
   });

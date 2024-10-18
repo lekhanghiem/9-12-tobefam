@@ -1,4 +1,5 @@
 import { getToken } from "@/app/[locale]/utility/auth";
+import { FormDataEditUser, FormDataPassword } from "@/types/types";
 import axios from "axios";
 
 export const NEXT_BASE_URL = "https://192.168.0.106:3002/";
@@ -89,6 +90,22 @@ export const ChangeStatusProduct = {
 export const EditProduct = {
   doEditProduct: ({ product_code, data }: { product_code: string; data: FormData }) => {
     return API.put(`product/edit/${product_code}`, data, {
+      headers
+    });
+  },
+};
+
+export const ChangePassword = {
+  doChangePassword: ( data :FormDataPassword ) => {
+    return API.post(`account/change-password`, data, {
+      headers
+    });
+  },
+};
+
+export const EditUser = {
+  doEditUser: ( data :FormDataEditUser ) => {
+    return API.post(`account/edit-user-info`, data, {
       headers
     });
   },

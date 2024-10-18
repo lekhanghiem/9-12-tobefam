@@ -3,7 +3,6 @@ import { Product } from '@/types/types';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
-// Define the shape of the state
 interface SearchState {
   loading: boolean;
   data: Product[];
@@ -14,7 +13,6 @@ interface SearchState {
   page: number;
 }
 
-// Initial state of the search slice
 const initialState: SearchState = {
   loading: false,
   data: [],
@@ -25,14 +23,12 @@ const initialState: SearchState = {
   page: 1,
 };
 
-// Define the payload structure for search
 interface SearchPayload {
   category: number;
   search: string;
   page: number;
 }
 
-// Async thunk to fetch search results
 export const searchProduct = createAsyncThunk(
   'search/searchProduct',
   async ({ category, search, page }: SearchPayload, { rejectWithValue }) => {

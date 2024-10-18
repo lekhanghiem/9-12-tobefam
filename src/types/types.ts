@@ -120,3 +120,14 @@ export interface FormData {
   Description: string;
 }
 
+export interface FormDataPassword  {
+  old_password?: string | undefined;
+  new_password?: string | undefined;
+  re_new_password: string;
+};
+
+export interface FormDataEditUser  {
+ Phone: string ;
+ email: string;
+
+};

@@ -10,6 +10,8 @@ import { Location } from "./features/Area/LocationRTK";
 import SearchSlice from "./features/Product/SearchSlice";
 import ChangeStatusProductSlice from "./features/Product/ChangeStatusProductSlice";
 import EditProductSlice from "./features/Product/EditProductSlice";
+import ChangePasswordSlice from "./features/Login/ChangePasswordSlice";
+import EditUserSlice from "./features/Login/EditUserSlice";
 
 
 const store = configureStore({
@@ -22,6 +24,8 @@ const store = configureStore({
       SearchSlice: SearchSlice,
      ChangeStatusProductSlice:ChangeStatusProductSlice,
      EditProductSlice:EditProductSlice,
+     ChangePasswordSlice:ChangePasswordSlice,
+     EditUserSlice:EditUserSlice,
 
 
      [Location.reducerPath]: Location.reducer,
