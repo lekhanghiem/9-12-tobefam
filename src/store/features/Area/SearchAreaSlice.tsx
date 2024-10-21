@@ -19,14 +19,11 @@ export const searchArea = createAsyncThunk(
   async ({ category, search, page }: SearchPayload, { rejectWithValue }) => {
     try {
       const res = await SearchArea.doSearchArea({ category, search }, page);
-
-      if (res.status === 200) {
-        return res.data.data; // Return the retrieved data
-      }
+        return res.data.data;
     } catch (error: any) {
       const message = error.response?.data?.message || error.message;
       toast.error(message);
-      return rejectWithValue(message); // Return error to update the state
+      return rejectWithValue(message);
     }
   }
 );

@@ -13,13 +13,18 @@ const Dashboard = ({
   children: React.ReactNode;
 }>) => {
 
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(false);
   const handleDrawerToggle = () => {
     setIsOpen(!isOpen);
   };
-const userString = localStorage.getItem('user');
-
-const profile = userString ? JSON.parse(userString) : null;
+const items = [
+  { name: 'Home', icon: <FaHome />, href: './' },
+  { name: 'Area list', icon: <FaProductHunt />, href: './areaList' },
+  { name: 'Product', icon: <FaUsers />, href: './listproduct' },
+  { name: 'Thông tin tài khoản', icon: <FaHome />, href: './profile' },
+  { name: 'Thiết lập', icon: <FaChartLine />, href: '#' },
+  { name: 'Đổi mật khẩu', icon: <FaBullhorn />, href: '#' },
+];
 
   return (
 
@@ -37,23 +42,14 @@ const profile = userString ? JSON.parse(userString) : null;
           >
            <SettingsIcon style={{ fontSize: '25px' }} />
           </IconButton>
-             <span className={`text-4xl font-bold ${ isOpen===true? 'opacity-100':'opacity-0'}`}>Profile  <span className={`text-sm text-gray-400 pt-5 ${ isOpen===true? 'opacity-100':'opacity-0'}`}>  v.01</span></span>
+             <span className={`text-4xl font-bold ${ isOpen===true? 'opacity-100':'opacity-0'}`}><Link href='profile'>Profile</Link>  <span className={`text-sm text-gray-400 pt-5 ${ isOpen===true? 'opacity-100':'opacity-0'}`}>  v.01</span></span>
 
           </div>
         </div>
         <Divider />
 
         <nav className="mt-6  px-5">
-          {[
-            { name: 'Home', icon: <FaHome />,  href:'./'  },
-
-            { name: 'Thông tin tài khoản', icon: <FaHome />,  href:'./profile'  },
-            { name: 'Thông tin liên lạc', icon: <FaProductHunt />,  href:'./profile' },
-            { name: 'Thương hiệu', icon: <FaUsers />,  href:'#' },
-            { name: 'Thiết lập', icon: <FaChartLine />,  href:'#' },
-            { name: 'Đổi mật khẩu', icon: <FaBullhorn />, href:'#'  },
-
-          ].map((item, index) => (
+          {items.map((item, index) => (
             <button
               key={index}
               className="flex items-center justify-between w-full mx-auto px-4 py-5 bg-white text-gray-600 rounded-lg hover:text-white hover:bg-purple-600 transition"
@@ -84,7 +80,9 @@ const profile = userString ? JSON.parse(userString) : null;
 </div>
 <Image src='/img/profile/img.png'alt=' /img/profile/img.png' width={10000000} height={4000} className='h-full'/>
   <Image src='/img/profile/user.svg'alt='/img/profile/user.svg' width={179} height={179} className='absolute left-20 bottom-[-50px]'/>
-          <div className='text-4xl  absolute bottom-[-80px] text-[#A303A0] left-40'>{profile?.user?.username}</div>
+          <div className='text-4xl  absolute bottom-[-80px] text-[#A303A0] left-40'>
+
+          </div>
 
   </div>
  <div className='flex justify-end mr-5 pt-5'>

@@ -34,8 +34,10 @@ export const searchProduct = createAsyncThunk(
   async ({ category, search, page }: SearchPayload, { rejectWithValue }) => {
     try {
       const res = await SearchProduct.doSearchProduct({ category, search }, page);
+
       return res.data;
     } catch (error: any) {
+
       const message = error.response?.data?.message || error.message || "Something went wrong.";
       toast.error(message);
       return rejectWithValue(message);

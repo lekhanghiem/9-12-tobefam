@@ -50,7 +50,7 @@ export const getToken = (): string | false => {
 export default function auth(): any | boolean {
   if (typeof window !== "undefined") {
     const userData: string | null = localStorage.getItem("user");
-    return userData ? JSON.parse(userData) : false;
+    return userData ? JSON.stringify(userData) : false;
   }
   return false;
 }

@@ -7,12 +7,12 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import { shadows } from '@mui/system';
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#fff',
   height:'200px',
   boxShadow:'none',
   borderRadius:'20px',
+    padding: theme.spacing(1),
   ...theme.typography.body2,
   textAlign: 'center',
   display: 'flex',

@@ -8,7 +8,6 @@ import { AppBar, Box, Button, Divider, Drawer, IconButton, List, ListItem, ListI
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Stats from './Stats';
 import SettingsIcon from '@mui/icons-material/Settings';
-import Image from 'next/image';
 import ListArea from '@/components/Pages/farm/ListArea';
 import {
   Account,

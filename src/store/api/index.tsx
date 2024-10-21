@@ -40,16 +40,17 @@ export const Register = {
 
 };
 
- const token = localStorage.getItem('accessToken');
 
- const headers={
-    Authorization: token,
-}
 
 export const ChangeStatus = {
   doChangeStatus: (id:string) => {
+ const token = localStorage.getItem('accessToken');
+
     return API.patch(`area/${id}/status`, {},{
-     headers
+
+  headers:{
+    Authorization: token,
+}
     });
   },
 };
@@ -57,7 +58,11 @@ export const ChangeStatus = {
 
 export const SearchArea = {
   doSearchArea: (payload: { category: string; search: string }, page: number) => {
-    return API.post(`search/area?page=${page}`, payload, { headers });
+     const token = localStorage.getItem('accessToken');
+
+    return API.post(`search/area?page=${page}`, payload, { headers:{
+    Authorization: token,
+} });
   },
 };
 
@@ -67,21 +72,33 @@ export const SearchArea = {
 
 export const EditArea = {
   doEditArea: ({ id, data }: { id: string; data: FormData }) => {
+     const token = localStorage.getItem('accessToken');
+
     return API.put(`area/edit/${id}`, data, {
-      headers
+       headers:{
+    Authorization: token,
+}
     });
   },
 };
 
 export const SearchProduct = {
   doSearchProduct: (payload: { category: number; search: string },page:number) => {
-    return API.post(`search/19/product?page=${page}`, payload, { headers });
+     const token = localStorage.getItem('accessToken');
+
+    return API.post(`search/19/product?page=${page}`, payload, {   headers:{
+    Authorization: token,
+} });
   },
 };
 export const ChangeStatusProduct = {
   doChangeStatusProduct: (product_code:string) => {
+     const token = localStorage.getItem('accessToken');
+
     return API.patch(`product/${product_code}/status`, {},{
-     headers
+      headers:{
+    Authorization: token,
+}
     });
   },
 };
@@ -89,24 +106,36 @@ export const ChangeStatusProduct = {
 
 export const EditProduct = {
   doEditProduct: ({ product_code, data }: { product_code: string; data: FormData }) => {
+     const token = localStorage.getItem('accessToken');
+
     return API.put(`product/edit/${product_code}`, data, {
-      headers
+       headers:{
+    Authorization: token,
+}
     });
   },
 };
 
 export const ChangePassword = {
   doChangePassword: ( data :FormDataPassword ) => {
+     const token = localStorage.getItem('accessToken');
+
     return API.post(`account/change-password`, data, {
-      headers
+       headers:{
+    Authorization: token,
+}
     });
   },
 };
 
 export const EditUser = {
   doEditUser: ( data :FormDataEditUser ) => {
-    return API.post(`account/edit-user-info`, data, {
-      headers
+     const token = localStorage.getItem('accessToken');
+
+    return API.put(`account/edit-user-info`, data, {
+       headers:{
+    Authorization: token,
+}
     });
   },
 };

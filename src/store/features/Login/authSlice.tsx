@@ -7,18 +7,13 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
     async (data: { email: string; password: string }) => {
       try {
         const res = await AuthService.doLogin(data);
-        if (res.status === 200) {
                   localStorage.setItem("accessToken", res.data.data.token);
-          localStorage.setItem("user", res.data.data);
+                  const user= res.data.data.user
+          localStorage.setItem("user",JSON.stringify( user ));
           toast.success(res.data.message);
-          setTimeout(() => {
             window.location.replace('/areaList')
-          }, 500);
-          return res.data.data.user;
-        } else {
-          toast.error(res.data.message);
-          return [];
-        }
+          return res.data;
+
       } catch (error: any) {
         const message = error.response.data?.message || error.message;
         toast.error(message);

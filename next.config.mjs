@@ -7,6 +7,12 @@ const nextConfig = {
   images: {
     domains: ['res.cloudinary.com'],
   },
+   experimental: {
+    // Tắt tính năng RSC
+    serverComponents: false,
+     esmExternals: false,
+    urlImports: false,
+  },
 };
 
 export default withNextIntl(nextConfig);

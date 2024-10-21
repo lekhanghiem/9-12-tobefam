@@ -18,6 +18,8 @@ export const config = {
     '/register',
     '/listproduct',
     '/areaList',
+    '/profile',
+
 
     // './dashboard',
     '/(vi|en)/:path*',

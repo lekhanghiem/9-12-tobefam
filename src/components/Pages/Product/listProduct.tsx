@@ -18,7 +18,7 @@ import ChangeStatusProduct from './ChangeStatusProduct';
 import { setPage } from '@/store/features/Product/SearchSlice';
 import { AppDispatch } from '@/store/store';
 import EditProduct from './EditProduct';
-import Loading from '@/components/Global/loading';
+import Loading from '@/components/Global/Loading';
 
 export default function BasicTable() {
   const [searchProducts, setSearchProducts] = useState<Product[]>([]);
@@ -89,7 +89,7 @@ export default function BasicTable() {
                       </Tooltip>
                     </TableCell>
                     <TableCell align="left">
-                      <Image src={row.Image} width='40' height='40' alt="Product" />
+                      <Image src={row.Image} width={40} height={40} alt="Product" />
                     </TableCell>
                     <TableCell align="left">{row.Product_type}</TableCell>
                     <TableCell align="left">{row.Product_status}</TableCell>

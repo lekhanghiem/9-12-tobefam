@@ -1,6 +1,16 @@
 import { StaticImageData } from "next/image";
 import { ReactNode } from "react";
-
+export interface User {
+  id: number;
+  username: string;
+  password?: string;
+  verification_code?: string | null;
+  verify: boolean;
+  expires_at?: string | null;
+  user_info_id: number;
+  company_info_id: number;
+  role_id: number;
+}
 export interface SubMenuItem {
   id: number;
   name: string;
@@ -127,7 +137,7 @@ export interface FormDataPassword  {
 };
 
 export interface FormDataEditUser  {
- Phone: string ;
+ phone: string ;
  email: string;
 
 };

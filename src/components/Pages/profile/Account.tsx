@@ -29,7 +29,6 @@ const Item = styled(Paper)(({ theme }) => ({
 const Account = () => {
   const [selectedImages, setSelectedImages] = useState<(string | null)[]>([null, null, null]);
 
-  // Hàm xử lý khi người dùng chọn ảnh
   const handleImageChange = (index: number) => (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -374,7 +373,6 @@ const Active=[
                   alt="err"
                   width={50}
                   height={50}
-                  loading='lazy'
                 />
                      </div>
              <div className='flex-col'>
@@ -408,7 +406,6 @@ const Active=[
                   alt="err"
                   width={50}
                   height={50}
-                  loading='lazy'
                 />
                      </div>
              <div className='flex-col'>

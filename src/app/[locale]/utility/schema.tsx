@@ -57,7 +57,7 @@ export const schemalogin = yup.object({
 export const phoneRegExp = /^(?:\+84|0)(?:\d{9}|\d{8})$/;
 
 export const schemaEditUser = yup.object({
-  Phone: yup
+  phone: yup
     .string()
     .matches(phoneRegExp, 'Vui lòng nhập đúng số điện thoại')
     .required('Vui lòng nhập số điện thoại'), // Bắt buộc

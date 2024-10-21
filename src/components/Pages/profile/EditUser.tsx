@@ -45,9 +45,9 @@ const onSubmit: SubmitHandler<FormDataEditUser> = async (data) => {
         <div className="p-5">
           <div className="flex justify-between">
             <div>
-              <div className="text-4xl font-bold">Đổi mật khẩu</div>
+              <div className="text-4xl font-bold">Edit User</div>
               <div className="pt-3 text-gray-500 text-xl">
-                Thay đổi mật khẩu tài khoản
+                Thay đổi gmail và số điện thoại tài khoản
               </div>
             </div>
             <div className='flex items-center'>
@@ -68,8 +68,8 @@ const onSubmit: SubmitHandler<FormDataEditUser> = async (data) => {
 
           <PasswordField
             label="Số điện thoại mới"
-            register={register('Phone')}
-            error={errors.Phone?.message}
+            register={register('phone')}
+            error={errors.phone?.message}
 
           />
 

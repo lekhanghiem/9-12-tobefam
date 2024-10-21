@@ -16,7 +16,7 @@ import SearchArea from './SearchArea';
 import { useContext } from 'react';
 import Createfram from './Createfram';
 import { SearchContext } from '@/context/AppContext';
-import Loading from '@/components/Global/loading';
+import Loading from '@/app/[locale]/Loading';
 
 export default function BasicTable() {
 const  {searchAreas,totalPages,page,handlePageChange,loading}  = useContext(SearchContext)||{};
@@ -67,7 +67,7 @@ const rows = searchAreas?.map((area: Area) => ({
     <span>{row.Name}</span>
   </Tooltip>
 </TableCell>
-              <TableCell align="left"><Image src={row.Image} width='40' height='40' alt="Customer" /></TableCell>
+              <TableCell align="left"><Image src={row.Image} width={40} height={40} alt="Customer" /></TableCell>
               <TableCell align="left">{row.Area_type} </TableCell>
               <TableCell align="left">{row.Area_status}</TableCell>
                <TableCell align="left">

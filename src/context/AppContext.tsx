@@ -1,6 +1,6 @@
 'use client'
-import React, { createContext, useState, useContext } from 'react';
-import { Area } from '@/types/types';
+import React, { createContext, useState, useContext, useEffect } from 'react';
+import { Area, User } from '@/types/types';
 import { AppDispatch } from '@/store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchArea } from '@/store/features/Area/SearchAreaSlice';
@@ -13,7 +13,7 @@ interface SearchContextType {
   totalPages: number | undefined;
   category: string;
   search: string;
-  loading:boolean
+  loading:boolean;
 }
 
 // Create context
@@ -28,6 +28,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const dispatch = useDispatch<AppDispatch>();
   const {error,data,loading} = useSelector((state: any) => state.Search);
 
+
   const handleSearch = async (newSearch: string, newCategory: string) => {
     setSearch(newSearch);
     setCategory(newCategory);
@@ -40,8 +41,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const handlePageChange = async (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
 
-    // Re-trigger the search with the current search and category
-    const payload = { category, search, page: value }; // Update with new page value
+    const payload = { category, search, page: value };
     const result = await dispatch(searchArea(payload));
     setSearchAreas(result?.payload?.areas || []);
 
@@ -58,7 +58,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         totalPages,
         category,
         search,
-        loading
+        loading,
       }}
     >
       {children}

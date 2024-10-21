@@ -12,6 +12,9 @@ const Contact = () => {
 <div className='pt-3 text-gray-500 text-xl'>
   Thông tin địa chỉ liên lạc
 </div>
+<div className='py-3'>
+<div className='h-[1px] bg-gray-300 w-full'></div>
+</div>
 </div>
 <div className='pt-3'>
 <div className='text-2xl text-black font-bold'>

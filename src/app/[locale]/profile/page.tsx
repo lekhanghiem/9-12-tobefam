@@ -10,6 +10,7 @@ import Contact from '@/components/Pages/profile/Contact';
 import ChangePassword from '@/components/Pages/profile/ChangePassword';
 import Brand from '@/components/Pages/profile/Brand';
 import EditUser from '@/components/Pages/profile/EditUser';
+import SettingProfile from '@/components/Pages/profile/SettingProfile';
 
 interface TabItem {
   id: number;
@@ -64,13 +65,18 @@ export default function VerticalTabs() {
     { id: 3, label: 'Thiết lập', icon: <FaHome /> },
     { id: 4, label: 'Đổi mật khẩu', icon: <FaHome /> },
     { id: 5, label: 'Đổi thông tin email, số điện thoại', icon: <FaHome /> },
+    { id: 5, label: 'Edit Company', icon: <FaHome /> },
+
 
   ];
 
   return (
     <div>
-      <Box sx={{ flexGrow: 1, bgcolor: 'white', display: 'flex', height: 50, width: '100%' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="Vertical tabs">
+      <Box sx={{ flexGrow: 1, bgcolor: 'white', display: 'flex', height: 50, width: '100%', }}>
+        <Tabs
+        sx={{
+        }}
+         value={value} onChange={handleChange} aria-label="Vertical tabs">
           {tabItems.map((item, index) => (
 
               <Tab
@@ -101,26 +107,25 @@ export default function VerticalTabs() {
       </Box>
 
         <TabPanel value={value} index={0}>
-        <EditUser/>
-
+                          <Account />
         </TabPanel>
         <TabPanel value={value} index={1}>
-                   <ChangePassword/>
-
-                  <Account />
- <Brand />
+                       <Contact/>
         </TabPanel>
         <TabPanel value={value} index={2}>
-          Item Three
+                        <Brand />
         </TabPanel>
         <TabPanel value={value} index={3}>
-         <div className='w-full h-96 bg-red-600'>1</div>
+        <SettingProfile/>
         </TabPanel>
         <TabPanel value={value} index={4}>
         <ChangePassword/>
         </TabPanel>
         <TabPanel value={value} index={5}>
         <EditUser/>
+        </TabPanel>
+        <TabPanel value={value} index={6}>
+        edit
         </TabPanel>
     </div>
   );
