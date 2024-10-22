@@ -6,7 +6,7 @@ import { AppDispatch } from '@/store/store';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { actionEditUser } from '@/store/features/Login/EditUserSlice';
-import {  schemaEditUser } from '@/app/[locale]/utility/schema';
+import {  schemaEditUser } from '@/app/utility/schema';
 import { FormDataEditUser } from '@/types/types';
 import { toast } from "react-toastify";
 

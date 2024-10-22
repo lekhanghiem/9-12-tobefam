@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import LocalSwitcher from './local-switcher';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Divider from '@mui/material/Divider';
 import CheckToken from '../Pages/user/checkToken';
+import { useRouter } from 'next/navigation';
 
 const drawerWidth = 240;
 
@@ -19,7 +20,9 @@ const Page = () => {
     { label: 'Ứng dụng', path: '/areaList' },
     { label: 'Tin tức', path: '/listproduct' },
     {
-      label: 'Về chúng tôi', path: '#', submenu: [
+      label: 'Về chúng tôi',
+      path: '#',
+      submenu: [
         { label: 'Hoạt động danh mục', path: '#' },
         { label: 'Thành tựu', path: '#' },
         { label: 'Tư vấn miễn phí', path: '/lienhe' },
@@ -27,26 +30,33 @@ const Page = () => {
     },
   ];
 
+  const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [shouldRender, setShouldRender] = useState(true);
 
   const t = useTranslations('Headers');
 
   const handleDrawerToggle = useCallback(() => {
-    setMobileOpen(prevState => !prevState);
+    setMobileOpen((prevState) => !prevState);
   }, []);
 
   const handleMouseEnter = () => setDropdownOpen(true);
   const handleMouseLeave = () => setDropdownOpen(false);
-  if (window.location.pathname.includes('/dashboard') || window.location.pathname.includes('/vi/profile')) {
-    return null;
-  }
+
+  useEffect(() => {
+    const path = window.location.pathname;
+    if (path.includes('/dashboard') || path.includes('/vi/profile')) {
+      setShouldRender(false);
+    }
+  }, []);
+
+  if (!shouldRender) return null;
 
   return (
     <div className="w-full sticky top-0 xl:top-[-87px] z-50">
       {/* Header Section */}
       <div className="flex lg:flex-row flex-col justify-between bgheader py-3 lg:px-20 px-10 gap-y-3">
-        {/* Top Nav */}
         <nav className="grid grid-cols-3 gap-3 lg:gap-10">
           {[
             ['Tải ứng dụng', '/img/header/Vector.svg'],
@@ -67,7 +77,7 @@ const Page = () => {
             ['Thông báo', '/img/header/Group2.svg'],
             ['Hỗ trợ', '/img/header/Subtract1.svg'],
           ].map(([url, img], index) => (
-            <div key={index} className="lg:block hidden flex items-center justify-center gap-4">
+            <div key={index} className="lg:block hidden  items-center justify-center gap-4">
               <Link href={url}>
                 <Image src={img} alt="icon" width={60} height={60} />
               </Link>
@@ -169,9 +179,9 @@ const Page = () => {
         </div>
 
         <LocalSwitcher />
-       <div className='hidden lg:flex'>
-         <CheckToken/>
-       </div>
+        <div className="hidden lg:flex">
+          <CheckToken />
+        </div>
       </nav>
     </div>
   );

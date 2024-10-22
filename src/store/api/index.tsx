@@ -1,4 +1,4 @@
-import { getToken } from "@/app/[locale]/utility/auth";
+import { getToken } from "@/app/utility/auth";
 import { FormDataEditUser, FormDataPassword } from "@/types/types";
 import axios from "axios";
 

@@ -9,7 +9,6 @@ import FadeDown from "@/motion/FadeDown";
 import FadeLeft from "@/motion/FadeLeft";
 import FadeRight from "@/motion/FadeRight";
 import { useTranslations } from "next-intl";
-
 const Footer = () => {
   const [isVisible, setIsVisible] = useState(true);
   const t = useTranslations('HomePage');
@@ -93,7 +92,7 @@ const Footer = () => {
       </div>
 
       <div className="py-5">
-        <Divider className="bg-[#FFFFFF] w-11/12 mx-auto" />
+        <Divider className="bg-[#FFFFFF] w-12/12 mx-auto" />
       </div>
 
       <div className="flex flex-col lg:flex-row lg:justify-between py-5 lg:px-20 px-3">

@@ -1,7 +1,7 @@
 'use client';
 import Customicon from '../../ui/Customicon';
 import { useLocale } from 'next-intl';
-import {schemalogin} from '../../../app/[locale]/utility/schema'
+import {schemalogin} from '../../../app/utility/schema'
 
 import React, { useState, ChangeEvent, MouseEvent } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';

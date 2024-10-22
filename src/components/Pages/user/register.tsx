@@ -1,7 +1,7 @@
 'use client';
 import Customicon from '../../ui/Customicon';
 
-import {schemaregister} from '../../../app/[locale]/utility/schema'
+import {schemaregister} from '../../../app/utility/schema'
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import Image from 'next/image';
 import IconButton from '@mui/material/IconButton';

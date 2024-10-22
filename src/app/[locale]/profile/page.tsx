@@ -11,6 +11,7 @@ import ChangePassword from '@/components/Pages/profile/ChangePassword';
 import Brand from '@/components/Pages/profile/Brand';
 import EditUser from '@/components/Pages/profile/EditUser';
 import SettingProfile from '@/components/Pages/profile/SettingProfile';
+import { useState } from 'react';
 
 interface TabItem {
   id: number;
@@ -52,12 +53,10 @@ function a11yProps(index: number) {
 }
 
 export default function VerticalTabs() {
-  const [value, setValue] = React.useState(0);
-
+  const [value, setValue] = useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-
   const tabItems: TabItem[] = [
     { id: 0, label: 'Thông tin tài khoản', icon: <FaHome /> },
     { id: 1, label: 'Thông tin liên lạc', icon: <FaHome /> },
@@ -66,10 +65,7 @@ export default function VerticalTabs() {
     { id: 4, label: 'Đổi mật khẩu', icon: <FaHome /> },
     { id: 5, label: 'Đổi thông tin email, số điện thoại', icon: <FaHome /> },
     { id: 5, label: 'Edit Company', icon: <FaHome /> },
-
-
   ];
-
   return (
     <div>
       <Box sx={{ flexGrow: 1, bgcolor: 'white', display: 'flex', height: 50, width: '100%', }}>
@@ -78,7 +74,6 @@ export default function VerticalTabs() {
         }}
          value={value} onChange={handleChange} aria-label="Vertical tabs">
           {tabItems.map((item, index) => (
-
               <Tab
               key={item.id}
 
@@ -105,7 +100,6 @@ export default function VerticalTabs() {
           ))}
         </Tabs>
       </Box>
-
         <TabPanel value={value} index={0}>
                           <Account />
         </TabPanel>

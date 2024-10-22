@@ -1,6 +1,6 @@
+import Verify from '@/components/Pages/user/Verify';
 import React from 'react';
-import Verify from '../../../../components/Pages/user/verify';
-const page = () => {
+  const page = () => {
   return (
     <div>
       <Verify />

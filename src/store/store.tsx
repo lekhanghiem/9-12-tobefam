@@ -1,7 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import auth from "./features/Login/authSlice";
 import { useDispatch } from "react-redux";
-import { ListAreaRTK } from "./features/Area/ListAreaRTK";
 import SearchAreaSlice from "./features/Area/SearchAreaSlice";
 import RegisterSlice from "./features/Login/RegisterSlice";
 import ChangeStatusSlice from "./features/Area/ChangeStatusSlice";

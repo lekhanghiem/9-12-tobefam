@@ -16,7 +16,7 @@ import SearchArea from './SearchArea';
 import { useContext } from 'react';
 import Createfram from './Createfram';
 import { SearchContext } from '@/context/AppContext';
-import Loading from '@/app/[locale]/Loading';
+import Loading from '@/components/Global/Loading';
 
 export default function BasicTable() {
 const  {searchAreas,totalPages,page,handlePageChange,loading}  = useContext(SearchContext)||{};
