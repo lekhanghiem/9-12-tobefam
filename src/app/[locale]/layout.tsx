@@ -9,6 +9,7 @@ import Header from "@/components/ui/Header";
 import Footer from '../../components/ui/Footer'
 import { AppProvider } from '../../context/AppContext'
 import ScrollToTop from "@/components/Global/ScrollToTop";
+import ProtectedRoute from "@/middleware/Midlewareathu";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -34,7 +35,9 @@ export default async function RootLayout({
         <ReduxProvider>
           <Header />
           <AppProvider>
+            <ProtectedRoute>
           <div className=" ">{children}</div>
+          </ProtectedRoute>
           </AppProvider>
            <ScrollToTop />
           <Footer/>

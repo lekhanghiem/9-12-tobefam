@@ -23,6 +23,7 @@ import { AppDispatch } from '@/store/store';
 import { actionLogin } from '@/store/features/Login/authSlice';
 import { useAppSelector } from '@/store/hooks';
 import isAuthu from '../../../middleware/isAuth'
+import ProtectedRoute from '@/middleware/Midlewareathu';
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
@@ -212,7 +213,8 @@ const Loginn: React.FC = () => {
       </Grid>
     </div>
     </div>
+
   );
 };
 
-export default isAuthu(Loginn);
+export default Loginn;

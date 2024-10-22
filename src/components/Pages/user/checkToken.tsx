@@ -17,10 +17,24 @@ const LogoutButton = () => {
 
   const [hasToken, setHasToken] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+const [profile, setProfile] = useState<any | null>(null);
+
+useEffect(() => {
+  try {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setProfile(JSON.parse(storedUser));
+    } else {
+      console.warn("No user found in localStorage");
+    }
+  } catch (error) {
+    console.error("Failed to parse user data:", error);
+    setProfile(null); // Reset profile in case of error
+  }
+}, []);
+
   const open = Boolean(anchorEl);
 
-    const storedUser:any = localStorage.getItem('user');
-        const profile: User = JSON.parse(storedUser);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };

@@ -11,9 +11,10 @@ const isAuth = (WrappedComponent: ComponentType) => {
     const [checkAuth, setAuth] = useState(false);
     useEffect(() => {
       const user = auth();
+      console.log(user,'userefds');
       if (user) {
         setAuth(true);
-        router.replace("/");
+        // router.replace("/");
       }else{
         setAuth(true);
         // router.replace("/login");

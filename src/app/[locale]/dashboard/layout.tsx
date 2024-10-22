@@ -23,11 +23,9 @@ const demoSession = {
     image: 'https://avatars.githubusercontent.com/u/19550456',
   },
 };
-interface Props {
-  window?: () => Window;
-}
 
-const Dashboard = (props: Props) => {
+
+const Dashboard = () => {
     const [session, setSession] = React.useState<Session | null>(demoSession);
   const authentication = React.useMemo(() => {
     return {
@@ -39,7 +37,6 @@ const Dashboard = (props: Props) => {
       },
     };
   }, []);
-  const { window } = props;
   const [isOpen, setIsOpen] = React.useState(true);
 
 

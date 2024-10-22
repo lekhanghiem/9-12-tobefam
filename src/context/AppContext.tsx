@@ -24,7 +24,6 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [category, setCategory] = useState<string>('');
   const [search, setSearch] = useState<string>('');
   const [page, setPage] = useState<number>(1);
-
   const dispatch = useDispatch<AppDispatch>();
   const {error,data,loading} = useSelector((state: any) => state.Search);
 
