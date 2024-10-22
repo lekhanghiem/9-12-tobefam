@@ -1,9 +1,10 @@
-import ListProduct from '@/components/Pages/Product/listProduct'
+
+import ListProduct from '@/components/Pages/Product/ListProduct'
 import React from 'react'
 
 const page = () => {
   return (
-    <div><ListProduct areaId={0} initialStatus={false} /></div>
+    <div><ListProduct /></div>
   )
 }
 

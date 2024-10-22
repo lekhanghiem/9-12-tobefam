@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 
-import auth from "@/app/[locale]/utility/auth";
+import auth from "@/app/utility/auth";
 import { useRouter, usePathname } from "next/navigation";
 import { ComponentType, useEffect, useState } from "react";
 

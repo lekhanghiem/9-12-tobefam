@@ -25,7 +25,7 @@ const style = {
   p: 4,
 };
 
-const CreateAreaForm: React.FC = () => {
+const CreateFarm = () => {
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [image, setImage] = useState<File | null>(null);
@@ -92,9 +92,7 @@ const CreateAreaForm: React.FC = () => {
       toast.error('Failed to create area. Please try again later.');
     }
   };
-
   const t = useTranslations('a');
-
   return (
     <div>
       <Button variant="contained" color="primary" onClick={handleOpen}>
@@ -187,4 +185,4 @@ const CreateAreaForm: React.FC = () => {
   );
 };
 
-export default CreateAreaForm;
+export default CreateFarm;

@@ -58,11 +58,9 @@ useEffect(() => {
       setCities(data); // Assuming data is an array of City objects
     }
   }, [data]);
-  console.log(formData,'fullAddress');
   useEffect(() => {
     const cityName =
       cities.find((city) => city.Id === selectedCity)?.Name || '';
-  console.log(cityName,'fullAddres1s');
 
     const districtName =
       districts.find((district) => district.Id === selectedDistrict)?.Name ||
@@ -165,7 +163,6 @@ const handleEditSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   try {
     await dispatch(actionEditArea({ id, data })).unwrap();
 handleSearch(search,category)
-
     handleClose();
   } catch (error) {
     toast.error('Failed to update area');

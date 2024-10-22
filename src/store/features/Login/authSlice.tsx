@@ -1,0 +1,61 @@
+  import { AuthService } from "@/store/api";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+  import { toast } from "react-toastify";
+
+  const actionLogin = createAsyncThunk(
+    "auth/login",
+    async (data: { email: string; password: string }) => {
+      try {
+        const res = await AuthService.doLogin(data);
+                  localStorage.setItem("accessToken", res.data.data.token);
+                  const user= res.data.data.user
+          localStorage.setItem("user",JSON.stringify( user ));
+          toast.success(res.data.message);
+            window.location.replace('/areaList')
+          return res.data;
+
+      } catch (error: any) {
+        const message = error.response.data?.message || error.message;
+        toast.error(message);
+        return error.response;
+      }
+    }
+  );
+
+  const { reducer, actions } = createSlice({
+    name: "auth",
+    initialState: {
+      login: {
+        loading: false,
+        data: [],
+        error: "",
+      },
+    },
+    reducers: {},
+    extraReducers: (builder) => {
+      builder
+        .addCase(actionLogin.pending, (state: any) => {
+          state.login.loading = true;
+        })
+        .addCase(actionLogin.rejected, (state: any, action: any) => {
+          state.login.loading = false;
+          state.login.error = action.payload;
+          state.login.data = {};
+        })
+        .addCase(actionLogin.fulfilled, (state: any, action: any) => {
+          state.login.loading = false;
+          state.login.data = action.payload;
+          state.login.error = "";
+        });
+    },
+
+
+
+
+  });
+
+
+
+
+  export default reducer;
+  export { actionLogin };

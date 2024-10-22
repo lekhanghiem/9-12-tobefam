@@ -1,184 +1,187 @@
 'use client';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-
 import Image from 'next/image';
-
-import React, { useState } from 'react';
-import { IoMenu, IoClose } from 'react-icons/io5';
+import React, { useState, useCallback, useEffect } from 'react';
 import LocalSwitcher from './local-switcher';
+import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import Divider from '@mui/material/Divider';
 import CheckToken from '../Pages/user/checkToken';
+import { useRouter } from 'next/navigation';
+
+const drawerWidth = 240;
+
 const Page = () => {
-  const t = useTranslations('Headers');
+  const Items = [
+    { label: 'Hỗ trợ', path: '/' },
+    { label: 'Ứng dụng', path: '/areaList' },
+    { label: 'Tin tức', path: '/listproduct' },
+    {
+      label: 'Về chúng tôi',
+      path: '#',
+      submenu: [
+        { label: 'Hoạt động danh mục', path: '#' },
+        { label: 'Thành tựu', path: '#' },
+        { label: 'Tư vấn miễn phí', path: '/lienhe' },
+      ],
+    },
+  ];
+
+  const router = useRouter();
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [shouldRender, setShouldRender] = useState(true);
+
+  const t = useTranslations('Headers');
+
+  const handleDrawerToggle = useCallback(() => {
+    setMobileOpen((prevState) => !prevState);
+  }, []);
 
   const handleMouseEnter = () => setDropdownOpen(true);
   const handleMouseLeave = () => setDropdownOpen(false);
-  const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleMenuToggle = () => {
-    setMenuOpen(!menuOpen);
-  };
+  useEffect(() => {
+    const path = window.location.pathname;
+    if (path.includes('/dashboard') || path.includes('/vi/profile')) {
+      setShouldRender(false);
+    }
+  }, []);
+
+  if (!shouldRender) return null;
 
   return (
     <div className="w-full sticky top-0 xl:top-[-87px] z-50">
-      <div className="flex lg:flex-row flex-col justify-between bgheader py-3 lg:px-20 px-10 w-full gap-y-3">
+      {/* Header Section */}
+      <div className="flex lg:flex-row flex-col justify-between bgheader py-3 lg:px-20 px-10 gap-y-3">
         <nav className="grid grid-cols-3 gap-3 lg:gap-10">
-          <div className="flex gap-4 justify-center">
-            <div>
-              <Image
-                src="/img/header/Vector.svg"
-                alt="err"
-                width={60}
-                height={60}
-                className="items-center flex"
-              />
+          {[
+            ['Tải ứng dụng', '/img/header/Vector.svg'],
+            ['Thông báo', '/img/header/Union.svg'],
+            ['Hỗ trợ', '/img/header/Group1.svg'],
+          ].map(([text, img], index) => (
+            <div key={index} className="flex gap-4 justify-center">
+              <Image src={img} alt="icon" width={60} height={60} />
+              <div className="flex items-center">{t(text)}</div>
             </div>
-            <div className="flex items-center"> {t('Tải ứng dụng')}</div>
-          </div>
-          <div className="flex gap-4 justify-center">
-            <div>
-              <Image
-                src="/img/header/Union.svg"
-                alt="err"
-                width={60}
-                height={60}
-                className="items-center flex"
-              />
-            </div>
-            <div className="flex items-center"> {t('Thông báo')}</div>
-          </div>
-          <div className="flex gap-4 justify-center">
-            <div>
-              <Image
-                src="/img/header/Group1.svg"
-                alt="err"
-                width={60}
-                height={60}
-                className="items-center flex"
-              />
-            </div>
-            <div className="flex items-center"> {t('Hỗ trợ')}</div>
-          </div>
+          ))}
         </nav>
+
+        {/* Secondary Nav */}
         <nav className="lg:gap-20 gap-10 grid grid-cols-3">
           {[
             ['./', '/img/header/Subtract.svg'],
             ['Thông báo', '/img/header/Group2.svg'],
             ['Hỗ trợ', '/img/header/Subtract1.svg'],
-          ].map(([url, img]) => (
-            <div
-              key={img}
-              className="flex items-center justify-center gap-4  lg:block hidden"
-            >
+          ].map(([url, img], index) => (
+            <div key={index} className="lg:block hidden  items-center justify-center gap-4">
               <Link href={url}>
-                <Image src={img} alt={img} width={60} height={60} />
+                <Image src={img} alt="icon" width={60} height={60} />
               </Link>
             </div>
           ))}
         </nav>
       </div>
 
+      {/* Main Navigation */}
       <nav className="flex gap-20 w-full px-8 border-2 rounded-full py-1 bg-[#d6e8fe] items-center">
         <Link className="lg:w-3/12 w-8/12 flex justify-center" href="./">
-          <Image
-            src="/img/header/LogoTobe.svg"
-            alt="Logo"
-            width={287}
-            height={91}
-          />
+          <Image src="/img/header/LogoTobe.svg" alt="Logo" width={287} height={91} />
         </Link>
-        <div className="pt-3 lg:hidden" onClick={handleMenuToggle}>
-          {menuOpen ? (
-            <IoClose className="w-16 h-16 cursor-pointer" />
-          ) : (
-            <IoMenu className="w-16 h-16 cursor-pointer" />
-          )}
-        </div>
-        <div className="hidden lg:flex w-8/12 justify-center gap-4">
-          {[
-            [t('Hỗ trợ'), '/'],
-            [t('Ứng dụng'), '/areaList'],
-            [t('Tin tức'), '/listproduct'],
-            [t('Về chúng tôi'), '#'],
-          ].map(([title, url]) => (
-            <div
-              key={url}
-              className="relative"
-              onMouseEnter={
-                title === t('Về chúng tôi') ? handleMouseEnter : undefined
-              }
-              onMouseLeave={
-                title === t('Về chúng tôi') ? handleMouseLeave : undefined
-              }
-            >
-              <Link
-                href={url}
-                className="font-bold rounded-lg px-3 py-2 text-slate-700 font-medium hover:scale-110 hover:text-green-500 text-3xl whitespace-nowrap"
-              >
-                {title}
-              </Link>
 
-              {title === t('Về chúng tôi') && isDropdownOpen && (
-                <div
-                  className="absolute left-24 mt-2 h-[180px] w-80 bg-[#419C70] opacity-70 border border-gray-300  shadow-lg"
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <Link
-                    href="#"
-                    className="block px-4 py-2 h-[60px] whitespace-nowrap text-3xl text-gray-700 items-center hover:text-white flex justify-center  "
-                  >
-                    {t('Hoạt động danh mục')}
-                  </Link>
-                  <div className="bg-white h-[1px] w-60 mx-auto"></div>
-                  <Link
-                    href="#"
-                    className="block px-4 py-2 h-[60px] whitespace-nowrap text-3xl text-gray-700 items-center hover:text-white flex justify-center  "
-                  >
-                    {t('Thành tựu')}
-                  </Link>
-                  <div className="bg-white h-[1px] w-60 mx-auto"></div>
-                  <Link
-                    href="/lienhe"
-                    className="block px-4 py-2 h-[60px] whitespace-nowrap text-3xl text-gray-700 items-center hover:text-white flex justify-center  "
-                  >
-                    {t('Tư vấn miễn phí')}
-                  </Link>
+        {/* Mobile Drawer Toggle */}
+        <div className="pt-3 lg:hidden">
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { sm: 'block' } }}
+          >
+            <MenuIcon fontSize="large" />
+          </IconButton>
+
+          <Drawer
+            variant="temporary"
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            ModalProps={{ keepMounted: true }}
+            sx={{
+              display: { xs: 'block', sm: 'block' },
+              '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            }}
+          >
+            <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+              <Link href="./" className="flex w-[70%] mx-auto justify-center py-5">
+                <Image src="/img/header/LogoTobe.svg" alt="Logo" width={287} height={91} />
+              </Link>
+              <Divider />
+              <nav className="bg-lightblue p-4">
+                <div className="flex flex-col">
+                  {Items.map((item, index) => (
+                    <button
+                      key={index}
+                      className="bg-white text-gray-600 py-3 px-3 rounded-lg hover:bg-green-400 transition"
+                      onMouseEnter={item.submenu ? handleMouseEnter : undefined}
+                      onMouseLeave={item.submenu ? handleMouseLeave : undefined}
+                    >
+                      <Link href={item.path} className="font-bold text-4xl">
+                        {item.label}
+                      </Link>
+
+                      {item.submenu && isDropdownOpen && (
+                        <div className="absolute bg-[#419C70] rounded-md shadow-lg pb-5">
+                          {item.submenu.map((sub, subIndex) => (
+                            <div key={subIndex} className="pt-3">
+                              <Link href={sub.path} className="block text-2xl font-bold">
+                                {sub.label}
+                              </Link>
+                              <div className="bg-white h-[1px] w-5/6 mx-auto" />
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </button>
+                  ))}
                 </div>
-              )}
+              </nav>
+            </Box>
+          </Drawer>
+        </div>
+
+        <div className="hidden lg:flex w-8/12 justify-center gap-4">
+          <nav className="bg-lightblue p-4">
+            <div className="flex space-x-8">
+              {Items.map((item, index) => (
+                <div key={index} className="relative">
+                  <Link href={item.path} className="font-bold text-4xl">
+                    {item.label}
+                  </Link>
+                  {item.submenu && isDropdownOpen && (
+                    <div className="absolute bg-[#419C70] shadow-lg pb-5">
+                      {item.submenu.map((sub, subIndex) => (
+                        <div key={subIndex} className="pt-3">
+                          <Link href={sub.path} className="block text-2xl font-bold">
+                            {sub.label}
+                          </Link>
+                          <div className="bg-white h-[1px] w-5/6 mx-auto" />
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
-          ))}
+          </nav>
         </div>
-        <div>
-          <LocalSwitcher />
-        </div>
-        <div className="hidden lg:flex w-1/12 justify-end">
+
+        <LocalSwitcher />
+        <div className="hidden lg:flex">
           <CheckToken />
         </div>
-      </nav>
-      <nav className={menuOpen ? 'block' : 'hidden'}>
-        {[
-          ['Giới thiệu', '/'],
-          ['Ứng dụng', '/team'],
-          ['Tin tức', '/projects'],
-          ['Về chúng tôi', '#'],
-          ['Đăng nhập', '/login'],
-        ].map(([title, url]) => (
-          <nav key={url} className="lg:hidden">
-            <ul className="bg-[#d6e8fe]">
-              <li className=" ">
-                <Link
-                  key={url}
-                  href={url}
-                  className=" hover:scale-125 rounded-lg   text-slate-700 font-medium  hover:text-slate-900 text-xl whitespace-nowrap"
-                >
-                  <span className="hover:scale-125"> {title}</span>
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        ))}
       </nav>
     </div>
   );

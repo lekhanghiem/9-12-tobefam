@@ -1,4 +1,3 @@
-import {   ScrollToTop } from "@/components/Global";
 import Toaster from "@/lib/toaster";
 import ReduxProvider from "@/store/redux-provider";
 import { lexend, poppins, roboto } from "@/types/font";
@@ -9,6 +8,7 @@ import { getMessages } from 'next-intl/server';
 import Header from "@/components/ui/Header";
 import Footer from '../../components/ui/Footer'
 import { AppProvider } from '../../context/AppContext'
+import ScrollToTop from "@/components/Global/ScrollToTop";
 
 export const metadata: Metadata = {
   title: "Create Next App",

@@ -1,8 +1,7 @@
 'use client';
 import Customicon from '../../ui/Customicon';
-
 import { useLocale } from 'next-intl';
-import {schemalogin} from '../../../app/[locale]/utility/schema'
+import {schemalogin} from '../../../app/utility/schema'
 
 import React, { useState, ChangeEvent, MouseEvent } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -21,7 +20,7 @@ import Checkbox from '@mui/material/Checkbox';
 import CustomButton from '@/components/ui/Custombutton';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/store/store';
-import { actionLogin } from '@/store/features/Area/authSlice';
+import { actionLogin } from '@/store/features/Login/authSlice';
 import { useAppSelector } from '@/store/hooks';
 import isAuthu from '../../../middleware/isAuth'
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -43,10 +42,7 @@ type FormValues = {
 
 const Loginn: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const router = useRouter();
-  const locale = useLocale();
   const dispatch = useDispatch<AppDispatch>()
-  const {loading,data} = useAppSelector((state)=> state.auth.login)
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({
     resolver: yupResolver(schemalogin),
   });

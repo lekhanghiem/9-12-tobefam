@@ -48,7 +48,7 @@ function SearchArea() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <IconButton sx={{ ml: 1 }} aria-label="search">
+            <IconButton sx={{ ml: 1 }} aria-label="search" disabled>
               <SearchIcon />
             </IconButton>
           </Box>

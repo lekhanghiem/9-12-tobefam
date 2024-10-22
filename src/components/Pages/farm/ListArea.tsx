@@ -10,17 +10,16 @@ import TableRow from '@mui/material/TableRow';
 import { Area } from '@/types/types';
 import ChangeStatus from './ChangeStatus';
 import Edit from './Edit';
-
+import Skeleton from '@mui/material/Skeleton';
 import { Box, Pagination, Tooltip } from '@mui/material';
 import SearchArea from './SearchArea';
 import { useContext } from 'react';
 import Createfram from './Createfram';
 import { SearchContext } from '@/context/AppContext';
-
+import Loading from '@/components/Global/Loading';
 
 export default function BasicTable() {
-const  {searchAreas,totalPages,page,handlePageChange}  = useContext(SearchContext)||{};
-console.log(totalPages,'pagetotltotal');
+const  {searchAreas,totalPages,page,handlePageChange,loading}  = useContext(SearchContext)||{};
 const rows = searchAreas?.map((area: Area) => ({
   id: area.id,
   Name: area.Name,
@@ -32,10 +31,8 @@ const rows = searchAreas?.map((area: Area) => ({
 })) || [];
 
   return (
-    <div style={{ backgroundImage: `url('/img/home/Group48096598.png')` }}>
-
-
-    <Box sx={{ py:'20px',backgroundImage:`url('/img/home/Group48096598.png')` }} >
+    <Box >
+    <Box sx={{ py:'20px'}} >
  <Box sx={{ width:'90%',mx:'auto',backgroundColor:'#ffff', boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',  borderRadius: '32px',pb:'30px' }}>
   <Box sx={{ display:'flex', justifyContent:'space-between',width:'90%',mx:'auto',py:'50px' }}>
 <Box>
@@ -43,8 +40,7 @@ const rows = searchAreas?.map((area: Area) => ({
 </Box>
 <Box><Createfram/></Box>
  </Box>
-
-    <TableContainer >
+    {loading===true? <Loading/>:<TableContainer >
       <Table sx={{ minWidth: 300 }} aria-label="simple table">
         <TableHead>
          <TableRow>
@@ -54,7 +50,6 @@ const rows = searchAreas?.map((area: Area) => ({
   <TableCell align="left" colSpan={2} sx={{ fontSize: '15px' }}>Actions</TableCell>
   <TableCell align="left" sx={{ fontSize: '15px' }}>Address</TableCell>
 </TableRow>
-
         </TableHead>
         <TableBody>
           {rows.map((row) => (
@@ -72,8 +67,7 @@ const rows = searchAreas?.map((area: Area) => ({
     <span>{row.Name}</span>
   </Tooltip>
 </TableCell>
-
-              <TableCell align="left"><Image src={row.Image} width='40' height='40' alt="Customer" /></TableCell>
+              <TableCell align="left"><Image src={row.Image} width={40} height={40} alt="Customer" /></TableCell>
               <TableCell align="left">{row.Area_type} </TableCell>
               <TableCell align="left">{row.Area_status}</TableCell>
                <TableCell align="left">
@@ -88,7 +82,7 @@ const rows = searchAreas?.map((area: Area) => ({
         </TableBody>
       </Table>
 
-    </TableContainer>
+    </TableContainer>}
 
       <Pagination
       color='primary'
@@ -99,6 +93,6 @@ const rows = searchAreas?.map((area: Area) => ({
       />
  </Box>
     </Box>
-      </div>
+      </Box>
   );
 }

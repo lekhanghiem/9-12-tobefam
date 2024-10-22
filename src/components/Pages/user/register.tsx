@@ -1,7 +1,7 @@
 'use client';
 import Customicon from '../../ui/Customicon';
 
-import {schemaregister} from '../../../app/[locale]/utility/schema'
+import {schemaregister} from '../../../app/utility/schema'
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import Image from 'next/image';
 import IconButton from '@mui/material/IconButton';
@@ -21,7 +21,7 @@ import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import CustomButton from '@/components/ui/Custombutton';
-import { actionRegister } from '@/store/features/Area/RegisterSlice';
+import { actionRegister } from '@/store/features/Login/RegisterSlice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/store/store';
 import isAuth from '@/middleware/isAuth';

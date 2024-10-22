@@ -1,6 +1,16 @@
 import { StaticImageData } from "next/image";
 import { ReactNode } from "react";
-
+export interface User {
+  id: number;
+  username: string;
+  password?: string;
+  verification_code?: string | null;
+  verify: boolean;
+  expires_at?: string | null;
+  user_info_id: number;
+  company_info_id: number;
+  role_id: number;
+}
 export interface SubMenuItem {
   id: number;
   name: string;
@@ -102,25 +112,14 @@ export interface TextState {
   Expiry_date: string; // Assuming this is a string representing the date
   Unit: string;
   Product_status: string;
-  certify: Image;
   Product_date: string; // Assuming this is a string representing the date
   Product_type: number;
-  Product_packing: number;
+  Product_packing: string;
   qr_code: string; // Assuming qr_code is a URL or string
 }
-export interface Product {
-  id: number
-  User_id: number
-  Area_type: string
-  Name: string
-  Address: string
-  Image: Image
-  description: string
-  Area_status: string
-}
+
 
 export interface Image {
-  id: string
   url: string
 }
 
@@ -130,3 +129,15 @@ export interface FormData {
   Image: File | null;
   Description: string;
 }
+
+export interface FormDataPassword  {
+  old_password?: string | undefined;
+  new_password?: string | undefined;
+  re_new_password: string;
+};
+
+export interface FormDataEditUser  {
+ phone: string ;
+ email: string;
+
+};
