@@ -9,8 +9,6 @@ import { toast } from 'react-toastify';
 import Image from 'next/image';
 import Link from 'next/link';  // Correct import for Link component
 import axiosIns from '../../../store/api/axiosIns';
-import { SearchContext } from '@/context/AppContext';
-import { User } from '@/types/types';
 
 const LogoutButton = () => {
   const router = useRouter();

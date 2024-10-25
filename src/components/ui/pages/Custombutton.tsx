@@ -14,7 +14,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({ children }) => {
         variant="contained"
         color="primary"
         sx={{
-          height: 50,
+          height: '50px',
           borderRadius: '40px',
           padding: '10px 40px',
           color: 'gray',

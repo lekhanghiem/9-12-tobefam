@@ -14,7 +14,7 @@ import Skeleton from '@mui/material/Skeleton';
 import { Box, Pagination, Tooltip } from '@mui/material';
 import SearchArea from './SearchArea';
 import { useContext } from 'react';
-import Createfram from './Createfram';
+import Createfram from './Createfarm';
 import { SearchContext } from '@/context/AppContext';
 import Loading from '@/components/Global/Loading';
 import isAuth from '@/middleware/isAuth';

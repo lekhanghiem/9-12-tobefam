@@ -1,81 +1,148 @@
-import React from 'react';
-import { Container, Typography, Box, Card, CardContent, TextField, Button } from '@mui/material';
+// import * as React from 'react';
+// import Box from '@mui/material/Box';
+// import Chip from '@mui/material/Chip';
+// import IconButton from '@mui/material/IconButton';
+// import Menu from '@mui/material/Menu';
+// import MenuItem from '@mui/material/MenuItem';
+// import Typography from '@mui/material/Typography';
+// import { createTheme } from '@mui/material/styles';
+// import PersonIcon from '@mui/icons-material/Person';
+// import CallIcon from '@mui/icons-material/Call';
+// import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+// import CallMadeIcon from '@mui/icons-material/CallMade';
+// import CallReceivedIcon from '@mui/icons-material/CallReceived';
+// import { AppProvider, type Navigation } from '@toolpad/core/AppProvider';
+// import { DashboardLayout } from '@toolpad/core/DashboardLayout';
+// import { useDemoRouter } from '@toolpad/core/internal';
 
-const App = () => {
-  return (
-    <Container maxWidth="md" sx={{ marginTop: '2rem' }}>
-      <Typography variant="h4" align="center" gutterBottom>
-        Bảo Mật Nông Sản
-      </Typography>
-      <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
-        <Card sx={{ width: '100%', padding: 2 }}>
-          <CardContent>
-            <Typography variant="h5">Truy xuất nguồn gốc</Typography>
-            <Typography variant="body2">
-              Thông tin về nguồn gốc và quy trình sản xuất nông sản.
-            </Typography>
-          </CardContent>
-        </Card>
-        <Card sx={{ width: '100%', padding: 2 }}>
-          <CardContent>
-            <Typography variant="h5">Quản trị chuỗi cung ứng</Typography>
-            <Typography variant="body2">
-              Quản lý hiệu quả chuỗi cung ứng từ sản xuất đến tiêu thụ.
-            </Typography>
-          </CardContent>
-        </Card>
-        <Card sx={{ width: '100%', padding: 2 }}>
-          <CardContent>
-            <Typography variant="h5">Quản trị vận tải sản xuất</Typography>
-            <Typography variant="body2">
-              Đảm bảo vận chuyển hàng hóa an toàn và hiệu quả.
-            </Typography>
-          </CardContent>
-        </Card>
-        <Card sx={{ width: '100%', padding: 2 }}>
-          <CardContent>
-            <Typography variant="h5">Sàn thương mại điện tử</Typography>
-            <Typography variant="body2">
-              Nền tảng kết nối nhà sản xuất và người tiêu dùng.
-            </Typography>
-          </CardContent>
-        </Card>
-      </Box>
-      <Box mt={4}>
-        <Typography variant="h5" align="center">Liên hệ</Typography>
-        <form>
-          <TextField
-            label="Họ và tên"
-            variant="outlined"
-            fullWidth
-            margin="normal"
-            required
-          />
-          <TextField
-            label="Email"
-            variant="outlined"
-            fullWidth
-            margin="normal"
-            required
-          />
-          <TextField
-            label="Nội dung"
-            variant="outlined"
-            fullWidth
-            margin="normal"
-            multiline
-            rows={4}
-            required
-          />
-          <Box textAlign="center" mt={2}>
-            <Button type="submit" variant="contained" color="primary">
-              Gửi
-            </Button>
-          </Box>
-        </form>
-      </Box>
-    </Container>
-  );
-};
+// const demoTheme = createTheme({
+//   cssVariables: {
+//     colorSchemeSelector: 'data-toolpad-color-scheme',
+//   },
+//   colorSchemes: { light: true, dark: true },
+//   breakpoints: {
+//     values: {
+//       xs: 0,
+//       sm: 600,
+//       md: 600,
+//       lg: 1200,
+//       xl: 1536,
+//     },
+//   },
+// });
 
-export default App;
+// function DemoPageContent({ pathname }: { pathname: string }) {
+//   return (
+//     <Box
+//       sx={{
+//         py: 4,
+//         display: 'flex',
+//         flexDirection: 'column',
+//         alignItems: 'center',
+//         textAlign: 'center',
+//       }}
+//     >
+//       <Typography>Dashboard content for {pathname}</Typography>
+//     </Box>
+//   );
+// }
+
+// const CALLS_NAVIGATION: Navigation = [
+//   {
+//     segment: 'made',
+//     title: 'Made',
+//     icon: <CallMadeIcon />,
+//     action: <Chip label={12} color="success" size="small" />,
+//   },
+//   {
+//     segment: 'received',
+//     title: 'Received',
+//     icon: <CallReceivedIcon />,
+//     action: <Chip label={4} color="error" size="small" />,
+//   },
+// ];
+
+// interface DemoProps {
+//   /**
+//    * Injected by the documentation to work in an iframe.
+//    * Remove this when copying and pasting into your project.
+//    */
+//   window?: () => Window;
+// }
+
+// export default function DashboardLayoutNavigationActions(props: DemoProps) {
+//   const { window } = props;
+
+//   const router = useDemoRouter('/contacts');
+
+//   const [popoverAnchorEl, setPopoverAnchorEl] =
+//     React.useState<HTMLButtonElement | null>(null);
+
+//   const isPopoverOpen = Boolean(popoverAnchorEl);
+//   const popoverId = isPopoverOpen ? 'simple-popover' : undefined;
+
+//   const handlePopoverButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+//     event.stopPropagation();
+//     setPopoverAnchorEl(event.currentTarget);
+//   };
+
+//   const handlePopoverClose = (event: React.MouseEvent<HTMLElement>) => {
+//     event.stopPropagation();
+//     setPopoverAnchorEl(null);
+//   };
+
+//   // Remove this const when copying and pasting into your project.
+//   const demoWindow = window !== undefined ? window() : undefined;
+
+//   const popoverMenuAction = (
+//     <React.Fragment>
+//       <IconButton aria-describedby={popoverId} onClick={handlePopoverButtonClick}>
+//         <MoreHorizIcon />
+//       </IconButton>
+//       <Menu
+//         id={popoverId}
+//         open={isPopoverOpen}
+//         anchorEl={popoverAnchorEl}
+//         onClose={handlePopoverClose}
+//         anchorOrigin={{
+//           vertical: 'bottom',
+//           horizontal: 'right',
+//         }}
+//         disableAutoFocus
+//         disableAutoFocusItem
+//       >
+//         <MenuItem onClick={handlePopoverClose}>New call</MenuItem>
+//         <MenuItem onClick={handlePopoverClose}>Mark all as read</MenuItem>
+//       </Menu>
+//     </React.Fragment>
+//   );
+
+//   return (
+//     // preview-start
+//     <AppProvider
+//       navigation={[
+//         {
+//           segment: 'contacts',
+//           title: 'Contacts',
+//           icon: <PersonIcon />,
+//           action: <Chip label={7} color="primary" size="small" />,
+//         },
+//         {
+//           segment: 'calls',
+//           title: 'Calls',
+//           icon: <CallIcon />,
+//           action: popoverMenuAction,
+//           children: CALLS_NAVIGATION,
+//         },
+//       ]}
+//       router={router}
+//       theme={demoTheme}
+//       window={demoWindow}
+//     >
+//       <DashboardLayout>
+//         <DemoPageContent pathname={router.pathname} />
+//       </DashboardLayout>
+//     </AppProvider>
+//     // preview-end
+//   );
+// }

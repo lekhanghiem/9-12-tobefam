@@ -1,5 +1,5 @@
 'use client';
-import Customicon from '../../ui/Customicon';
+import Customicon from '../../ui/pages/Customicon';
 import { useLocale } from 'next-intl';
 import {schemalogin} from '../../../app/utility/schema'
 
@@ -17,10 +17,10 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button, Grid, Paper, styled } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
-import CustomButton from '@/components/ui/Custombutton';
+import CustomButton from '@/components/ui/pages/Custombutton';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/store/store';
-import { actionLogin } from '@/store/features/Login/authSlice';
+import { actionLogin } from '@/store/features/Login/AuthSlice';
 import { useAppSelector } from '@/store/hooks';
 import isAuthu from '../../../middleware/isAuth'
 import ProtectedRoute from '@/middleware/Midlewareathu';
@@ -50,7 +50,7 @@ const Loginn: React.FC = () => {
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     dispatch(actionLogin(data)).then((res)=>{
-      if (res.payload ) {
+      if (res ) {
       }
     })
 

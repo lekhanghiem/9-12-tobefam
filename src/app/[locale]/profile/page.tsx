@@ -12,6 +12,7 @@ import Brand from '@/components/Pages/profile/Brand';
 import EditUser from '@/components/Pages/profile/EditUser';
 import SettingProfile from '@/components/Pages/profile/SettingProfile';
 import { useState } from 'react';
+import EditCompanyUser from '@/components/Pages/profile/EditCompanyUser';
 
 interface TabItem {
   id: number;
@@ -75,15 +76,17 @@ export default function VerticalTabs() {
          value={value} onChange={handleChange} aria-label="Vertical tabs">
           {tabItems.map((item, index) => (
               <Tab
-              key={item.id}
+              key={index}
 
               sx={{
+                border:'none',
                 textTransform: 'none',
                 borderRadius: '8px',
                 minWidth: 120,
                 '&.Mui-selected': {
                   backgroundColor: '#E0E0E0',
                   color: 'white',
+                  border:'none',
                 },
                 '&:hover': {
                   backgroundColor: '#A303A0',
@@ -101,13 +104,17 @@ export default function VerticalTabs() {
         </Tabs>
       </Box>
         <TabPanel value={value} index={0}>
+          <EditCompanyUser/>
                           <Account />
         </TabPanel>
         <TabPanel value={value} index={1}>
                        <Contact/>
         </TabPanel>
         <TabPanel value={value} index={2}>
+                 {/* <EditCompany/> */}
+
                         <Brand />
+
         </TabPanel>
         <TabPanel value={value} index={3}>
         <SettingProfile/>
@@ -119,7 +126,7 @@ export default function VerticalTabs() {
         <EditUser/>
         </TabPanel>
         <TabPanel value={value} index={6}>
-        edit
+
         </TabPanel>
     </div>
   );

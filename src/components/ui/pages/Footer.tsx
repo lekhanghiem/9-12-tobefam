@@ -9,21 +9,7 @@ import FadeDown from "@/motion/FadeDown";
 import FadeLeft from "@/motion/FadeLeft";
 import FadeRight from "@/motion/FadeRight";
 import { useTranslations } from "next-intl";
-const Footer = () => {
-  const [isVisible, setIsVisible] = useState(true);
-  const t = useTranslations('HomePage');
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const path = window.location.pathname;
-      if (path.includes('/vi/dashboard') || path.includes('/vi/profile')) {
-        setIsVisible(false);
-      }
-    }
-  }, []);
-
-  if (!isVisible) return null;
-
+import { usePathname } from 'next/navigation'
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: 'transparent',
     border: 'none',
@@ -36,6 +22,14 @@ const Footer = () => {
       backgroundColor: '#1A2027',
     }),
   }));
+const Footer = () => {
+  const t = useTranslations('HomePage');
+  const path = usePathname()
+
+      if (path.includes('/vi/dashboard') || path.includes('/vi/profile')) {
+       return null;
+      }
+
 
   return (
     <div className="w-full h-full bg-[#012133]">

@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Image from 'next/image'
-import { Grid, Button, Paper } from '@mui/material';
+import { Grid, Button, Paper, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import FadeRight from '@/motion/FadeRight';
 import FadeLeft from '@/motion/FadeLeft';
@@ -31,7 +31,7 @@ const Theodoi = () => {
     { title: 'Báo cáo chăn nuôi mới', content: 'Với công nghệ' },
   ];
   return (
-    <div className='py-20  h-full relative z-0' style={{
+    <Box className='py-20  h-full relative z-0' style={{
         backgroundImage: "url('/img/home/Group48096607.png')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -40,7 +40,13 @@ const Theodoi = () => {
         width: '100%' // Ensure it stretches across the width
       }}>
      <FadeLeft  >
-    <Grid className='py-10' container sx={{ width: '91.666667%', height: '100%', backgroundColor: '#0d3f62', borderRadius: '24px', mx: 'auto' }}>
+    <Box sx={{
+      border: '1px solid green',
+      width: '92%',
+      borderRadius: '24px',
+      mx:'auto',
+    }}>
+      <Grid className='py-10' container sx={{ width: '100%', height: '100%', backgroundColor: '#0d3f62', borderRadius: '24px', mx: 'auto' }}>
       <Grid item xs={12} lg={6} sx={{ zIndex: 50,paddingTop:'40px', pb: 15, display: 'flex', flexDirection: 'column', gap: 5, textAlign: 'left', color: 'white', pl: { xs: 10, lg: 15 }, pr: { xs: 10, lg: 15 }, height: '100%', position: 'relative', }}>
         <div className="text-4xl pl-10 leading-10 no-underline hover:underline decoration-green-100">
           {t('Theo dõi quy trình nông nghiệp')}
@@ -79,6 +85,7 @@ const Theodoi = () => {
        </FlipAnimationY>
       </Grid>
     </Grid>
+    </Box>
      </FadeLeft>
 
 <div className='pt-20 w-11/12 mx-auto'>
@@ -127,7 +134,7 @@ const Theodoi = () => {
       ))}
     </Grid>
 </div>
-    </div>
+    </Box>
   )
 }
 

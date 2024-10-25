@@ -1,5 +1,5 @@
 'use client';
-import Customicon from '../../ui/Customicon';
+import Customicon from '../../ui/pages/Customicon';
 
 import {schemaregister} from '../../../app/utility/schema'
 import React, { useState, ChangeEvent, FormEvent } from 'react';
@@ -20,7 +20,7 @@ import { useTranslations } from 'next-intl';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import CustomButton from '@/components/ui/Custombutton';
+import CustomButton from '@/components/ui/pages/Custombutton';
 import { actionRegister } from '@/store/features/Login/RegisterSlice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/store/store';
@@ -433,6 +433,6 @@ const Register: React.FC = () => {
   );
 };
 
-export default isAuth(Register);
+export default Register;
 
 

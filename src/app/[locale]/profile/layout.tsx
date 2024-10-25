@@ -4,9 +4,8 @@ import { FaHome, FaProductHunt, FaUsers, FaChartLine, FaBullhorn, FaQuestionCirc
 import { AppBar, Box, Button, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Toolbar, Typography } from '@mui/material';
 import Link from 'next/link'
 import Image from 'next/image'
-
-import SettingsIcon from '@mui/icons-material/Settings';
-
+import { MdOutlineMenuOpen } from "react-icons/md";
+import { MdOutlineMenu } from "react-icons/md";
 const Dashboard = ({
   children,
 }: Readonly<{
@@ -40,7 +39,11 @@ const items = [
             onClick={handleDrawerToggle}
             sx={{ display: { sm: 'block' } }}
           >
-           <SettingsIcon style={{ fontSize: '25px' }} />
+            {
+              isOpen===true?
+               <MdOutlineMenuOpen   style={{ fontSize: '25px' }} />:
+              <MdOutlineMenu   style={{ fontSize: '25px' }} />
+            }
           </IconButton>
              <span className={`text-4xl font-bold ${ isOpen===true? 'opacity-100':'opacity-0'}`}><Link href='profile'>Profile</Link>  <span className={`text-sm text-gray-400 pt-5 ${ isOpen===true? 'opacity-100':'opacity-0'}`}>  v.01</span></span>
 

@@ -1,31 +1,33 @@
 'use client'
 import { useEffect, useState } from "react";
-import { useRouter, usePathname } from "next/navigation";
-
+import { useRouter , usePathname } from "next/navigation";
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(true); // Loading state
-  const router = useRouter();
-  const pathname = usePathname(); // Get the current route
+  const path = usePathname(); // Get the current route
+ const router = useRouter();
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
 
+    const storedUser = localStorage.getItem("user");
     if (storedUser) {
-      setLoading(false);
+      setLoading(true);
+if(path === "/vi/login" || path==="/vi/register") {
+        router.replace("/");
+
+}
+else{
+console.log("123123")
+}
     } else {
-      if (pathname !== "/vi/login" && pathname !== "/register" ) {
+      if (path !== "/vi/login" && path !== "/vi/register" && !storedUser ) {
         router.replace("/login");
       } else {
-        setLoading(false);
+        setLoading(true);
       }
     }
-  }, [router, pathname]);
-
+  }, [router, path]);
   if (loading) {
-      router.replace("/areaList"); // Optional: loading indicator while checking auth
+      return <>{children}</>;
   }
-
-  // Render children if user is authenticated or on login/register page
-  return <>{children}</>;
 };
 
 export default ProtectedRoute;

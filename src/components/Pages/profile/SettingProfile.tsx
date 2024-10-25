@@ -1,4 +1,5 @@
 import { Box, FormControlLabel, Switch, Select, MenuItem, FormControl, InputLabel, TextField, Button } from '@mui/material';
+import { useTranslations } from 'next-intl';
 import React from 'react';
 
 // Define props type for the ToggleSwitch component
@@ -19,34 +20,35 @@ const ToggleSwitch: React.FC<ToggleSwitchProps> = ({ label }) => (
 );
 
 const SettingProfile: React.FC = () => {
+  const t = useTranslations('Profile');
     const items = [
-    { label: 'Time display of activities' },
-    { label: 'Show activity details' },
-    { label: 'Show map as satellite' },
-    { label: 'Automatically expand action details' },
-    { label: 'Display logs in order from newest to oldest' },
-    { label: 'Use an alternate account name for any retrieval operation' },
-    { label: 'Automatically confirm the completed work' },
-    { label: 'Show the number of stamp scans' },
-    { label: 'Show an alert when the maximum number of stamp scans is exceeded' },
+    { label: 'Hiển thị thời gian của các hành động' },
+    { label: 'Hiển thị thông tin chi tiết hoạt động' },
+    { label: 'Hiển thị bản đồ dưới dạng vệ tinh' },
+    { label: 'Tự động mở rộng thông tin chi tiết hành động' },
+    { label: 'Hiển thị nhật ký theo thứ tự từ mới nhất đến cũ nhất' },
+    { label: 'Tự động xác nhận hoàn thành công việc' },
+    { label: 'Tự động xác nhận hoàn thành công việc' },
+    { label: 'Hiển thị số lượt quét tem' },
+    { label: 'Hiển cảnh báo khi vượt quá số lần quét tem tối đa' },
   ];
   return (
     <div className="h-full w-full">
       <div className="p-5">
      <div className='flex justify-between'>
        <div className='flex-col'>
-          <div className="flex-col gap-3 text-4xl font-bold">Settings</div>
-        <div className="pt-3 text-gray-500 text-xl">Display settings and advanced</div>
+          <div className="flex-col gap-3 text-4xl font-bold">{t('Thiết lập')}</div>
+        <div className="pt-3 text-gray-500 text-xl">{t('Thiết lập hiển thị và nâng cao')}</div>
       </div>
         <div className='flex items-center gap-5'>
            <Button sx={{
     backgroundColor: 'red',
     color: 'white'
-   }}>Restore</Button>
+   }}>{t('Khôi phục')}</Button>
    <Button sx={{
     backgroundColor: 'green',
     color: 'white'
-   }}>Save</Button>
+   }}>{t('Lưu Lại')}</Button>
 </div>
      </div>
         <div className="py-3">
@@ -57,7 +59,8 @@ const SettingProfile: React.FC = () => {
   <div key={index}>
     <ToggleSwitch
       label={
-        <div className="text-2xl font-bold">{item.label}</div>
+        <div className="text-2xl font-bold">{t(item.label)}
+</div>
       }
     />
   </div>
@@ -65,7 +68,7 @@ const SettingProfile: React.FC = () => {
 
         <div className="pt-3">
           <div className="text-2xl text-black font-bold">
-            Default language <span className="text-red-600">(*)</span>
+            {t('Ngôn ngữ mặc định trên trang truy xuất')} <span className="text-red-600">(*)</span>
           </div>
           <div className="pt-5">
             <Box
@@ -94,17 +97,18 @@ const SettingProfile: React.FC = () => {
                 }}
               >
                 <InputLabel id="select-label" sx={{ color: 'black' }}>
-                  Default language
+                  {t('Ngôn ngữ mặc định trên trang truy xuất')}
                 </InputLabel>
                 <Select
                   labelId="select-label"
                   id="select"
                   defaultValue=""
-                  label="Chọn một số"
+        label={`${t('Chọn một số')}`}
+
                 >
-                  <MenuItem value={1}>1</MenuItem>
-                  <MenuItem value={2}>2</MenuItem>
-                  <MenuItem value={3}>3</MenuItem>
+                  <MenuItem value={1}>1{t('')}</MenuItem>
+                  <MenuItem value={2}>2{t('')}</MenuItem>
+                  <MenuItem value={3}>3{t('')}</MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -112,7 +116,7 @@ const SettingProfile: React.FC = () => {
         </div>
         <div className='pt-3'>
 <div className='text-2xl text-black font-bold'>
-Maximum number of stamp scans
+{t('Số lần quét tem tối đa')}
 </div>
 <div className='pt-5'>
  <Box
@@ -123,7 +127,7 @@ Maximum number of stamp scans
     >
      <TextField
         id="outlined-basic"
-        label="Number"
+        label={`${t('Number')}`}
         variant="outlined"
         fullWidth
          helperText={null}

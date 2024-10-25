@@ -27,7 +27,6 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const dispatch = useDispatch<AppDispatch>();
   const {error,data,loading} = useSelector((state: any) => state.Search);
 
-
   const handleSearch = async (newSearch: string, newCategory: string) => {
     setSearch(newSearch);
     setCategory(newCategory);

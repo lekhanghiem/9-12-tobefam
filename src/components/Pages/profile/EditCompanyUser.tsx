@@ -1,23 +1,19 @@
-import { Box, Button, Switch, FormControlLabel } from '@mui/material';
+'use client'
+import { Box, Button } from '@mui/material';
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '@/store/store';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { actionChangePassword } from '@/store/features/Login/ChangePasswordSlice';
-import { ChangePassword } from '@/app/utility/schema';
-import { FormDataPassword } from '@/types/types';
 import { toast } from "react-toastify";
-import { useTranslations } from 'next-intl';
+import { EditCompany } from '@/app/utility/schema';
+import { actionEditCompany } from '@/store/features/Login/EditCompanySlice';
+import { AppDispatch } from '@/store/store';
+import { FormEditCompany } from '@/types/types';
 
 
 
 const Contact = () => {
-  const t = useTranslations('Profile')
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handleTogglePassword = () => setShowPassword(!showPassword);
 
   const dispatch = useDispatch<AppDispatch>();
   const {
@@ -25,12 +21,12 @@ const Contact = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormDataPassword>({
-    resolver: yupResolver(ChangePassword),
+  } = useForm<FormEditCompany>({
+    resolver: yupResolver(EditCompany),
   });
-const onSubmit: SubmitHandler<FormDataPassword> = async (data) => {
+const onSubmit: SubmitHandler<FormEditCompany> = async (data) => {
     try {
-      const response = await dispatch(actionChangePassword(data));
+      const response = await dispatch(actionEditCompany(data));
 
       if (response.payload) {
         reset();
@@ -48,9 +44,9 @@ const onSubmit: SubmitHandler<FormDataPassword> = async (data) => {
         <div className="p-5">
           <div className="flex justify-between">
             <div>
-              <div className="text-4xl font-bold">{t('Đổi mật khẩu')}</div>
+              <div className="text-4xl font-bold">Edit Company</div>
               <div className="pt-3 text-gray-500 text-xl">
-                {t('Thay đổi mật khẩu tài khoản')}
+                Thay đổi tên công ty
               </div>
             </div>
             <div className='flex items-center'>
@@ -58,7 +54,7 @@ const onSubmit: SubmitHandler<FormDataPassword> = async (data) => {
               type="submit"
               sx={{ backgroundColor: 'green', color: 'white' }}
             >
-              {t('Xác nhận')}
+              Xác nhận
             </Button>
             </div>
           </div>
@@ -67,42 +63,48 @@ const onSubmit: SubmitHandler<FormDataPassword> = async (data) => {
             <div className="h-[1px] bg-gray-300 w-full"></div>
           </div>
 
-          <PasswordField
-               label={`${t('Mật khẩu cũ')}`}
 
-            register={register('old_password')}
-            error={errors.old_password?.message}
-            showPassword={showPassword}
-          />
 
           <PasswordField
-               label={`${t('Mật khẩu mới')}`}
+            label="Company_name"
+            register={register('Company_name')}
+            error={errors.Company_name?.message}
 
-            register={register('new_password')}
-            error={errors.new_password?.message}
-            showPassword={showPassword}
           />
 
           <PasswordField
-               label={`${t('Nhập lại mật khẩu mới')}`}
+            label="district_code"
+            register={register('district_code')}
+            error={errors.district_code?.message}
 
-            register={register('re_new_password')}
-            error={errors.re_new_password?.message}
-            showPassword={showPassword}
+          />
+           <PasswordField
+            label="wards_code"
+            register={register('wards_code')}
+            error={errors.wards_code?.message}
+
           />
 
-          <FormControlLabel
-            control={
-              <Switch
-                checked={showPassword}
-                onChange={handleTogglePassword}
-                color="success"
-              />
-            }
-               label={`${t('Hiển thị mật khẩu')}`}
+          <PasswordField
+            label="provinces_code"
+            register={register('provinces_code')}
+            error={errors.provinces_code?.message}
 
-            sx={{ marginTop: '8px' }}
+          /> <PasswordField
+            label="description"
+            register={register('description')}
+            error={errors.description?.message}
+
           />
+
+          <PasswordField
+            label="Address"
+            register={register('Address')}
+            error={errors.Address?.message}
+
+          />
+
+
         </div>
       </form>
     </div>
@@ -113,10 +115,9 @@ type PasswordFieldProps = {
   label: string;
   register: any;
   error?: string;
-  showPassword: boolean;
 };
 
-const PasswordField = ({ label, register, error, showPassword }: PasswordFieldProps) => (
+const PasswordField = ({ label, register, error,  }: PasswordFieldProps) => (
   <div className="pt-3">
     <div className="text-2xl font-bold">
       {label} <span className="text-red-600">(*)</span>
@@ -127,7 +128,6 @@ const PasswordField = ({ label, register, error, showPassword }: PasswordFieldPr
           {...register}
           variant="outlined"
           fullWidth
-          type={showPassword ? 'text' : 'password'}
           error={!!error}
           helperText={error || ''}
           sx={{

@@ -1,5 +1,8 @@
 import * as yup from "yup";
-
+interface FileWithProperties {
+  size: number;
+  type: string;
+}
 export const schemeBuyIDO = yup.object().shape({
   amount: yup.number().required("Amount is require"),
   symbol: yup
@@ -82,3 +85,31 @@ export const ChangePassword = yup.object({
 
 }).required();
 
+export const EditCompany = yup.object().shape({
+  Company_name: yup.string().min(6,'Nhập ít nhất 6 kí tự').required('Vui lòng nhập tên công ty.'),
+  district_code: yup.string().required('Vui lòng nhập mã quận.'),
+  wards_code: yup.string().required('Vui lòng nhập mã phường.'),
+  provinces_code: yup.string().required('Vui lòng nhập mã tỉnh.'),
+  description: yup.string().required('Vui lòng nhập Nhập mô tả.'),
+  Address: yup.string().required('Vui lòng nhập địa chỉ.'),
+});
+
+// Create Farm Schema
+export const CreateFarm = yup.object().shape({
+  Name: yup.string().required('Vui lòng nhập tên.'),
+  Address: yup.string().required('Vui lòng nhập địa chỉ.'),
+  description: yup.string().required('Vui lòng nhập mô tả.'),
+  Area_type: yup.string().required('Vui lòng nhập loại khu vực.'),
+  Image: yup.mixed()
+    .required('Vui lòng chọn ảnh.')
+    ,
+});
+
+
+
+export const schemmaVerify = yup.object().shape({
+  code: yup
+    .string()
+    .length(6, "Mã phải có 6 chữ số")
+    .required("Mã là bắt buộc"),
+});

@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import auth from "./features/Login/authSlice";
+import auth from "./features/Login/AuthSlice";
 import { useDispatch } from "react-redux";
 import SearchAreaSlice from "./features/Area/SearchAreaSlice";
 import RegisterSlice from "./features/Login/RegisterSlice";
@@ -11,6 +11,10 @@ import ChangeStatusProductSlice from "./features/Product/ChangeStatusProductSlic
 import EditProductSlice from "./features/Product/EditProductSlice";
 import ChangePasswordSlice from "./features/Login/ChangePasswordSlice";
 import EditUserSlice from "./features/Login/EditUserSlice";
+import {  LocationCompany } from "./features/Login/LocationCompanyRTK";
+import CreateFarmSlice from "./features/Area/CreateFarmSlice";
+import EditCompanySlice from "./features/Login/EditCompanySlice";
+import VerifySlice from "./features/Login/VerifySlice";
 
 
 const store = configureStore({
@@ -25,16 +29,21 @@ const store = configureStore({
      EditProductSlice:EditProductSlice,
      ChangePasswordSlice:ChangePasswordSlice,
      EditUserSlice:EditUserSlice,
+     EditCompanySlice:EditCompanySlice,
+     CreateFarmSlice:CreateFarmSlice,
+     VerifySlice:VerifySlice,
+
 
 
      [Location.reducerPath]: Location.reducer,
+     [LocationCompany.reducerPath]: LocationCompany.reducer,
 
 
   },
     middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
     .concat(Location.middleware)
-
+    .concat(LocationCompany.middleware)
 });
 
 export default store;

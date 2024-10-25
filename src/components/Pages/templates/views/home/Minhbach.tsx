@@ -57,8 +57,8 @@ const Minhbach = () => {
             <Item sx={{height:{
       sx:'200px',
       md:'300px',
-      lg:'200px',
-      xl:'200px',
+      lg:'250px',
+      xl:'250px',
     }}}>
               <div className="h-full mx-5 pb-28">
                 <div className="text-white flex flex-col gap-10">

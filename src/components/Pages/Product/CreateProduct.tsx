@@ -61,7 +61,8 @@ const CreateProductForm: React.FC = () => {
       postData.append('Unit', formData.Unit);
       postData.append('Product_type', formData.Product_type);
       postData.append('Product_packing', formData.Product_packing);
-
+console.log(formData.Image);
+debugger
       const response = await axiosIns.post(
         '/product/19/create',
         postData,

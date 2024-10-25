@@ -10,6 +10,7 @@ import TextField from '@mui/material/TextField';
 import { Close, CloudUpload } from '@mui/icons-material';
 import { ChangeEvent, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
+import { useTranslations } from 'next-intl';
 const Item = styled(Paper)(({ theme }) => ({
   width: '100%',
   backgroundColor: '#fff',
@@ -28,7 +29,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Account = () => {
   const [selectedImages, setSelectedImages] = useState<(string | null)[]>([null, null, null]);
-
+const t=useTranslations('Profile');
   const handleImageChange = (index: number) => (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -49,7 +50,7 @@ const item=[
   {name:'Male', icon:<FaHome />},
   {name:'Born June 26, 1980', icon:<FaHome />},
   {name:'2239  Hog Camp Road Schaumburg', icon:<FaHome />},
-  {name:'charles5182@ummoh.com', icon:<FaHome />},
+  {name:'jon@gmail.com', icon:<FaHome />},
   {name:'33757005467', icon:<FaHome />}
 
 
@@ -85,7 +86,10 @@ const Active=[
                      <div className=' text-[#A303A0]'>{items.icon}</div>
                     <div className=''>{items.name}</div>
                    </div>
-                   <div className='h-[1px] w-full  bg-gray-500'></div>
+                  {index !== item.length - 1 && (
+        <div className='h-[1px] w-full bg-gray-500'></div>
+      )}
+
 
                   </li>
                  ))
@@ -97,15 +101,15 @@ const Active=[
         <Grid item xs={12} lg={6}>
           <Item>
             <div className='flex flex-col gap-3 w-full'>
-              <div className='text-4xl text-black '>Thông tin tài khoản</div>
-            <div className='text-xl text-gray-700'>Tên, giới thiệu và mã doanh nghiệp</div>
+              <div className='text-4xl text-black '>{t('Thông tin tài khoản')}</div>
+            <div className='text-xl text-gray-700'>{t('Tên, giới thiệu và mã doanh nghiệp')}</div>
             <div className='text-2xl text-black'>
-               Tên doanh nghiệp <span className='text-red-600 text-2xl'>(*)</span>
+                {t('Tên doanh nghiệp')}<span className='text-red-600 text-2xl'>(*)</span>
             </div>
             <div className='w-full'>
              <TextField
         id="outlined-basic"
-        label="Tên doanh nghiệp"
+        label={`${t('Tên doanh nghiệp')}`}
         variant="outlined"
         fullWidth
         sx={{
@@ -127,12 +131,12 @@ const Active=[
       />
             </div>
             <div className='text-2xl text-black'>
-               Giới thiệu doanh nghiệp
+               {t('Giới thiệu doanh nghiệp')}
             </div>
             <div className='w-full'>
              <TextField
         id="outlined-basic"
-        label="Giới thiệu doanh nghiệp"
+        label={`${t('Giới thiệu doanh nghiệp')}`}
         variant="outlined"
         fullWidth
         sx={{
@@ -161,7 +165,7 @@ const Active=[
             boxShadow:'none'
           }}>
            <div className='flex-col '>
-             <div className='text-2xl text-black'>Ảnh doanh nghiệp</div>
+             <div className='text-2xl text-black'>{t('Ảnh doanh nghiệp')}</div>
             <div className='pt-3'>
             <Box
       sx={{
@@ -256,7 +260,7 @@ const Active=[
             boxShadow:'none'
           }}>
               <div className='flex-col '>
-             <div className='text-2xl text-black'>Chứng nhận doanh nghiệp</div>
+             <div className='text-2xl text-black'>{t('Chứng nhận doanh nghiệp')}</div>
                        <div className='pt-3'>
 
                <Box
