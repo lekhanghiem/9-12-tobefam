@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { MdOutlineMenuOpen } from "react-icons/md";
 import { MdOutlineMenu } from "react-icons/md";
+import CheckToken from '@/components/Pages/user/CheckToken';
 const Dashboard = ({
   children,
 }: Readonly<{
@@ -29,7 +30,8 @@ const items = [
 
     <div className="flex h-full bg-gray-100">
 
- <aside className={`h-screen   bg-white ${ isOpen===true? 'w-[300px]':'w-[70px]'}`} >
+ <aside className={`h-[2000px]   bg-white ${ isOpen===true? 'w-[300px]':'w-[70px]'}`} >
+
         <div className="flex items-center justify-between w-full   px-4 py-5 rounded-lg transition">
           <div className="flex items-center  px-5">
              <IconButton
@@ -49,22 +51,33 @@ const items = [
 
           </div>
         </div>
+
         <Divider />
 
         <nav className="mt-6  px-5">
           {items.map((item, index) => (
-            <button
-              key={index}
-              className="flex items-center justify-between w-full mx-auto px-4 py-5 bg-white text-gray-600 rounded-lg hover:text-white hover:bg-purple-600 transition"
-            >
-              <Link href={item.href}> <div className="flex items-center  gap-3 text-2xl">
-                <span>{item.icon}</span>
-                <span className={ `text-xl font-medium whitespace-nowrap ${isOpen=== true ? 'opacity-100' : 'opacity-0'}`}>{item.name}</span>
-              </div></Link>
-            </button>
-          ))}
+  <Link href={item.href} key={index}>
+    <button
+      className="flex items-center justify-between w-full mx-auto px-4 py-5 bg-white text-gray-600 rounded-lg hover:text-white hover:bg-purple-600 transition"
+    >
+      <div className="flex items-center gap-3 text-2xl">
+        <span>{item.icon}</span>
+        <span className={`text-xl font-medium whitespace-nowrap ${isOpen === true ? 'opacity-100' : 'opacity-0'}`}>
+          {item.name}
+        </span>
+      </div>
+    </button>
+  </Link>
+))}
+
+        <Divider />
+
+
         </nav>
 
+<div className={ ` flex items-end justify-center pt-40  ${isOpen=== true ? 'opacity-100' : 'opacity-0'}`}>
+<CheckToken/>
+</div>
       </aside>
       <main className="flex-1 p-10  h-[100%] py-5 ">
         <div className=' w-full h-full bg-white shadow-md rounded-xl'>

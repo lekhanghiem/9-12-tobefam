@@ -59,9 +59,9 @@ const CreateFarmUser = () => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      const file = e.target.files;
+      const file = e.target.files[0];
       setImage(file);
-      setImagePreview(URL.createObjectURL(file)); // Preview the image
+      setImagePreview(URL.createObjectURL(file));
     }
   };
 

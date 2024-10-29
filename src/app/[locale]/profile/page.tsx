@@ -104,7 +104,6 @@ export default function VerticalTabs() {
         </Tabs>
       </Box>
         <TabPanel value={value} index={0}>
-          <EditCompanyUser/>
                           <Account />
         </TabPanel>
         <TabPanel value={value} index={1}>
@@ -126,6 +125,7 @@ export default function VerticalTabs() {
         <EditUser/>
         </TabPanel>
         <TabPanel value={value} index={6}>
+          <EditCompanyUser/>
 
         </TabPanel>
     </div>

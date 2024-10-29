@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import LocalSwitcher from './local-switcher';
-import CheckToken from '../../Pages/user/checkToken';
+import CheckToken from '../../Pages/user/CheckToken';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
@@ -60,7 +60,6 @@ const Page = () => {
   return (
     <div className="w-full bg-[#f3f4f6] sticky top-0 z-50">
       <div className="flex lg:flex-row flex-col justify-between bgheader py-3 lg:px-20 px-10 w-full gap-y-3">
-        {/* Top Navigation */}
         <nav className="grid grid-cols-3 gap-3 lg:gap-10">
           {[
             ['/img/header/Vector.svg', t('Tải ứng dụng')],
