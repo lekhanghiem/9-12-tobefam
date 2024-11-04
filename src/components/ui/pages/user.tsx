@@ -5,7 +5,7 @@ import Image from 'next/image';
 const user = () => {
   return (
     <div>
-      <Link href="/login">
+      <Link href="123/login">
         <Image
           className="hover:scale-125 w-full h-full"
           src="/img/header/Groupuser.svg"

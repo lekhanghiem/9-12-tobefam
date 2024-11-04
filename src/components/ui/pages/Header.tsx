@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import LocalSwitcher from './local-switcher';
-import CheckToken from '../../Pages/user/CheckToken';
+import LocalSwitcher from './LocalSwitcher';
+import CheckToken from '../../Pages/user/Logout';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
@@ -20,14 +20,19 @@ const Page = () => {
   const t = useTranslations('Headers');
 
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [dropdownState, setDropdownState] = useState<{ [key: string]: boolean }>({});
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
-  const handleMouseEnter = () => setDropdownOpen(true);
-  const handleMouseLeave = () => setDropdownOpen(false);
+  const handleMouseEnter = (label: string) => {
+    setDropdownState((prev) => ({ ...prev, [label]: true }));
+  };
+
+  const handleMouseLeave = (label: string) => {
+    setDropdownState((prev) => ({ ...prev, [label]: false }));
+  };
 
   const Items = [
     {
@@ -36,11 +41,28 @@ const Page = () => {
     },
     {
       label: 'Ứng dụng',
-      path: '/vi/areaList',
+      path: '#',
+      submenu: [
+        { label: 'Truy xuất nguồn gốc xuất sứ', path: '#' },
+        { label: 'Quản lý vùng sản xuất', path: '#' },
+        { label: 'Quản trị chuỗi cung ứng', path: '/lienhe' },
+        { label: 'Sàn thương mại điện tử', path: '/lienhe' },
+      ],
     },
     {
       label: 'Tin tức',
-      path: '/vi/listproduct',
+      path: '#',
+      submenu: [
+        { label: 'Blog', path: '#' },
+        { label: 'Dự án thực tế', path: '#' },
+        { label: 'Hướng dẫn sử dụng', path: '#' },
+        { label: 'Kiến thức Block Chain', path: '#' },
+      ],
+    },
+    {
+      label: 'Khách hàng',
+      path: '#',
+
     },
     {
       label: 'Về chúng tôi',
@@ -53,7 +75,7 @@ const Page = () => {
     },
   ];
 
-  if (path.includes('/vi/dashboard') || path.includes('/vi/profile')) {
+  if (path.includes('/dashboard') || path.includes('/profile') || path.includes('/user')) {
     return null;
   }
 
@@ -67,14 +89,14 @@ const Page = () => {
             ['/img/header/Group1.svg', t('Hỗ trợ')],
           ].map(([imgSrc, text], index) => (
             <div key={index} className="flex gap-4 justify-center hover:scale-110">
-              <Image src={imgSrc} alt="icon" width={30} height={30} />
+              <Image src={imgSrc} alt={text} width={30} height={30} />
               <div className="flex items-center">{text}</div>
             </div>
           ))}
         </nav>
 
         {/* Desktop Navigation */}
-        <nav className="lg:gap-20 gap-10 grid grid-cols-3 hidden lg:flex">
+        <nav className="lg:gap-20 gap-10 grid-cols-3 hidden lg:flex">
           {[
             ['./', '/img/header/Subtract.svg'],
             ['Thông báo', '/img/header/Group2.svg'],
@@ -121,31 +143,35 @@ const Page = () => {
               <nav className="bg-lightblue p-4">
                 <div className="flex flex-col">
                   {Items.map((item, index) => (
-                    <button
+                    <div
                       key={index}
-                      className="relative bg-white text-gray-600 py-3 px-3 rounded-lg hover:text-white hover:bg-green-400 transition"
-                      onMouseEnter={item.submenu ? handleMouseEnter : undefined}
-                      onMouseLeave={item.submenu ? handleMouseLeave : undefined}
+                      onMouseEnter={() => handleMouseEnter(item.label)}
+                      onMouseLeave={() => handleMouseLeave(item.label)}
                     >
-                      <Link href={item.path} className="font-bold text-4xl px-3 py-2 text-slate-700 hover:text-white whitespace-nowrap">
+                      <Link
+                        href={item.path}
+                        className="font-bold text-4xl px-3 py-2 text-slate-700 hover:text-green-400"
+                      >
                         {item.label}
                       </Link>
-                      {item.submenu && isDropdownOpen && (
+                      {item.submenu && dropdownState[item.label] && (
                         <div className="absolute left-10 top-16 bg-[#419C70] rounded-md shadow-lg pb-5">
                           {item.submenu.map((sub, subIndex) => (
                             <div key={subIndex} className="pt-3">
                               <Link
                                 href={sub.path}
-                                className="block px-4 py-2 text-2xl text-gray-700 font-bold hover:text-white whitespace-nowrap"
+                                className="block px-4 py-2 text-2xl text-gray-700 font-bold hover:text-white"
                               >
                                 {sub.label}
                               </Link>
-                              <div className="bg-white h-[1px] w-5/6 mx-auto" />
+                              {subIndex !== item.submenu.length - 1 && (
+                                <div className="bg-white h-[1px]  " />
+                              )}
                             </div>
                           ))}
                         </div>
                       )}
-                    </button>
+                    </div>
                   ))}
                 </div>
                 <div className="pt-20 flex justify-center">
@@ -163,9 +189,9 @@ const Page = () => {
               {Items.map((item, index) => (
                 <div
                   key={index}
+                  onMouseEnter={() => handleMouseEnter(item.label)}
+                  onMouseLeave={() => handleMouseLeave(item.label)}
                   className="relative"
-                  onMouseEnter={item.submenu ? handleMouseEnter : undefined}
-                  onMouseLeave={item.submenu ? handleMouseLeave : undefined}
                 >
                   <Link
                     href={item.path}
@@ -175,20 +201,20 @@ const Page = () => {
                   >
                     {item.label}
                   </Link>
-                  {item.submenu && isDropdownOpen && (
-                    <div className="absolute left-10 top-10 bg-[#419C70] shadow-lg pb-3">
+                  {item.submenu && dropdownState[item.label] && (
+                    <div className="w-96   absolute left-10 top-10 bg-[#419C70] shadow-lg pb-3">
                       {item.submenu.map((sub, subIndex) => (
                         <div key={subIndex} className="pt-3">
                           <Link
                             href={sub.path}
-                            className={`block px-4 py-2 text-2xl font-bold ${
+                            className={`block w-11/12 mx-auto py-2 text-2xl font-bold ${
                               path === sub.path ? 'text-white' : 'text-gray-700'
-                            } hover:text-white`}
+                            } text-white`}
                           >
                             {sub.label}
                           </Link>
                           {subIndex !== item.submenu.length - 1 && (
-                            <div className="bg-white h-[1px] w-5/6 mx-auto" />
+                            <div className="bg-white h-[1px] w-11/12 mx-auto  " />
                           )}
                         </div>
                       ))}

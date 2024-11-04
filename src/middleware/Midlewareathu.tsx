@@ -15,7 +15,6 @@ if(path === "/vi/login" || path==="/vi/register") {
 
 }
 else{
-console.log("123123")
 }
     } else {
       if (path !== "/vi/login" && path !== "/vi/register" && !storedUser ) {

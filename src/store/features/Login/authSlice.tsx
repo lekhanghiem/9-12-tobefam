@@ -11,7 +11,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
                   const user= res.data.data.user
           localStorage.setItem("user",JSON.stringify( user ));
           toast.success(res.data.message);
-            window.location.replace('/areaList')
+            window.location.replace('/user')
           return res.data;
 
       } catch (error: any) {

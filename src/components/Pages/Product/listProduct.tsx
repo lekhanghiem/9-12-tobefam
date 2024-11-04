@@ -52,9 +52,8 @@ export default function BasicTable() {
 
 
   return (
-    <Box style={{ backgroundImage: `url('/img/home/Group48096598.png')` }}>
-      <Box sx={{ py: '20px', backgroundImage: `url('/img/home/Group48096598.png')` }}>
-        <Box sx={{ width: '90%', mx: 'auto', backgroundColor: '#ffff', boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)', borderRadius: '32px', pb: '30px' }}>
+      <Box sx={{ py:5 }}>
+        <Box sx={{ backgroundColor: '#ffff', boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)', borderRadius: '32px', pb: '30px' }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '90%', mx: 'auto', py: '50px' }}>
             <Box>
               <SearchProduct page={page} searchProducts={searchProducts}/>
@@ -114,7 +113,6 @@ export default function BasicTable() {
             sx={{ marginTop: 2, justifyContent: 'center', display: 'flex' }}
           />
         </Box>
-      </Box>
     </Box>
   );
 }

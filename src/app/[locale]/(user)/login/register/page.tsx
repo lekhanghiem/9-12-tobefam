@@ -1,5 +1,5 @@
 import React from 'react';
-import Resgister from '../../../../components/Pages/user/Register';
+import Resgister from '../../../../../components/Pages/user/Register';
 const page = () => {
   return (
     <div>

@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import Image from 'next/image';
 import Link from 'next/link';  // Correct import for Link component
+import { SearchContext } from '@/context/AppContext';
 import axiosIns from '../../../store/api/axiosIns';
 
 const LogoutButton = () => {
@@ -63,7 +64,7 @@ useEffect(() => {
       // localStorage.removeItem('userAbilities');
       toast.success(response?.data?.message || 'Đăng xuất thành công');
       setHasToken(false);  // Update state to hide the button
-      router.push(`/login`);  // Redirect to login page
+      router.push(`/`);  // Redirect to login page
     } catch (error) {
       console.error('Lỗi khi đăng xuất:', error);
       toast.error('Đã xảy ra lỗi khi đăng xuất.');
@@ -109,7 +110,7 @@ useEffect(() => {
         <Typography sx={{ px: 2, py: 1.5, color: 'gray' }}>Welcome</Typography>
 
         <MenuItem onClick={handleClose}>
-          <Link href="/vi/profile">
+          <Link href='/profile'>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <Person /> My Profile
             </Box>
@@ -128,18 +129,19 @@ useEffect(() => {
       </Menu>
     </Box>
   ) : (
-    <div>
-      <Link href="/login">
-        <Image
-          className="hover:scale-125"
-          src="/img/header/Groupuser.svg"
-          alt="User Icon"
-          width={52}
-          height={52}
-          priority
-        />
-      </Link>
-    </div>
+
+<div>
+  <Link href="/login">
+    <Image
+      className="hover:scale-125"
+      src="/img/header/Groupuser.svg"
+      alt="User Icon"
+      width={52}
+      height={52}
+      priority
+    />
+  </Link>
+</div>
   );
 };
 

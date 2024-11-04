@@ -1,11 +1,10 @@
 import axios from "axios"
 import { useRouter } from 'next/navigation'
-// import { useLocale } from 'next-intl';
 
 // export const baseURL = "https://api-nowblockchain.tocuna.com/";
 // export const baseURL = "https://apizstaking.nowblockchain.io/"
 
-export const baseURL = "https://192.168.0.125:3002"
+export const baseURL = "https://192.168.1.20:3002"
 const axiosIns = axios.create({
   baseURL: baseURL,
   timeout: 5000,
@@ -48,7 +47,6 @@ axiosIns.interceptors.response.use(
       localStorage.removeItem("accessToken")
       localStorage.removeItem("userAbilities")
   const router = useRouter()
-// const locale =useLocale();
 
       // If 401 response returned from api
       router.push(`/login`)

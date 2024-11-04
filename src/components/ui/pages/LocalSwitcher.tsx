@@ -19,7 +19,7 @@ export default function LocaleSwitcher() {
   };
 
   return (
-    <label className="lg:block hidden">
+    <label className="">
       <div className="border-2 border-gray-900 rounded-md">
         <p className="sr-only">Change language</p>
         <select

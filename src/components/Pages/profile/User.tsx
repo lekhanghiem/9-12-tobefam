@@ -25,7 +25,7 @@ const profile = userString ? JSON.parse(userString) : null;
       </IconButton>
      <div className='flex-col'>
        <Typography variant="body1" fontWeight="bold">
-        {profile?.user?.username}123
+        {profile?.user?.username}
       </Typography>
       <Typography variant="caption" color="text.secondary">
         Manufacturer

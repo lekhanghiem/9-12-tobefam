@@ -72,8 +72,23 @@ export default function VerticalTabs() {
       <Box sx={{ flexGrow: 1, bgcolor: 'white', display: 'flex', height: 50, width: '100%', }}>
         <Tabs
         sx={{
-        }}
-         value={value} onChange={handleChange} aria-label="Vertical tabs">
+      width: {
+      xs: '350px', // 350px on small screens
+      md: '100%',  // 100% on medium and larger screens
+    },
+    display: 'flex',
+    overflowX: 'auto', // Ensure horizontal scrolling
+    overflowY: 'hidden', // Prevent vertical overflow
+    // whiteSpace: 'nowrap', // Prevent line breaks inside the tabs
+    '& .MuiTabs-flexContainer': {
+      display: 'inline-flex', // Make sure the tabs stay in one line
+    },
+  }}
+  value={value}
+  onChange={handleChange}
+  aria-label="Vertical tabs"
+  variant="scrollable"
+  scrollButtons="auto">
           {tabItems.map((item, index) => (
               <Tab
               key={index}
@@ -82,7 +97,7 @@ export default function VerticalTabs() {
                 border:'none',
                 textTransform: 'none',
                 borderRadius: '8px',
-                minWidth: 120,
+                // minWidth: 120,
                 '&.Mui-selected': {
                   backgroundColor: '#E0E0E0',
                   color: 'white',
@@ -104,6 +119,7 @@ export default function VerticalTabs() {
         </Tabs>
       </Box>
         <TabPanel value={value} index={0}>
+          <EditCompanyUser/>
                           <Account />
         </TabPanel>
         <TabPanel value={value} index={1}>
@@ -125,7 +141,6 @@ export default function VerticalTabs() {
         <EditUser/>
         </TabPanel>
         <TabPanel value={value} index={6}>
-          <EditCompanyUser/>
 
         </TabPanel>
     </div>

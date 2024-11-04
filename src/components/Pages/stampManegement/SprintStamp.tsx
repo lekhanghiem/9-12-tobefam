@@ -15,19 +15,28 @@ import Radio from '@mui/material/Radio';
 import FormControl from '@mui/material/FormControl';
 import { useTranslations } from 'next-intl';
 const style = {
-  // position: 'absolute',
-  // top: '50%',
-  // left: '50%',
-  // transform: 'translate(-50%, -50%)',
-  // width: 800,
-  // bgcolor: 'background.paper',
-  // border: '2px solid #000',
-  // boxShadow: 24,
-  // p: 4,
-  width:'50%',
-  mx:'auto',
-  py:5,
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
 };
+  const buttonStyles = {
+    backgroundColor: '#4CAF50',
+    color: 'white',
+    borderRadius: '10px',
+    padding: '8px 16px',
+    fontWeight: 'bold',
+    textTransform: 'none',
+    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+    '&:hover': {
+      backgroundColor: '#43A047',
+    },
+  };
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 export default function SprintStamp() {
   const t=useTranslations('Profile');
@@ -37,14 +46,19 @@ export default function SprintStamp() {
   const handleClose = () => setOpen(false);
 
   return (
-    <div className=''>
-      {/* <Box onClick={handleOpen}>Open modal</Box> */}
-      {/* <Modal
+ <div>
+      <Button onClick={handleOpen} sx={buttonStyles} > Tạo tệp in tem</Button>
+      <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-      > */}
+      >
+        <Box sx={style}>
+
+
+    <div className=''>
+
         <Box sx={style}>
           <div className='h-full'>
             <div>
@@ -157,5 +171,11 @@ export default function SprintStamp() {
         </Box>
       {/* </Modal> */}
     </div>
+        </Box>
+      </Modal>
+    </div>
+
+
+
   );
 }

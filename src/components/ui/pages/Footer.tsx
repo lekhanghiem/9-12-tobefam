@@ -26,9 +26,9 @@ const Footer = () => {
   const t = useTranslations('HomePage');
   const path = usePathname()
 
-      if (path.includes('/vi/dashboard') || path.includes('/vi/profile')) {
-       return null;
-      }
+   if (path.includes('/dashboard') || path.includes('/profile')|| path.includes('/user')) {
+    return null;
+  }
 
 
   return (
@@ -90,7 +90,7 @@ const Footer = () => {
       </div>
 
       <div className="flex flex-col lg:flex-row lg:justify-between py-5 lg:px-20 px-3">
-        <FadeLeft className="text-[#97C7FF] flex justify-end text-xl">
+        <FadeLeft className="text-[#97C7FF] flex justify-end text-2xl">
           CopyRight © 2020 - 2024 TOBE FARM. All Rights Reserved.
         </FadeLeft>
         <FadeRight className="flex justify-end gap-7 lg:pt-0 pt-4">
@@ -99,8 +99,8 @@ const Footer = () => {
               <Image
                 src={`/img/footer/${platform}.svg`}
                 alt={platform}
-                width={25}
-                height={23}
+                width={45}
+                height={43}
                 priority
               />
             </IconButton>

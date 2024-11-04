@@ -1,6 +1,5 @@
 'use client';
 import Customicon from '../../ui/pages/Customicon';
-import { useLocale } from 'next-intl';
 import {schemalogin} from '../../../app/utility/schema'
 
 import React, { useState, ChangeEvent, MouseEvent } from 'react';
@@ -22,7 +21,6 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/store/store';
 import { actionLogin } from '@/store/features/Login/AuthSlice';
 import { useAppSelector } from '@/store/hooks';
-import isAuthu from '../../../middleware/isAuth'
 import ProtectedRoute from '@/middleware/Midlewareathu';
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
@@ -41,7 +39,7 @@ type FormValues = {
   password: string;
 };
 
-const Loginn: React.FC = () => {
+const Login: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch<AppDispatch>()
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({
@@ -217,4 +215,4 @@ const Loginn: React.FC = () => {
   );
 };
 
-export default Loginn;
+export default Login;

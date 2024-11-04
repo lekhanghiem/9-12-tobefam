@@ -2,7 +2,7 @@ import { getToken } from "@/app/utility/auth";
 import { FormCreateFarm, FormDataEditUser, FormDataPassword, FormEditCompany, FormVerify } from "@/types/types";
 import axios from "axios";
 
-export const NEXT_BASE_URL = "https://192.168.0.106:3002/";
+export const NEXT_BASE_URL = "https://192.168.1.20:3002/";
 
 const API = axios.create({
   // timeout:10000,
