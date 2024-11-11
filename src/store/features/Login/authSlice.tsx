@@ -7,9 +7,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
     async (data: { email: string; password: string }) => {
       try {
         const res = await AuthService.doLogin(data);
-                  localStorage.setItem("accessToken", res.data.data.token);
-                  const user= res.data.data.user
-          localStorage.setItem("user",JSON.stringify( user ));
+          localStorage.setItem("accessToken", res.data.data.token);
+          localStorage.setItem("user", res.data.data );
           toast.success(res.data.message);
             window.location.replace('/user')
           return res.data;

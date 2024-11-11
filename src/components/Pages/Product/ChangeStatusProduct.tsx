@@ -3,7 +3,7 @@ import { Box, Button } from '@mui/material';
 import React, { useContext, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionChangeStatusProduct } from '@/store/features/Product/ChangeStatusProductSlice';
-import { searchProduct } from '@/store/features/Product/SearchSlice';
+import { searchProduct } from '@/store/features/Product/SearchProductSlice';
 
 interface ChangeStatusProps {
   product_status: string;

@@ -3,6 +3,7 @@ import ReduxProvider from "@/store/redux-provider";
 import type { Metadata } from "next";
 import ScrollToTop from "@/components/Global/ScrollToTop";
 import { AppProvider } from "@/context/AppContext";
+
 import Header from'../../components/ui/pages/Header';
 import Footer from'../../components/ui/pages/Footer';
 import ProtectedRoute from'../../middleware/Midlewareathu';

@@ -1,6 +1,6 @@
 'use client'
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { Area, User } from '@/types/types';
+import { Area, User,UserInfo } from '@/types/types';
 import { AppDispatch } from '@/store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchArea } from '@/store/features/Area/SearchAreaSlice';
@@ -14,6 +14,7 @@ interface SearchContextType {
   category: string;
   search: string;
   loading:boolean;
+  profile:any
 }
 
 // Create context
@@ -47,6 +48,16 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const totalPages =data?.totalPages;
 
+  const [profile, setProfile] = useState<string>('');
+
+  useEffect(() => {
+    const userProfile = localStorage.getItem('user');
+    if (userProfile) {
+      setProfile(userProfile);
+    }
+  }, []);
+
+
   return (
     <SearchContext.Provider
       value={{
@@ -58,6 +69,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         category,
         search,
         loading,
+        profile
       }}
     >
       {children}

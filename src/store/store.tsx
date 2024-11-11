@@ -6,7 +6,7 @@ import RegisterSlice from "./features/Login/RegisterSlice";
 import ChangeStatusSlice from "./features/Area/ChangeStatusSlice";
 import EditAreaSlice from "./features/Area/EditAreaSlice";
 import { Location } from "./features/Area/LocationRTK";
-import SearchSlice from "./features/Product/SearchSlice";
+import SearchSlice from "./features/Product/SearchProductSlice";
 import ChangeStatusProductSlice from "./features/Product/ChangeStatusProductSlice";
 import EditProductSlice from "./features/Product/EditProductSlice";
 import ChangePasswordSlice from "./features/Login/ChangePasswordSlice";

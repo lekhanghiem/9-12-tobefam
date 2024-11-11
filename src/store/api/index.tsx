@@ -87,7 +87,7 @@ export const SearchProduct = {
   doSearchProduct: (payload: { category: number; search: string },page:number) => {
      const token = localStorage.getItem('accessToken');
 
-    return API.post(`search/19/product?page=${page}`, payload, {   headers:{
+    return API.post(`search/21/product?page=${page}`, payload, {   headers:{
     Authorization: token,
 } });
   },

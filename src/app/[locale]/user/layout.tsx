@@ -99,13 +99,11 @@ const Dashboard = ({
 
       {isOpen && (
         <>
-          {/* Background overlay */}
-          <div className="fixed inset-0 bg-black opacity-50 z-10"></div>
+          <div className="fixed inset-0 bg-black opacity-30 z-10"></div>
 
-          {/* Sidebar as overlay */}
           <aside
-            className="fixed top-0 left-0 h-full w-[40%] bg-white md:w-[20%] p-5 z-20 shadow-lg"
-            onMouseLeave={() => setIsOpen(false)} // Close the drawer when mouse leaves
+            className="fixed top-0 left-0 h-full w-[40%] bg-[#ffffff] md:w-[15%] p-5 z-20 shadow-lg"
+            onMouseLeave={() => setIsOpen(false)}
           >
             <nav className="mt-6">
               <ul className="flex flex-col space-y-1 text-sm font-medium text-gray-500">
@@ -113,10 +111,10 @@ const Dashboard = ({
                   <li key={tab.id}>
                     <Link href={tab.href} passHref>
                       <button
-                        onClick={() => setIsOpen(false)} // Close menu after selecting a tab
-                        className={`inline-flex items-center px-4 py-3 rounded-lg w-full hover:bg-green-300`}
+                        onClick={() => setIsOpen(false)}
+                        className={`inline-flex items-center px-4 py-3 rounded-lg w-full hover:bg-green-400`}
                       >
-                        <div className="flex items-center gap-3 text-2xl text-black font-bold">
+                        <div className="flex items-center gap-3 text-2xl text-black hover:text-white font-bold">
                           <div>{tab.icon}</div>
                           <div>{tab.label}</div>
                         </div>

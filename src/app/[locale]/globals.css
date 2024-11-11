@@ -56,3 +56,124 @@
   text-align: center;
   z-index: 0;
 }
+
+/* loangding */
+.loader {
+  border: 8px solid #f3f3f3;
+  /* Màu nền của thanh loading */
+  border-top: 8px solid #10b981;
+  /* Màu của thanh loading */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  /* Hiệu ứng quay của thanh loading */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* menu */
+.diamond {
+  clip-path: polygon(3% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+
+
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* What are the benefits of food traceability? */
+/* topcompre */
+.topcompre {
+  right: 0px;
+  top: -50px;
+}
+
+.text-gradient {
+
+
+
+
+  background: linear-gradient(90deg, #2AFCFF 16.04%, #9FF756 51%, #02FFAB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+
+}
+
+.video {
+  left: 50%;
+  top: 50%;
+}
+
+.hoverlive:hover {
+  background: rgba(6, 100, 153, 0.3);
+  box-shadow: 0px 0px 30px rgba(42, 252, 255, 0.5);
+  border-radius: 30px;
+}
+
+.container {
+  max-width: 1500px;
+}
+
+/* Styling for the circle */
+.circle {
+  position: absolute;
+  bottom: 100px;
+  right: 60px;
+  width: 50px;
+  height: 50px;
+  background-color: #7feb83;
+  opacity: 0.5;
+  border-radius: 50%;
+}
+
+/* Animation for the circle */
+.circle {
+  animation: Scroll 2s linear infinite alternate;
+}
+
+/* Keyframes for the Scroll animation */
+@keyframes Scroll {
+  0% {
+    transform: translateY(0px);
+  }
+
+  25% {
+    transform: translateY(-20px);
+  }
+
+  50% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(-20px);
+  }
+}

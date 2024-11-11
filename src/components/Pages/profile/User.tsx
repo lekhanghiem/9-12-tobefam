@@ -1,8 +1,9 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { Avatar, Menu, MenuItem, Typography, Box, Divider, IconButton } from '@mui/material';
 import { Person, List, Logout } from '@mui/icons-material';
 import Link from 'next/link'
+import { SearchContext } from '@/context/AppContext';
 
 const UserMenu = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -13,9 +14,9 @@ const UserMenu = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-const userString = localStorage.getItem('user');
+  const { profile } = useContext(SearchContext) || {};
 
-const profile = userString ? JSON.parse(userString) : null;
+
   return (
     <Box  sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
       <div onClick={handleClick} className='flex items-center gap-1 hover:bg-gray-400 rounded-xl px-3'>

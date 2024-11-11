@@ -14,7 +14,7 @@ import { AppDispatch } from '@/store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionEditProduct } from '@/store/features/Product/EditProductSlice';
 import { MdEditNote } from "react-icons/md";
-import { searchProduct } from '@/store/features/Product/SearchSlice';
+import { searchProduct } from '@/store/features/Product/SearchProductSlice';
 
 const style = {
   position: 'absolute' as 'absolute',

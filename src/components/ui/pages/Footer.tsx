@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Solve from "./lienhe";
+import Solve from "./Lienhe";
 import { styled } from '@mui/material/styles';
 import { Box, Paper, Grid, Divider, IconButton } from '@mui/material';
 import FadeDown from "@/motion/FadeDown";

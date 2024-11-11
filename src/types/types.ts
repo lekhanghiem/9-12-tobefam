@@ -177,3 +177,26 @@ Name: string; Address: string; description: string; Area_type: string; Image: An
 export interface FormVerify {
   code:string
 }
+export interface UserInfo {
+  id: number;
+  Phone: number;
+  email: string;
+}
+
+export interface Users {
+  id: number;
+  username: string;
+  password: string;
+  verification_code: string | null;
+  verify: boolean;
+  expires_at: string | null;
+  user_info_id: number;
+  company_info_id: number;
+  role_id: number;
+}
+
+interface Data {
+  userInfo: UserInfo;
+  user: Users;
+  token: string;
+}

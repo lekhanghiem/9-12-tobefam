@@ -38,7 +38,7 @@ const t= useTranslations('HomePage')
 
       </div>
      </FlipAnimationY>
-        <FlipAnimationX className=' h-full py-10 w-10/12 bg-[#08344f] mx-auto relative rounded-xl'>
+        <FlipAnimationX className=' h-full py-10 w-11/12 bg-[#08344f] mx-auto relative rounded-xl'>
          <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={4}>
@@ -87,7 +87,7 @@ const t= useTranslations('HomePage')
       color: '#032c33',
     },
      '& .MuiInputLabel-root': {
-      color: '#033038', // Màu của label khi không focus
+      color: '#f8fbfc', // Màu của label khi không focus
     },
 
 

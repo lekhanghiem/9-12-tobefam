@@ -79,12 +79,12 @@ useEffect(() => {
         </IconButton>
         <div className="flex-col">
           <Typography variant="body1" fontWeight="bold">
-            {profile?.username}
+            {profile?.user?.username}
           </Typography>
           <Typography variant="caption" color="text.secondary">
-         {profile?.role_id === 1 ? (
+         {profile?.user?.role_id === 1 ? (
   <div>Producer</div>
-) : profile?.role_id === 2 ? (
+) : profile?.user?.role_id === 2 ? (
   <div>123</div>
 ) : (
   <div>admin</div>

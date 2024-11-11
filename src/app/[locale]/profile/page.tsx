@@ -104,7 +104,7 @@ export default function VerticalTabs() {
                   border:'none',
                 },
                 '&:hover': {
-                  backgroundColor: '#A303A0',
+                  backgroundColor: '#54b762',
                 },
               }}
               label={
@@ -118,8 +118,8 @@ export default function VerticalTabs() {
           ))}
         </Tabs>
       </Box>
-        <TabPanel value={value} index={0}>
-          <EditCompanyUser/>
+       <div className=''>
+         <TabPanel value={value} index={0}>
                           <Account />
         </TabPanel>
         <TabPanel value={value} index={1}>
@@ -143,6 +143,7 @@ export default function VerticalTabs() {
         <TabPanel value={value} index={6}>
 
         </TabPanel>
+       </div>
     </div>
   );
 }

@@ -23,6 +23,7 @@ const CreateProductForm: React.FC = () => {
   const [formData, setFormData] = useState({
     Name: '',
     Description: '',
+    certify:'',
     Image: null as File | null,
     Expiry_date: '',
     Unit: '',
@@ -80,6 +81,8 @@ debugger
         setFormData({
           Name: '',
           Description: '',
+          certify:'',
+
           Image: null,
           Expiry_date: '',
           Unit: '',
@@ -139,6 +142,16 @@ debugger
                     id="Description"
                     name="Description"
                     value={formData.Description}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="certify">Image URL:</label>
+                  <input
+                    type="file"
+                    id="certify"
+                    name="certify,
+"
                     onChange={handleChange}
                   />
                 </div>
