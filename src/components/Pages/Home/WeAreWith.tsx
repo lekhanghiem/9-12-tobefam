@@ -1,11 +1,12 @@
-'use client';
-import React from 'react';
-import Image from 'next/image';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import { useTranslations } from 'next-intl';
+'use client'
+import React from 'react'
+import Image from 'next/image'
+import { styled } from '@mui/material/styles'
+import Box from '@mui/material/Box'
+import Paper from '@mui/material/Paper'
+import Grid from '@mui/material/Grid'
+import { useTranslations } from 'next-intl'
+import FadeLeft from '@/motion/FadeLeft'
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: 'transparent',
@@ -16,12 +17,12 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
   color: theme.palette.text.secondary,
   ...theme.applyStyles('dark', {
-    backgroundColor: '#1A2027',
-  }),
-}));
+    backgroundColor: '#1A2027'
+  })
+}))
 
 const WeAreWith = () => {
-  const t = useTranslations('All');
+  const t = useTranslations('All')
 
   return (
     <div className="w-full h-full ">
@@ -43,18 +44,14 @@ const WeAreWith = () => {
                     <div className="flex text-left">
                       <div className="text-white  w-11/12 ">
                         <div className="text-4xl font-bold leading-10 ">
-                {t('We are with you from start to success')}
-
-
+                          {t('We are with you from start to success')}
                         </div>
                         <div className="text-xl leading-8">
                           <p className="pt-10">
-                                               {t('EG FARM provides the full spectrum')}
+                            {t('EG FARM provides the full spectrum')}
                           </p>
                           <p className="py-3">
-                                               {t('Tailored to your processes')}
-
-
+                            {t('Tailored to your processes')}
                           </p>
                         </div>
                       </div>
@@ -63,25 +60,23 @@ const WeAreWith = () => {
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <Item>
-                    {' '}
-                    <div className="  flex justify-center w-11/12">
+                    <FadeLeft className="  flex justify-center w-11/12">
                       <Image
                         src="/images/HOME/imgRightWeAreWith.png"
                         alt="1"
                         width={310}
                         height={305}
                       />
-                    </div>
+                    </FadeLeft>
                   </Item>
                 </Grid>
               </Grid>
             </Box>
           </div>
-
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default WeAreWith;
+export default WeAreWith
