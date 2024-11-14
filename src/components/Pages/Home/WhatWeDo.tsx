@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import { useTranslations } from 'next-intl';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: 'transparent',
@@ -17,6 +18,8 @@ const Item = styled(Paper)(({ theme }) => ({
   }),
 }));
 const WhatWeDo = () => {
+  const t = useTranslations('All');
+
   return (
     <div className="h-full w-full bg-black text-white py-10 relative">
       <div>
@@ -31,14 +34,15 @@ const WhatWeDo = () => {
       <div className=" mx-auto w-11/12">
         <div className=" ">
           <div className="text-center">
-            <div className="text-4xl leading-10 font-bold py-3">What we do.</div>
+            <div className="text-4xl leading-10 font-bold py-3">
+              {t('What we do')}
+            </div>
             <div className=" py-3">
               <div className="h-2  w-2/12 mx-auto rounded-2xl   bg-[rgba(122,248,77,1)]  "></div>
             </div>
-            <div className="text-2xl leading-6 py-5">
-              EG Farm focuses on the some activities to produce food and
-              contribute to the self sufficiency of the community in getting
-              locally produced foods.
+            <div className="text-2xl leading-8 py-5">
+               {t('EG Farm focuses on the some')}
+
             </div>
           </div>
         </div>
@@ -59,16 +63,14 @@ const WhatWeDo = () => {
                     </div>
                     <div className="text-left w-11/12 text-white">
                       <div className="leading-10 py-3 text-2xl font-bold">
-                        Maize Production
+               {t('Maize Production')}
+
+
                       </div>
                       <div className="leading-8 text-xl ">
-                        EG FARM Maize farm is located in blah blah, on a 34 acre
-                        piece of land. We grow our maize with the best farming
-                        practice to increase yield and quality of our maize
-                        harvest. We have a goal of havesting 100 tons of maize
-                        grains yearly as we expand the farm. As at last year we
-                        had a total of 8 tons of maize grain harvested from our
-                        farm.
+               {t('EG FARM  Maize farm is located in blah blah')}
+
+
                       </div>
                     </div>
                   </div>
@@ -88,15 +90,12 @@ const WhatWeDo = () => {
                     </div>
                     <div className="text-left w-11/12 text-white">
                       <div className="leading-10 py-3 text-2xl font-bold">
-                        Poultry Farming
+               {t('Poultry Farming')}
+
+
                       </div>
                       <div className="leading-8 text-xl ">
-                        EG FARM Poultry farm is located at blah blah, on a 15
-                        acre piece of land. We raise chickens including broilers
-                        for meat and layers for eggs. We keep the birds in neat
-                        and organized cages to ensure high qualilty meat and egg
-                        yield. We also have just launched our first turkey farm
-                        5 months ago and we would start selling very soon.{' '}
+               {t('EG FARM Poultry farm is located at')}
                       </div>
                     </div>
                   </div>

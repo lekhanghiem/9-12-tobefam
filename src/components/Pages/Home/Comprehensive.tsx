@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { Button } from '@mui/material';
+import { useTranslations } from 'next-intl';
 
 // Tạo kiểu cho Item bằng MUI
 const Item = styled(Paper)(({ theme }) => ({
@@ -29,32 +30,34 @@ interface ComprehensiveItem {
 }
 
 const Comprehensive: React.FC = () => {
+  const t = useTranslations('All');
+
   const items: ComprehensiveItem[] = [
     {
       title: 'Easy to use',
       description:
-        'Everyone can easily apply the EG FARM cycle without investing in additional hardware, software or human resources.',
+        'Everyone can easily apply the EG FARM',
       imageSrc: '/images/HOME/imgComPrehenSive1.png',
       imgSize: { width: 86, height: 120 }, // Kích thước cho hình ảnh đầu tiên
     },
     {
       title: 'Management and retrieval',
       description:
-        'TE-FOOD can be integrated with existing software systems, used as an internal quality cycle management tool, can provide any traceability information suitable for any platform technology platform and "Smart City" model.',
+        'TE-FOOD can be integrated with existing software systems',
       imageSrc: '/images/HOME/imgComPrehenSive2.png',
       imgSize: { width: 100, height: 150 },
     },
     {
       title: 'Smart identification tool',
       description:
-        'Identification tools are attached to livestock, transport vehicles, and fresh food packages to track items throughout the supply chain. Fresh food products in retail stores may be traceable and may contain some information related to food safety.',
+        'Identification tools are attached to livestock',
       imageSrc: '/images/HOME/imgComPrehenSive3.png',
       imgSize: { width: 155, height: 130 },
     },
   ];
 
   return (
-    <div className="h-full w-full py-3 relative">
+    <div className="h-full w-full  relative">
       <div className="">
         <Image
           src="/images/HOME/bgRightComPreHenSive.png"
@@ -67,8 +70,9 @@ const Comprehensive: React.FC = () => {
       </div>
       <div className="text-white mx-auto w-11/12">
         <p className="text-center font-bold text-5xl text-white px-2 py-20">
-          Comprehensive solution for State Management model or Enterprise model
-          and Association model
+                   {t('Comprehensive solution for State Management model or Enterprise model and Association model')}
+
+
         </p>
         <div className="py-10">
           <Box sx={{ flexGrow: 1, width: '100%', mx: 'auto' }}>
@@ -91,10 +95,12 @@ const Comprehensive: React.FC = () => {
                     </div>
                     <div className="w-10/12 text-left py-20">
                       <div className="text-white text-4xl font-bold leading-10">
-                        {item.title}
+                                           {t(item.title)}
+
                       </div>
-                      <div className="text-white text-xl py-10 leading-8">
-                        {item.description}
+                      <div className="text-white text-2xl py-10 leading-10">
+                                           {t(item.description)}
+
                       </div>
                     </div>
                     <div className="absolute bottom-16 left-16">

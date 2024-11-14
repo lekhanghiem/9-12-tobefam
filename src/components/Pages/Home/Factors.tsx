@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { Button } from '@mui/material';
+import { useTranslations } from 'next-intl';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#004F60',
@@ -29,6 +30,8 @@ interface Item {
 }
 
 const Factors = () => {
+  const t = useTranslations('All');
+
   const Items: Item[] = [
     {
       title: 'Unique identification material',
@@ -61,13 +64,15 @@ const Factors = () => {
       <div className=" mx-auto w-11/12">
         <div>
           <div className="text-5xl leading-10 font-bold text-white pt-3">
-            Factors
+                                           {t('Factors')}
+
+
           </div>
-          <div className="py-10">
-            <div className="w-2/12 flex mx-auto bg-[#7af804d] h-2 rounded-full" />
+          <div className="py-5">
+            <div className="w-1/12 flex mx-auto bg-[#7AF84D] h-2 rounded-full" />
           </div>
         </div>
-        <Box sx={{ flexGrow: 1, width: '100%', mx: 'auto' }}>
+        <Box sx={{ flexGrow: 1, width: '100%', mx: 'auto' ,pt:5}}>
           <Grid container spacing={5}>
             {Items.map((item, index) => (
               <Grid item xs={12} xl={3} md={6} sm={6} key={index}>
@@ -83,7 +88,8 @@ const Factors = () => {
                     </div>
                     <div className="text-center">
                       <p className="text-4xl text-white leading-10 font-bold">
-                        {item.title}
+                   {t(item.title)}
+
                       </p>
                     </div>
                   </div>
@@ -96,7 +102,8 @@ const Factors = () => {
                         minWidth: '100px',
                       }}
                     >
-                      {item.button}
+                   {t(item.button)}
+
                     </Button>
                   </div>
                 </Item>

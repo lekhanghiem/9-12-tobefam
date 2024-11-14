@@ -23,7 +23,9 @@ export const config = {
     '/user/listproduct',
     '/user/stampManegement',
     '/user/theStamp',
-    // 'user/theStamp',
+    '/seek',
+    '/benefit',
+    '/solution',
 
 
     '/(vi|en)/:path*',

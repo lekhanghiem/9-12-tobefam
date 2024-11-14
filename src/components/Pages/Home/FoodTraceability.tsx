@@ -1,7 +1,18 @@
 import Image from 'next/image';
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 const FoodTraceability = () => {
+  const t = useTranslations('All');
+
+const items = [
+  "Support food supply chains to operate more efficiently and transparently",
+  "Support exporters to meet the regulatory requirements of importing countries",
+  "Building, promoting, and protecting brands",
+  "Prevent and minimize the impact of epidemics, fake and dirty foods",
+  "Increase consumer confidence",
+  "Support state management, balance supply and demand, and prevent epidemics"
+];
   return (
     <div>
       <div className="  relative h-full">
@@ -15,34 +26,18 @@ const FoodTraceability = () => {
         <div className=" w-full  h-full  mx-auto">
           <div className="  w-6/12 text-white pl-5 py-10">
             <p className="py-3 font-bold text-4xl  leading-9">
-              TE-FOOD is a Food Traceability System from Farm to Table that aims
-              to:
+                   {t('TE-FOOD is a Food Traceability System from Farm to Table that aims to:')}
             </p>
             <hr className="bg-[#02e09b] py-1 w-9/12 rounded-full" />
-            <div className="w-12/12  ">
-              <ol className=" text-xl flex flex-col gap-3 ">
-                <li className=" leading-6 pt-6">
-                  1. Support food supply chains to operate more efficiently and
-                  transparently,
-                </li>
-                <li className=" leading-6">
-                  2. Support exporters to meet the regulatory requirements of
-                  importing countries,
-                </li>
-                <li className=" leading-6">
-                  3. Building, promoting and protecting brands,
-                </li>
-                <li className=" leading-6">
-                  4. Prevent and minimize the impact of epidemics, fake and
-                  dirty foods,
-                </li>
-                <li className=" leading-6">5. Increase consumer confidence,</li>
-                <li className=" leading-6">
-                  6. Support state management, balance supply and demand, and
-                  prevent epidemics.
-                </li>
-              </ol>
-            </div>
+             <div className="w-full pl-5">
+      <ol className="text-2xl flex flex-col gap-3">
+        {items.map((item, index) => (
+          <li key={index} className="leading-8 pt-6">
+            {index + 1}. {t(item)}
+          </li>
+        ))}
+      </ol>
+    </div>
           </div>
         </div>
       </div>

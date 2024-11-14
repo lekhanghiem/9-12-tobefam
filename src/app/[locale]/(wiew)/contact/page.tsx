@@ -1,5 +1,5 @@
+import Call from '@/components/Global/Call'
 import React from 'react'
-import Call from "@/components/Global/Call"
 
 const page = () => {
   return (

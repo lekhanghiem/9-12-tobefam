@@ -1,11 +1,11 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-import Solve from '@/components/Global/Solve';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import { useTranslations } from 'next-intl';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: 'transparent',
@@ -21,6 +21,8 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const WeAreWith = () => {
+  const t = useTranslations('All');
+
   return (
     <div className="w-full h-full ">
       <div>
@@ -41,18 +43,18 @@ const WeAreWith = () => {
                     <div className="flex text-left">
                       <div className="text-white  w-11/12 ">
                         <div className="text-4xl font-bold leading-10 ">
-                          We are with you from start to success
+                {t('We are with you from start to success')}
+
+
                         </div>
                         <div className="text-xl leading-8">
                           <p className="pt-10">
-                            EG FARM provides the full spectrum of tools and
-                            solutions to enable complete supply chains to track
-                            and trace their products.
+                                               {t('EG FARM provides the full spectrum')}
                           </p>
                           <p className="py-3">
-                            Tailored to your processes, data sets, and technical
-                            environment, it provides a secure and scalable
-                            solution to improve transparency.
+                                               {t('Tailored to your processes')}
+
+
                           </p>
                         </div>
                       </div>
@@ -75,9 +77,7 @@ const WeAreWith = () => {
               </Grid>
             </Box>
           </div>
-          <div className="  mx-auto">
-            <Solve />
-          </div>
+
         </div>
       </div>
     </div>

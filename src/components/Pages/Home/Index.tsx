@@ -1,17 +1,18 @@
 
-import FoodTraceability from "@/components/Page/Home/FoodTraceability";
-import Banner from "@/components/Page/Home/Banner";
-import WhatWeDo from "@/components/Page/Home/WhatWeDo";
-import Comprehensive from "@/components/Page/Home/Comprehensive";
-import Factors from "@/components/Page/Home/Factors";
-import WhatCanYou from "@/components/Page/Home/WhatCanYou";
-import WeAreWith from "@/components/Page/Home/WeAreWith";
 
-const HomePage = () => {  
+import Banner from "./Banner";
+import FoodTraceability from "./FoodTraceability";
+import Comprehensive from "./Comprehensive";
+import Factors from "./Factors";
+import WhatCanYou from "./WhatCanYou";
+import WeAreWith from "./WeAreWith";
+import WhatWeDo from "./WhatWeDo";
+
+const HomePage = () => {
   return (
     <div className="bg-[#012133]">
       <div
-      className="  " > 
+      className="  " >
       <Banner />
       <FoodTraceability />
       <WhatWeDo />
@@ -19,7 +20,7 @@ const HomePage = () => {
       <Factors />
       <WhatCanYou />z
       <WeAreWith />
-    
+
     </div>
     </div>
   );

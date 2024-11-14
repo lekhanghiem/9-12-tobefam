@@ -1,6 +1,48 @@
+'use client'
 import React from 'react'
 import Image from 'next/image'
+import { Grid, Box, Typography, Paper } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { useTranslations } from 'next-intl';
+
+const Item = styled(Paper)(({ theme }) => ({
+    height:'500px',
+    borderRadius:'30px' ,
+  backgroundColor: 'rgba(6, 100, 153, 0.3)',
+  boxShadow:' 0px 4px 4px rgba(42, 252, 255, 0.25)',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+  ...theme.applyStyles('dark', {
+    backgroundColor: '#1A2027',
+  }),
+}));
 const Benefit = () => {
+  const t = useTranslations('All');
+
+const solutions = [
+  {
+    src: "/images/SOLUTION/blockchain.png",
+    title: "Blockchain",
+    description: "Blockchain technology is a revolution in storing"
+  },
+  {
+    src: "/images/SOLUTION/artificial.png",
+    title: "Artificial Intelligence",
+    description: "Blockchain FARM uses automated fraud detection mechanisms"
+  },
+  {
+    src: "/images/SOLUTION/internet.png",
+    title: "Internet of Things",
+    description: "With a highly diverse network of sensors throughout the supply chain"
+  },
+  {
+    src: "/images/SOLUTION/analytics.png",
+    title: "Deep Data Analysis",
+    description: "BLOCKCHAIN FARM creates opportunities for farmers to improve profitability by 5%"
+  }
+];
     return (
         <div className='bg-custombenefit text-white relative py-10'>
 
@@ -19,79 +61,45 @@ const Benefit = () => {
             </div>
             <div className='container mx-auto'>
                   <div className='text-center '>
-                <h1 className='text-3xl font-bold leading-10'>Revolutionizing Agriculture with new technologies</h1>
-                <div className='text-xs pb-6 leading-8 pt-6 px-3'>The global Agriculture industry is at the frontier of revolutionary change. New technologies have become cheaper and more reliable. This takes automation and food safety control to a higher level for every supply chain. If we do not promptly apply advanced technologies, countries and companies will fall behind in the global economy.</div>
+                <h1 className='text-4xl font-bold leading-10'>
+                  {t('Revolutionizing Agriculture with new technologies')}
+                  </h1>
+                <div className='text-2xl  leading-10 py-20 px-3'>
+{t('The global Agriculture industry is at the frontier of revolutionary change')}
+                  </div>
             </div>
-            <div className=' grid grid-cols-1 lg:grid-cols-2 gap-10 md:px-20 px-10 relative ' >
+            <div className='mx-auto w-11/12 '>
+      <Grid container spacing={6}>
+        {solutions.map((item, index) => (
+          <Grid item xs={12} md={6} key={index}>
+            <Item
 
-                <div className=' w-11/12 h-full md:py-5 px-2 md:px-10 py-3 mx-auto  rounded-3xl bg-customBlue shadow-custom relative'>
-                    <div className=' justify-center flex pt-10'>
-                        <Image
-                            
-                            src="/images/SOLUTION/blockchain.png"
-                            alt=""
-                            width={120}
-                            height={120}
-                            className=" absolute "
-                            property="loading"
-                        />
-                    </div>
-                    <div className='pt-36 px-2 text-center'><div className="text-white text-3xl leading-10   md:py-5 px-2 md:px-10 py-3">BlockChain</div>
-                        <div className="text-white text-xs py-1 leading-8" >Blockchain technology is a revolution in storing, exchanging and authenticating data so that all information becomes honest, transparent and unchangeable.</div>
-                    </div>
+            >
+             <div className='w-10/12 mx-auto '>
+                 <div className='flex justify-center pt-20'>
+                <Image
+                  src={item.src}
+                  alt={item.title}
+                  width={120}
+                  height={120}
+                  style={{ position: 'absolute' }}
+                />
+              </div>
+              <Box sx={{ pt: 20, px: 2 }}>
+                <Typography variant="h4" color="white" gutterBottom>
+                  {t(item.title)}
+                </Typography>
+                <Typography variant="h6" color="white">
+                  {t(item.description)}
 
-                </div> <div className=' w-11/12 h-full md:py-5 px-2 md:px-10 py-3 mx-auto  rounded-3xl bg-customBlue shadow-custom relative'>
-                    <div className=' justify-center flex pt-10'>
-                        <Image
-                            
-                            src="/images/SOLUTION/artificial.png"
-                            alt=""
-                            width={120}
-                            height={120}
-                            className=" absolute "
-                            property="loading"
-                        />
-                    </div>
-                    <div className='pt-36 px-2 text-center'><div className="text-white text-3xl leading-10   md:py-5 px-2 md:px-10 py-3">Artificial intelligence</div>
-                        <div className="text-white text-xs py-1 leading-8" >Blockchain FARM uses automated fraud detection mechanisms. The system continuously improves the search for unusual activities and potential fraud in the supply chain to promptly prevent, making the supply chain more transparent.</div>
-                    </div>
-
-                </div> <div className=' w-11/12 h-full md:py-5 px-2 md:px-10 py-3 mx-auto  rounded-3xl bg-customBlue shadow-custom relative'>
-                    <div className=' justify-center flex pt-10'>
-                        <Image
-                            
-                            src="/images/SOLUTION/internet.png"
-                            alt=""
-                            width={120}
-                            height={120}
-                            className=" absolute "
-                            property="loading"
-                        />
-                    </div>
-                    <div className='pt-36 px-2 text-center'><div className="text-white text-3xl leading-10   md:py-5 px-2 md:px-10 py-3">Internet of thingss</div>
-                        <div className="text-white text-xs py-1 leading-8" >With a highly diverse network of sensors throughout the supply chain, data is automatically updated where events occur and traceability is real-time. The Internet of Things will bring a new era in food control, reduce the use of manual labor, and reduce human errors.</div>
-                    </div>
-
-                </div> <div className=' w-11/12 h-full md:py-5 px-2 md:px-10 py-3 mx-auto  rounded-3xl bg-customBlue shadow-custom relative'>
-                    <div className=' justify-center flex pt-10'>
-                        <Image
-                            
-                            src="/images/SOLUTION/analytics.png"
-                            alt=""
-                            width={120}
-                            height={120}
-                            className=" absolute "
-                            property="loading"
-                        />
-                    </div>
-                    <div className='pt-36 px-2 text-center'><div className="text-white text-3xl leading-10   md:py-5 px-2 md:px-10 py-3">Deep data analysis</div>
-                        <div className="text-white text-xs py-1 leading-8" >
-
-                            BLOCKCHAIN FARM creates opportunities for farmers to improve profitability by 5% - 10% using deep data analysis modules. This is a high-tech and professional solution for farms of all sizes.</div>
-                    </div>
-
-                </div>
-            </div>
+                </Typography>
+              </Box>
+             </div>
+            </Item>
+          </Grid>
+        ))}
+      </Grid>
+    </div>
           </div>
         </div>
     )

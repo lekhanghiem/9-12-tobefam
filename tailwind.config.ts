@@ -14,6 +14,8 @@ const config: Config = {
 'custom':'#01fb94'
       },
       backgroundImage: {
+        'custom-dropdown': 'linear-gradient(90deg, #9DF75A 0%, #02FFAC 100%)',
+
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',

@@ -14,7 +14,7 @@ export default function LocaleSwitcher() {
     startTransition(() => {
       const currentPathname = window.location.pathname;
       const newUrl = `/${nextLocale}${currentPathname.replace(`/${localeActive}`, '')}`;
-      router.replace(newUrl);
+      router.push(newUrl,{ scroll: false });
     });
   };
 

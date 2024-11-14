@@ -1,6 +1,10 @@
 import React from 'react'
 import Image from 'next/image'
+import { useTranslations } from "next-intl";
+
 const Identification = () => {
+  const t = useTranslations('All');
+
     return (
         <div  className='h-full w-full text-white relative  '>
             <div className='container mx-auto'>
@@ -13,21 +17,27 @@ const Identification = () => {
                     />
                 </div>
                 <div>
-                    <div className='text-center leading-10 text-3xl font-bold py-10'>Identification materials</div>
+                    <div className='text-center leading-10 text-4xl font-bold py-10'>
+                        {t('Identification materials')}
+                    </div>
                 </div>
                 <div className='pb-5'>
                     <div className=' flex flex-col md:flex-row px-10'>
                         <div className='w-12/12'>
                             <div className=''>
-                                <div className='leading-8 text-2xl'>
-                                    For the upstream supply chain
+                                <div className='leading-8 text-2xl font-bold'>
+                                     {t('For the upstream supply chain')}
+
                                 </div>
-                                <div className='leading-8 pt-5'>The plastic security ring containing the QR code and RFID tag is made from non-toxic materials with a water and sun-resistant printing technique.</div>
+                                <div className='leading-8 text-xl pt-5'>
+                                     {t('The plastic security ring containing')}
+
+                                    </div>
                             </div>
 
                             <div className='pl-10 pt-10'>
                                 <div className='flex md:flex-row flex-col gap-3'>
-                                    <div className='my-auto'>
+                                    <div className='flex justify-center items-center'>
                                         <Image
                                             src="/images/SOLUTION/transport.png"
                                             alt=""
@@ -35,10 +45,12 @@ const Identification = () => {
                                             height={60}
                                         />
                                     </div>
-                                    <div className='leading-8 text-xs'>The plastic security ring containing the QR code and RFID tag is made from non-toxic materials with a water and sun-resistant printing technique.
+                                    <div className='leading-8 text-xl'>
+                                        {t('Security rings are used to identify livestock')}
+
                                     </div>
                                 </div> <div className='flex md:flex-row flex-col gap-3 pt-3'>
-                                    <div className='my-auto'>
+                                    <div className='flex justify-center items-center'>
                                         <Image
                                             src="/images/SOLUTION/procurement.png"
                                             alt=""
@@ -47,7 +59,8 @@ const Identification = () => {
                                             className=''
                                         />
                                     </div>
-                                    <div className='leading-8 text-xs'>The plastic security ring containing the QR code and RFID tag is made from non-toxic materials with a water and sun-resistant printing technique.
+                                    <div className='leading-8 text-xl'>
+                                        {t('Inventory-aware')}
                                     </div>
                                 </div>
                             </div>
@@ -83,8 +96,12 @@ const Identification = () => {
                             /></div>
                     </div>
                     <div className='px-3'>
-                        <div className='leading-10 text-2xl pt-3'>For the downstream supply chain</div>
-                        <div className='leading-8 text-xs pt-5'>Use QR codes on stamps and labels printed on shopping bags to retrieve product information in retail channels.</div>
+                        <div className='leading-10 text-2xl pt-3'>
+                            {t('For the downstream supply chain')}
+                        </div>
+                        <div className='leading-8 text-xl pt-5'>
+                            {t('Use QR codes on stamps and labels printed on shopping bags to retrieve')}
+                            </div>
                         <div className='flex md:flex-row flex-col gap-4 pt-4'>
                             <div className='mx-auto md:mx-0'> <Image
                                 src="/images/SOLUTION/qrcode.png"
@@ -92,7 +109,9 @@ const Identification = () => {
                                 width={60}
                                 height={60}
                             /></div>
-                            <div className='leading-8 text-xs'>The QR code on the stamp is combined with an easily recognizable color code (colorgram) to check validity by image.</div>
+                            <div className='leading-8 text-xl'>
+                                {t('The QR code on the stamp is combined with')}
+                            </div>
                         </div> <div className='flex md:flex-row flex-col gap-4 py-4'>
                             <div className='mx-auto md:mx-0'> <Image
                                 src="/images/SOLUTION/app.png"
@@ -100,7 +119,9 @@ const Identification = () => {
                                 width={60}
                                 height={60}
                             /></div>
-                            <div className='leading-8 text-xs'>The QR code on the stamp is combined with an easily recognizable color code (colorgram) to check validity by image.</div>
+                            <div className='leading-8 text-xl'>
+                                {t('BLOCKCHAIN FARM can integrate with smart')}
+                            </div>
                         </div>
                     </div>
                 </div>

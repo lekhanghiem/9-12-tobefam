@@ -1,17 +1,16 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-import { useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import { useTranslations } from 'next-intl';
 
 const Item = styled(Paper)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   boxShadow: 'none',
-  py: '200px',
   backgroundColor: 'transparent',
   ...theme.typography.body2,
   padding: theme.spacing(1),
@@ -23,6 +22,8 @@ const Item = styled(Paper)(({ theme }) => ({
   }),
 }));
 const Banner = () => {
+  const t = useTranslations('All');
+
   const Items = [
     {
       title: 'More than 6,000',
@@ -44,27 +45,34 @@ const Banner = () => {
         alt=""
         width={1000000}
         height={10000000}
+        className="md:h-screen h-[300px] "
       />
-      <section>
-        <div className="bg-background-image  font-normal">
+      <div>
+
+
+        <Box
+        sx={{background:'linear-gradient(269.69deg, #9FF758 3.82%, #01FAA9 101.51%, #01FAA9 101.52%)',}}
+   >
           <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
-              {Items?.map((item) => (
-                <Grid item xs={12} md={4}>
-                  <Item>
-                    <div className="text-black">
-                      <p className="font-bold  text-4xl leading-10">
-                        {item.title}
+              {Items?.map((item,index) => (
+                <Grid item xs={12} md={4} key={index}>
+                  <Item className='md:py-20 py-5'>
+                    <div className="text-black ">
+                      <p className="font-bold  text-4xl leading-10 pb-3">
+                                           {t(item.title)}
                       </p>
-                      <p className="text-xl leading-8"> {item.description}</p>
+                      <p className="text-2xl leading-8">
+                                           {t(item.description)}
+                       </p>
                     </div>
                   </Item>
                 </Grid>
               ))}
             </Grid>
           </Box>
-        </div>
-      </section>
+        </Box>
+      </div>
     </div>
   );
 };

@@ -1,6 +1,10 @@
 import React from 'react'
 import Image from 'next/image'
+import { useTranslations } from "next-intl";
+
 const Youwant = () => {
+  const t = useTranslations('All');
+
     return (
         <div className='custom-gradient w-full h-full text-white relative bg-gradient-to-r from-[rgba(0,48,76,1)] to-[rgba(0,114,178,1)]'>
             <div className='absolute left-0 top-0'> <Image
@@ -14,8 +18,10 @@ const Youwant = () => {
             <div className='container mx-auto'>
                 <div className='grid md:grid-cols-2 grid-cols-1 gap-10  pb-10'>
                     <div className='flex justify-center'>
-                        <div className='w-10/12 pt-5  '><div className='leading-10 text-2xl font-bold '>You want to use your own identification material. No problem at all!</div>
-                            <div className='leading-8 text-xs '>BLOCKCHAIN FARM works with companies and partners that supply identification materials. What you need to do is connect to our system via API to request an ID code from BLOCKCHAIN FARMand this code can be assigned to an ID in your system.</div>
+                        <div className='w-10/12 pt-5  '><div className='leading-10 text-3xl font-bold py-5 '>{t('You want to use your own identification material')}</div>
+                            <div className='leading-8 text-xl '>
+                                {t('BLOCKCHAIN FARM works with companies')}
+                            </div>
                         </div></div>
                     <div className=''>
                         <div className='flex justify-center'>

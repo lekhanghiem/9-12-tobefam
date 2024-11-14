@@ -1,8 +1,8 @@
 'use client';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import Solve from '@/components/Global/Solve';
 import TextField from '@mui/material/TextField';
+import { Button } from '@mui/material';
 const Blockchian = () => {
 
 
@@ -25,25 +25,51 @@ const Blockchian = () => {
                 label="Fill in the QR code number"
                 variant="outlined"
                 sx={{
+
+                  boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.5)',
                   '&.Mui-focused': {
                     outline: 'none',
+                    border: 'none',
+
                   },
+                   '&:hover .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: '#023552',
+            },
+          },
+          '& .Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#023552',
+          },
+            '& .Mui-focused .MuiInputLabel-root': {
+      color: '#023552',
+    },
+    '& .MuiInputLabel-root': {
+      color: '#f8fbfc', // Màu của label khi không focus
+    },
+
                 }}
               />
             </div>
             <div className="flex justify-center py-5">
-              <button
-                type="submit"
-                className="bg-gradient-to-r from-[#9DF75A] to-[#02FFAC] hover:from-[#02FFAC] hover:to-[#9DF75A] text-white font-bold w-56 h-10 rounded-3xl"
-              >
-                <div className="text-black"> Access</div>
-              </button>
-            </div>
+<Button
+  sx={{
+        textTransform: 'none',
+    background: 'linear-gradient(to right, #9DF75A, #02FFAC)',
+    width:'20%',
+    minWidth:'150px',
+    '&:hover': {
+      background: 'linear-gradient(to right, #02FFAC, #9DF75A)', // Reverse gradient on hover
+    },
+    borderRadius: '1.5rem', // Equivalent to 3xl in Tailwind
+    fontSize: '1.25rem', // Equivalent to text-2xl in Tailwind
+    color: 'black', // Text color
+  }}
+>
+  Access
+</Button>            </div>
           </form>
         </div>
-        <div className="pb-10">
-          <Solve />
-        </div>
+
       </div>
     );
   };

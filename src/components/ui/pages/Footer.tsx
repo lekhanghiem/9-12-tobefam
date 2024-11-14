@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Solve from "./Lienhe";
+import Lienhe from "./Lienhe";
 import { styled } from '@mui/material/styles';
 import { Box, Paper, Grid, Divider, IconButton } from '@mui/material';
 import FadeDown from "@/motion/FadeDown";
@@ -23,7 +23,7 @@ import { usePathname } from 'next/navigation'
     }),
   }));
 const Footer = () => {
-  const t = useTranslations('HomePage');
+  const t = useTranslations('All');
   const path = usePathname()
 
    if (path.includes('/dashboard') || path.includes('/profile')|| path.includes('/user')) {
@@ -33,7 +33,7 @@ const Footer = () => {
 
   return (
     <div className="w-full h-full bg-[#012133]">
-      <Solve />
+      <Lienhe />
       <div className="w-full pt-10">
         <FadeDown>
           <Box sx={{ flexGrow: 1 }}>
@@ -51,7 +51,7 @@ const Footer = () => {
                       />
                     </div>
                     <div className="no-underline text-center hover:text-blue-500 text-[#97c7ff] text-3xl leading-10">
-                      {t('Blockchain')}
+                      {t('New agricultural solutions for you')}
                     </div>
                   </div>
                 </Item>
@@ -61,9 +61,9 @@ const Footer = () => {
                 <Item>
                   <div className="grid grid-cols-3 px-2 gap-5">
                     {[
-                      ['Về chúng tôi', 'Liên hệ', 'Blog'],
-                      ['Hỗ trợ', 'FAQ'],
-                      ['Điều khoản', 'Chính sách bảo mật']
+                      ['Company', 'About Us' ,'Contact Us','Blog'],
+                      ['Support', 'FAQ'],
+                      ['Terms of use', 'Privacy Policy']
                     ].map((group, idx) => (
                       <div key={idx} className="flex flex-col">
                         {group.map((label) => (
@@ -91,7 +91,7 @@ const Footer = () => {
 
       <div className="flex flex-col lg:flex-row lg:justify-between py-5 lg:px-20 px-3">
         <FadeLeft className="text-[#97C7FF] flex justify-end text-2xl">
-          CopyRight © 2020 - 2024 TOBE FARM. All Rights Reserved.
+                            CopyRight © 2020 - 2024 TOBE FARM. All Rights Reserved.
         </FadeLeft>
         <FadeRight className="flex justify-end gap-7 lg:pt-0 pt-4">
           {['telegram', 'twitter', 'youtube', 'facebook'].map((platform) => (

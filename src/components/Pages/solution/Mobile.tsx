@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
-// Import Swiper React components
+import { useTranslations } from 'next-intl';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 
@@ -12,16 +13,16 @@ import Image from 'next/image';
 // import required modules
 
 export default function App() {
+  const t = useTranslations('All');
+
   return (
     < >
-      <div className='text-white text-center w-10/12 mx-auto pt-5 container mx-auto'>
-        <div className='text-3xl leading-10 font-bold'>Mobile application for business customers</div>
-        <div className='text-sm leading-8 pt-5'>
-          BLOCKCHAIN FARM does not require specialized hardware. All companies in the supply chain
-          use the same mobile application. The application provides customized processes and
-          functions for each food type (pig, chicken, egg, or other product) and each role in the
-          supply chain (farm, slaughterhouse). The mobile app for business customers works on any
-          phone, and integrates all the supply chain functions a company needs.
+      <div className='text-white text-center w-10/12 pt-5 container mx-auto'>
+        <div className='text-4xl leading-10 font-bold py-10'>
+          {t('Mobile application for business customers')}
+        </div>
+        <div className='text-xl leading-10 pt-5'>
+         {t('BLOCKCHAIN FARM does not require specialized hardware')}
         </div>
       </div>
       <Swiper
@@ -92,7 +93,7 @@ export default function App() {
         <SwiperSlide>
           <div className="flex justify-center pt-32">
             <Image
-             
+
               src="/images/SOLUTION/phone5.png"
               alt=""
               width={103}

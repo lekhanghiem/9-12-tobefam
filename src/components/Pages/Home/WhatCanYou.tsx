@@ -2,9 +2,9 @@
 import React from 'react';
 import Image from 'next/image';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
+import { useTranslations } from 'next-intl';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: 'transparent',
@@ -19,44 +19,46 @@ const Item = styled(Paper)(({ theme }) => ({
   }),
 }));
 const WhatCanYou = () => {
+  const t = useTranslations('All');
+
   const Items = [
     {
       src: '/images/HOME/iconegfam1.png',
       title: 'Differentiate your products from the competition',
       description:
-        'Consumers appreciate transparent food information, and recognize brands with traceability.',
+        'Consumers appreciate transparent',
       imgSize: { width: 50, height: 59 },
     },
     {
       src: '/images/HOME/iconegfam2.png',
-      title: 'Establish direct communication with consumers',
-      description: 'Establish direct communication with consumers',
+      title: 'Improve operational efficiency',
+      description: 'Analyse and optimize',
       imgSize: { width: 59, height: 57 },
     },
     {
       src: '/images/HOME/iconegfam3.png',
-      title: 'Become compliant to import regulations of target countries',
+      title: 'Establish direct communication with consumers',
       description:
-        'Unlock export possibilities to countries which require traceability information.',
+        'Engage directly with consumers',
       imgSize: { width: 59, height: 57 },
     },
     {
       src: '/images/HOME/iconegfam4.png',
-      title: 'Improve operational efficiency',
-      description: 'Analyse and optimize your supply chain processes.',
+      title: 'Differentiate your products from the competition',
+      description: 'Provide proofs of your quality',
       imgSize: { width: 59, height: 57 },
     },
     {
       src: '/images/HOME/iconegfam5.png',
-      title: 'Provide proofs of your quality sustainability claims',
-      description: 'Provide proofs of your quality sustainability claims.',
+      title: 'Become compliant to import regulations of target countries',
+      description: 'Unlock export possibilities',
       imgSize: { width: 59, height: 57 },
     },
     {
       src: '/images/HOME/iconegfam6.png',
       title: 'Quicker (and targeted) product recalls',
       description:
-        'Automate your product recalls, and narrow down the scope to the affected batches.',
+        'Automate your product',
       imgSize: { width: 59, height: 57 },
     },
   ];
@@ -68,24 +70,26 @@ const WhatCanYou = () => {
           alt=""
           width={300}
           height={300}
-          className="absolute right-0 hidden lg:block"
+          className="absolute right-0"
         />
       </div>
 
-      <div className="text-center container mx-auto">
+      <div className="text-center ">
         <div className="w-11/12 mx-auto">
           <h5 className=" text-4xl font-bold tracking-tight text-white leading-10 pb-10">
-            What can you achieve with EG FARM?
+                   {t('What can you achieve with EG FARM?')}
+
+
           </h5>
           <div className="">
-            <Box sx={{ flexGrow: 1 }}>
+            <div className='w-full mx-auto'>
               <Grid container spacing={5}>
                 {Items.map((item, index) => (
-                  <Grid item xs={12} md={6}>
+                  <Grid   size={{ xs: 12, md: 6 }} key={index}>
                     <Item>
                       <div
                         key={index}
-                        className=" flex flex-col lg:flex-row gap-3"
+                        className=" flex flex-col lg:flex-row gap-5"
                       >
                         <div className="w-12/12 flex justify-center items-center">
                           <Image
@@ -96,11 +100,13 @@ const WhatCanYou = () => {
                           />
                         </div>
                         <div className="text-white text-left">
-                          <p className=" text-3xl leading-8  pt-0">
-                            {item.title}
+                          <p className=" text-3xl leading-8  ">
+                                               {t(item.title)}
+
                           </p>
-                          <p className="text-xl pt-2 leading-8">
-                            {item.description}
+                          <p className="text-xl pt-5 leading-8">
+                                               {t(item.description)}
+
                           </p>
                         </div>
                       </div>
@@ -108,7 +114,7 @@ const WhatCanYou = () => {
                   </Grid>
                 ))}
               </Grid>
-            </Box>
+            </div>
             <div className="grid md:grid-cols-2 gap-10 w-12/12 mx-auto"></div>
           </div>
         </div>
