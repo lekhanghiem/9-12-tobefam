@@ -14,11 +14,11 @@ import Skeleton from '@mui/material/Skeleton';
 import { Box, Pagination, Tooltip } from '@mui/material';
 import SearchArea from './SearchArea';
 import { useContext } from 'react';
-import Createfram from './Createfram';
+import Createfram from './Createfarm';
 import { SearchContext } from '@/context/AppContext';
 import Loading from '@/components/Global/Loading';
 
-export default function BasicTable() {
+  function BasicTable() {
 const  {searchAreas,totalPages,page,handlePageChange,loading}  = useContext(SearchContext)||{};
 const rows = searchAreas?.map((area: Area) => ({
   id: area.id,
@@ -31,8 +31,9 @@ const rows = searchAreas?.map((area: Area) => ({
 })) || [];
 
   return (
-    <Box >
-    <Box sx={{ py:'20px'}} >
+  <div>
+   <div className={`${loading ? "opacity-20" : "opacity-100"} `} >
+    <Box sx={{ py:'20px',}} >
  <Box sx={{ width:'90%',mx:'auto',backgroundColor:'#ffff', boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',  borderRadius: '32px',pb:'30px' }}>
   <Box sx={{ display:'flex', justifyContent:'space-between',width:'90%',mx:'auto',py:'50px' }}>
 <Box>
@@ -40,7 +41,7 @@ const rows = searchAreas?.map((area: Area) => ({
 </Box>
 <Box><Createfram/></Box>
  </Box>
-    {loading===true? <Loading/>:<TableContainer >
+   <TableContainer >
       <Table sx={{ minWidth: 300 }} aria-label="simple table">
         <TableHead>
          <TableRow>
@@ -82,7 +83,7 @@ const rows = searchAreas?.map((area: Area) => ({
         </TableBody>
       </Table>
 
-    </TableContainer>}
+    </TableContainer>
 
       <Pagination
       color='primary'
@@ -93,6 +94,8 @@ const rows = searchAreas?.map((area: Area) => ({
       />
  </Box>
     </Box>
-      </Box>
+      </div>
+  </div>
   );
 }
+export default BasicTable

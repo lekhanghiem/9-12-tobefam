@@ -1,14 +1,8 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import Index from '@/components/Pages/templates/views/home/Index'
+import Index from '@/components/Pages/Home/Index'
 import React from 'react'
-import Image from 'next/image'
-
 const page = () => {
-
   return (
-    <div>
-<Index/>
-    </div>
+    <div><Index/></div>
   )
 }
 

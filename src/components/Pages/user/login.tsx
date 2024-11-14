@@ -1,6 +1,5 @@
 'use client';
-import Customicon from '../../ui/Customicon';
-import { useLocale } from 'next-intl';
+import Customicon from '../../ui/pages/Customicon';
 import {schemalogin} from '../../../app/utility/schema'
 
 import React, { useState, ChangeEvent, MouseEvent } from 'react';
@@ -17,12 +16,12 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button, Grid, Paper, styled } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
-import CustomButton from '@/components/ui/Custombutton';
+import CustomButton from '@/components/ui/pages/Custombutton';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/store/store';
-import { actionLogin } from '@/store/features/Login/authSlice';
+import { actionLogin } from '@/store/features/Login/AuthSlice';
 import { useAppSelector } from '@/store/hooks';
-import isAuthu from '../../../middleware/isAuth'
+import ProtectedRoute from '@/middleware/Midlewareathu';
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
@@ -40,7 +39,7 @@ type FormValues = {
   password: string;
 };
 
-const Loginn: React.FC = () => {
+const Login: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch<AppDispatch>()
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({
@@ -49,7 +48,7 @@ const Loginn: React.FC = () => {
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     dispatch(actionLogin(data)).then((res)=>{
-      if (res.payload ) {
+      if (res ) {
       }
     })
 
@@ -212,7 +211,8 @@ const Loginn: React.FC = () => {
       </Grid>
     </div>
     </div>
+
   );
 };
 
-export default isAuthu(Loginn);
+export default Login;

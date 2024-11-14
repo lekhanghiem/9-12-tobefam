@@ -9,11 +9,12 @@ import { actionEditUser } from '@/store/features/Login/EditUserSlice';
 import {  schemaEditUser } from '@/app/utility/schema';
 import { FormDataEditUser } from '@/types/types';
 import { toast } from "react-toastify";
+import { useTranslations } from 'next-intl';
 
 
 
 const Contact = () => {
-
+const t = useTranslations('Profile')
   const dispatch = useDispatch<AppDispatch>();
   const {
     reset,
@@ -23,7 +24,6 @@ const Contact = () => {
   } = useForm<FormDataEditUser>({
     resolver: yupResolver(schemaEditUser),
   });
-  console.log(errors,'errors');
 
 const onSubmit: SubmitHandler<FormDataEditUser> = async (data) => {
     try {
@@ -45,9 +45,9 @@ const onSubmit: SubmitHandler<FormDataEditUser> = async (data) => {
         <div className="p-5">
           <div className="flex justify-between">
             <div>
-              <div className="text-4xl font-bold">Edit User</div>
+              <div className="text-4xl font-bold">{t('Thay đổi thông tin liên lạc')}</div>
               <div className="pt-3 text-gray-500 text-xl">
-                Thay đổi gmail và số điện thoại tài khoản
+                {t('Thay đổi gmail và số điện thoại tài khoản')}
               </div>
             </div>
             <div className='flex items-center'>
@@ -55,7 +55,7 @@ const onSubmit: SubmitHandler<FormDataEditUser> = async (data) => {
               type="submit"
               sx={{ backgroundColor: 'green', color: 'white' }}
             >
-              Xác nhận
+              {t('Xác nhận')}
             </Button>
             </div>
           </div>
@@ -67,14 +67,16 @@ const onSubmit: SubmitHandler<FormDataEditUser> = async (data) => {
 
 
           <PasswordField
-            label="Số điện thoại mới"
+               label={`${t('Số điện thoại mới')}`}
+
             register={register('phone')}
             error={errors.phone?.message}
 
           />
 
           <PasswordField
-            label="Email mới"
+               label={`${t('Email mới')}`}
+
             register={register('email')}
             error={errors.email?.message}
 

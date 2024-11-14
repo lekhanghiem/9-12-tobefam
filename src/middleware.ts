@@ -19,9 +19,15 @@ export const config = {
     '/listproduct',
     '/areaList',
     '/profile',
+    '/user',
+    '/user/listproduct',
+    '/user/stampManegement',
+    '/user/theStamp',
+    '/seek',
+    '/benefit',
+    '/solution',
 
 
-    // './dashboard',
     '/(vi|en)/:path*',
   ],
 };

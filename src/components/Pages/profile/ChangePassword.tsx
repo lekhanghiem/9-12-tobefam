@@ -9,10 +9,12 @@ import { actionChangePassword } from '@/store/features/Login/ChangePasswordSlice
 import { ChangePassword } from '@/app/utility/schema';
 import { FormDataPassword } from '@/types/types';
 import { toast } from "react-toastify";
+import { useTranslations } from 'next-intl';
 
 
 
 const Contact = () => {
+  const t = useTranslations('Profile')
   const [showPassword, setShowPassword] = useState(false);
 
   const handleTogglePassword = () => setShowPassword(!showPassword);
@@ -46,9 +48,9 @@ const onSubmit: SubmitHandler<FormDataPassword> = async (data) => {
         <div className="p-5">
           <div className="flex justify-between">
             <div>
-              <div className="text-4xl font-bold">Đổi mật khẩu</div>
+              <div className="text-4xl font-bold">{t('Đổi mật khẩu')}</div>
               <div className="pt-3 text-gray-500 text-xl">
-                Thay đổi mật khẩu tài khoản
+                {t('Thay đổi mật khẩu tài khoản')}
               </div>
             </div>
             <div className='flex items-center'>
@@ -56,7 +58,7 @@ const onSubmit: SubmitHandler<FormDataPassword> = async (data) => {
               type="submit"
               sx={{ backgroundColor: 'green', color: 'white' }}
             >
-              Xác nhận
+              {t('Xác nhận')}
             </Button>
             </div>
           </div>
@@ -66,21 +68,24 @@ const onSubmit: SubmitHandler<FormDataPassword> = async (data) => {
           </div>
 
           <PasswordField
-            label="Mật khẩu cũ"
+               label={`${t('Mật khẩu cũ')}`}
+
             register={register('old_password')}
             error={errors.old_password?.message}
             showPassword={showPassword}
           />
 
           <PasswordField
-            label="Mật khẩu mới"
+               label={`${t('Mật khẩu mới')}`}
+
             register={register('new_password')}
             error={errors.new_password?.message}
             showPassword={showPassword}
           />
 
           <PasswordField
-            label="Nhập lại mật khẩu mới"
+               label={`${t('Nhập lại mật khẩu mới')}`}
+
             register={register('re_new_password')}
             error={errors.re_new_password?.message}
             showPassword={showPassword}
@@ -94,7 +99,8 @@ const onSubmit: SubmitHandler<FormDataPassword> = async (data) => {
                 color="success"
               />
             }
-            label="Hiển thị mật khẩu"
+               label={`${t('Hiển thị mật khẩu')}`}
+
             sx={{ marginTop: '8px' }}
           />
         </div>

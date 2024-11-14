@@ -53,9 +53,9 @@ export default function BasicGrid() {
           <Box sx={{ width: '90%', margin: 'auto', bgcolor: '#ffffff' }}>
             <Box>
               <Typography
-                variant={isSmallScreen ? 'h5' : 'h2'}
+                variant='h2'
+                align='center'
                 gutterBottom
-                noWrap
                 className="text-[#093450] py-10 pt-14 flex justify-center font-bold"
               >
                 Liên hệ để được tư vấn miễn phí

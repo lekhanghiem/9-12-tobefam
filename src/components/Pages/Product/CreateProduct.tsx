@@ -23,6 +23,7 @@ const CreateProductForm: React.FC = () => {
   const [formData, setFormData] = useState({
     Name: '',
     Description: '',
+    certify:'',
     Image: null as File | null,
     Expiry_date: '',
     Unit: '',
@@ -61,7 +62,8 @@ const CreateProductForm: React.FC = () => {
       postData.append('Unit', formData.Unit);
       postData.append('Product_type', formData.Product_type);
       postData.append('Product_packing', formData.Product_packing);
-
+console.log(formData.Image);
+debugger
       const response = await axiosIns.post(
         '/product/19/create',
         postData,
@@ -79,6 +81,8 @@ const CreateProductForm: React.FC = () => {
         setFormData({
           Name: '',
           Description: '',
+          certify:'',
+
           Image: null,
           Expiry_date: '',
           Unit: '',
@@ -138,6 +142,16 @@ const CreateProductForm: React.FC = () => {
                     id="Description"
                     name="Description"
                     value={formData.Description}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="certify">Image URL:</label>
+                  <input
+                    type="file"
+                    id="certify"
+                    name="certify,
+"
                     onChange={handleChange}
                   />
                 </div>

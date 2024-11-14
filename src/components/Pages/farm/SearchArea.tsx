@@ -14,10 +14,12 @@ function SearchArea() {
 
 
   useEffect(() => {
-      if (!handleSearch) {
-        console.error('handleSearch function is missing');
-      }else
-      handleSearch(search, category);
+      const timer = setTimeout(() => {
+          handleSearch(search, category);
+
+    }, 500);
+
+    return () => clearTimeout(timer);
   }, [search, category]);
 
   return (

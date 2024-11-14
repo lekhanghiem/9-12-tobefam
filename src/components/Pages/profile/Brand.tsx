@@ -10,6 +10,7 @@ import TextField from '@mui/material/TextField';
 import { Close, CloudUpload } from '@mui/icons-material';
 import CloseIcon from '@mui/icons-material/Close';
 import { ChangeEvent, useState } from 'react';
+import { useTranslations } from 'next-intl';
 const Item = styled(Paper)(({ theme }) => ({
   width: '100%',
   backgroundColor: '#fff',
@@ -25,6 +26,7 @@ const Item = styled(Paper)(({ theme }) => ({
   }),
 }));
 const Brand = () => {
+  const t = useTranslations('Profile')
   const [selectedImages, setSelectedImages] = useState<(string | null)[]>([null, null, null]);
 
   // Hàm xử lý khi người dùng chọn ảnh
@@ -50,10 +52,10 @@ const Brand = () => {
   <div className=''>
   <div className='flex-col'>
   <div className='flex-col gap-3 text-4xl font-bold '>
-Thương hiệu
+{t('Thương hiệu')}
 </div>
 <div className='pt-3 text-gray-500 text-xl pb-3'>
-  Thiết lập logo và banner
+  {t('Thiết lập logo và banner')}
 </div>
 </div>
 <div className='py-3'>
@@ -63,7 +65,7 @@ Thương hiệu
 
 <div className='flex justify-between py-3'>
   <div className='flex-col gap-3 text-2xl font-bold py-3'>
-Ảnh bìa hiện tại
+Ảnh bìa hiện tại{t('')}
 </div>
 <div className='flex items-center'>
    <Button sx={{
@@ -84,13 +86,13 @@ Thương hiệu
 </div>
 <div className='flex justify-between py-3'>
   <div className='flex-col gap-3 text-2xl font-bold py-3'>
-Tải lên ảnh bìa mới
+{t('Tải lên ảnh bìa mới')}
 </div>
 <div className='flex items-center'>
    <Button sx={{
     backgroundColor: 'green',
     color: 'white'
-   }}>Lưu</Button>
+   }}>{t('Lưu')}</Button>
 </div>
 </div>
 <div>

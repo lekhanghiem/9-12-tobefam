@@ -1,16 +1,25 @@
 import { Box, Button } from '@mui/material'
-import React from 'react'
+import React, { createContext, useState, useContext, useEffect } from 'react';
+
 import TextField from '@mui/material/TextField';
+import { useTranslations } from 'next-intl';
+import { SearchContext } from '@/context/AppContext';
+
 const Contact = () => {
+  const { profile } = useContext(SearchContext) || {};
+
+  const t=useTranslations('Profile');
+
   return (
     <div className='h-full w-full '>
 <div className='p-5'>
   <div className=''>
 <div className='flex-col gap-3 text-4xl font-bold '>
-  Thông tin liên lạc
+  {t('Thông tin địa chỉ liên lạc')}
 </div>
 <div className='pt-3 text-gray-500 text-xl'>
-  Thông tin địa chỉ liên lạc
+  {t('Thông tin địa chỉ liên lạc')}
+
 </div>
 <div className='py-3'>
 <div className='h-[1px] bg-gray-300 w-full'></div>
@@ -18,7 +27,8 @@ const Contact = () => {
 </div>
 <div className='pt-3'>
 <div className='text-2xl text-black font-bold'>
-Email đăng nhập tài khoản <span className='text-red-600'>(*)</span>
+  {t('Email đăng nhập tài khoản')}
+ <span className='text-red-600'>(*)</span>
 </div>
 <div className='pt-5'>
  <Box
@@ -29,7 +39,7 @@ Email đăng nhập tài khoản <span className='text-red-600'>(*)</span>
     >
      <TextField
         id="outlined-basic"
-        label="Email đăng nhập tài khoản"
+        label={profile?.userInfo?.email}
         variant="outlined"
         fullWidth
          helperText={null}
@@ -63,7 +73,8 @@ Email đăng nhập tài khoản <span className='text-red-600'>(*)</span>
 </div>
 <div className='pt-3'>
 <div className='text-2xl text-black font-bold'>
-Email liên hệ
+  {t('Email liên hệ')}
+
 </div>
 <div className='pt-5'>
  <Box
@@ -74,7 +85,9 @@ Email liên hệ
     >
      <TextField
         id="outlined-basic"
-        label="Email liên hệ"
+          label={profile?.userInfo?.email}
+
+
         variant="outlined"
         fullWidth
          helperText={null}
@@ -108,7 +121,7 @@ Email liên hệ
 </div>
 <div className='pt-3'>
 <div className='text-2xl text-black font-bold'>
-Địa chỉ website
+{t('Địa chỉ website')}
 </div>
 <div className='pt-5'>
  <Box
@@ -119,7 +132,8 @@ Email liên hệ
     >
      <TextField
         id="outlined-basic"
-        label="Địa chỉ website"
+                label={`${t('Địa chỉ website')}`}
+
         variant="outlined"
         fullWidth
          helperText={null}
@@ -153,7 +167,8 @@ Email liên hệ
 </div>
 <div className='pt-3'>
 <div className='text-2xl text-black font-bold'>
-Địa chỉ
+  {t('Địa chỉ')}
+
 </div>
 <div className='pt-5'>
  <Box
@@ -164,7 +179,8 @@ Email liên hệ
     >
      <TextField
         id="outlined-basic"
-        label="Địa chỉ"
+                label={`${t('Địa chỉ')}`}
+
         variant="outlined"
         fullWidth
          helperText={null}
@@ -197,17 +213,11 @@ Email liên hệ
 </div>
 </div>
 <div className='pt-3'>
-<div className='flex justify-between'>
   <div className='text-2xl text-black font-bold'>
-Số điện thoại liên hệ
+  {t('Số điện thoại liên hệ')}
+
 </div>
-<div className='flex items-center'>
-   <Button sx={{
-    backgroundColor: 'green',
-    color: 'white'
-   }}>Xác nhận</Button>
-</div>
-</div>
+
 <div className='pt-5'>
  <Box
       component="form"
@@ -217,7 +227,9 @@ Số điện thoại liên hệ
     >
      <TextField
         id="outlined-basic"
-        label="Số điện thoại liên hệ"
+                      label={profile?.userInfo?.Phone}
+
+
         variant="outlined"
         fullWidth
          helperText={null}

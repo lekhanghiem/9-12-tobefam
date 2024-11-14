@@ -2,54 +2,48 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import TextField from '@mui/material/TextField';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Link from 'next/link';
-import React, { useState, FormEvent } from 'react';
-import axiosIns from '../../../store/api/axiosIns';
-import { useLocale } from 'next-intl';
-
-import { Button, Typography } from '@mui/material';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/store/store';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { toast } from "react-toastify";
+import { Button } from '@mui/material';
 import MarkEmailReadIcon from '@mui/icons-material/MarkEmailRead';
-import Customicon from '../../ui/Customicon';
-import CustomButton from '@/components/ui/Custombutton';
+import Customicon from '../../ui/pages/Customicon';
+import CustomButton from '@/components/ui/pages/Custombutton';
+import { FormVerify } from '@/types/types';
+import { actionVerify } from '@/store/features/Login/VerifySlice';
+import { schemmaVerify } from '@/app/utility/schema';
 
 const Verify: React.FC = () => {
-  const [email, setEmail] = useState<string>('');
-  const [code, setCode] = useState<string>('');
-  const [message, setMessage] = useState<string>('');
-  const [error, setError] = useState<string>('');
-    const router = useRouter();
+  const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
 
-const handelClick=()=> {
-    router.back();
-};
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setMessage('');
-    setError('');
+  const {
+    reset,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormVerify>({
+    resolver: yupResolver(schemmaVerify),
+  });
 
+  const onSubmit: SubmitHandler<FormVerify> = async (data) => {
     try {
-      const response = await axiosIns.post(
-        '/account/verify',
-        { email, code }
-      );
-      window.location.href = `/login`;
-
-      setMessage(response.data.message);
-    } catch (error:any) {
-        setError(error?.response?.data?.message || 'An error occurred');
-
+      const response = await dispatch(actionVerify(data));
+      if (response.payload) {
+      }
+    } catch (error) {
+      toast.error('Có lỗi xảy ra, vui lòng thử lại sau.');
     }
   };
-const locale =useLocale();
 
   return (
     <div className="w-screen h-full">
       <div className="pt-20 bglog">
-        <div
-          className="w-11/12 h-full mx-auto bg-custom-log py-10"
-          style={{ borderRadius: '32px' }}
-        >
+        <div className="w-11/12 h-full mx-auto bg-custom-log py-10" style={{ borderRadius: '32px' }}>
           <div className="w-full flex justify-center py-5">
             <Image
               src="/img/authu/login/logo.png"
@@ -62,21 +56,27 @@ const locale =useLocale();
             <div className="font-bold text-4xl text-center text-white">
               Xác minh email của bạn
             </div>
-            <div className="flex justify-center py-5 ">
+            <div className="flex justify-center py-5">
               <Button
-                onClick={() =>
-                  (window.location.href =
-                    'https://www.google.com/intl/vi/gmail/about/')
-                }
+                onClick={() => (window.location.href = 'https://www.google.com/intl/vi/gmail/about/')}
                 sx={{ color: 'white', bgcolor: 'green' }}
                 startIcon={<MarkEmailReadIcon />}
               >
                 Kiểm Tra Gmail
               </Button>
             </div>
-            <form onSubmit={handleSubmit}>
-              <div className=" pt-5">
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="pt-5">
+                <div className="text-2xl font-bold text-white pb-3">
+                  Nhập mã xác nhận <span className="text-red-600">(*)</span>
+                </div>
                 <TextField
+                  {...register('code')}
+                  variant="outlined"
+                  fullWidth
+                  type='text'
+                  error={!!errors.code}
+                  helperText={errors.code ? errors.code.message : ''}
                   sx={{
                     width: '100%',
                     height: 50,
@@ -84,19 +84,19 @@ const locale =useLocale();
                     borderRadius: '40px',
                     '& .MuiOutlinedInput-root': {
                       height: '100%',
-                      borderRadius: '40px', // Apply rounded corners to the border
+                      borderRadius: '40px',
                       '& fieldset': {
-                        border: '2px solid gray', // Default border color
+                        border: '2px solid gray',
                         borderRadius: '40px',
                       },
                     },
                     '&:hover .MuiOutlinedInput-root': {
                       '& fieldset': {
-                        borderColor: 'gray', // Border color on hover
+                        borderColor: 'gray',
                       },
                     },
                     '& .Mui-focused .MuiOutlinedInput-notchedOutline': {
-                      borderColor: 'blue', // Border color when focused
+                      borderColor: 'blue',
                     },
                     '& .MuiInputLabel-root.Mui-focused': {
                       color: 'black',
@@ -104,41 +104,23 @@ const locale =useLocale();
                       paddingTop: '10px',
                     },
                   }}
-                  id="outlined-adornment-password"
-                  label="Nhập mã xác nhận"
-                  variant="outlined"
-                  value={code}
-                  onChange={(e) => setCode(e.target.value)}
                 />
               </div>
-              <div className="flex justify-center pt-3">
-                {message && <p style={{ color: 'green' }}>{message}</p>}
-                {error && <p style={{ color: 'red' }}>{error}</p>}
-              </div>
               <div className="py-5">
-                <CustomButton>
-      Gửi mã
-      </CustomButton>
+                <CustomButton >
+                  Gửi mã
+                </CustomButton>
               </div>
-              <div className="text-right ">
-                <span className="text-white pr-3">Không nhận được mã
-
-                </span>
-                   <Link href='#' className=' text-blue-600' onClick={handelClick}>Trở lại</Link>
-
-
+              <div className="text-right">
+                <span className="text-white pr-3">Không nhận được mã?</span>
+                <Link href='#' className='text-blue-600' onClick={() => router.back()}>Trở lại</Link>
               </div>
-
-
             </form>
-
             <Customicon />
-
           </div>
-           <Link href='./' className='flex justify-end items-end pr-10 text-blue-600'>Trang chủ</Link>
+          <Link href='./' className='flex justify-end items-end pr-10 text-blue-600'>Trang chủ</Link>
         </div>
       </div>
-
     </div>
   );
 };

@@ -7,7 +7,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Box, FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '@/store/store';
-import { searchProduct, setCategory, setSearch } from '@/store/features/Product/SearchSlice';
+import { searchProduct, setCategory, setSearch } from '@/store/features/Product/SearchProductSlice';
 import { Product } from '@/types/types';
 import { SearchContext } from '@/context/AppContext';
 interface SearchProps{

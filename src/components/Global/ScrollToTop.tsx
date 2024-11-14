@@ -1,30 +1,27 @@
-"use client";
+'use client'
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 
 const ScrollToTop = () => {
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    document.addEventListener("scroll", () => {
+    document.addEventListener('scroll', () => {
       if (window.scrollY > 200) {
-        setScrolled(true);
+        setScrolled(true)
       } else {
-        setScrolled(false);
+        setScrolled(false)
       }
-    });
-  }, []);
+    })
+  }, [])
 
   const backtoTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
-    <button
-      className={`fixed
-            ${
-              scrolled ? "bottom-10" : "-bottom-40"
-            } text-primary-4 text-xl bg-gradient-button rounded-full shadow-xl  md:right-10 right-20  py-2 px-2  z-40`}
+    <div
+      className={`text-primary-4 text-xl bg-gradient-button rounded-full shadow-xl   py-2 px-2  z-40`}
       onClick={backtoTop}
       aria-label="bottom to top button"
     >
@@ -54,8 +51,8 @@ const ScrollToTop = () => {
           ></path>
         </svg>
       </span>
-    </button>
-  );
-};
+    </div>
+  )
+}
 
-export default ScrollToTop;
+export default ScrollToTop

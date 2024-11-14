@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
+    "streetsidesoftware.code-spell-checker",
+    // Thêm các extension bạn muốn vào đây
+    "msjsdiag.debugger-for-chrome",
+    "coenraads.bracket-pair-colorizer",
+    "ritwickdey.liveserver"
+  ]
+}

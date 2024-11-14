@@ -1,12 +1,32 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
+'use client'
+import { useEffect, useState } from "react";
+import { useRouter , usePathname } from "next/navigation";
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+  const [loading, setLoading] = useState(true); // Loading state
+  const path = usePathname(); // Get the current route
+ const router = useRouter();
+  useEffect(() => {
 
-export function middleware(request: NextRequest) {
-  if (request.nextUrl.pathname.startsWith('/about')) {
-    return NextResponse.rewrite(new URL('/about-2', request.url))
-  }
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setLoading(true);
+if(path === "/vi/login" || path==="/vi/register") {
+        router.replace("/");
 
-  if (request.nextUrl.pathname.startsWith('/dashboard')) {
-    return NextResponse.rewrite(new URL('/dashboard/user', request.url))
-  }
 }
+else{
+}
+    } else {
+      if (path !== "/vi/login" && path !== "/vi/register" && !storedUser ) {
+        router.replace("/login");
+      } else {
+        setLoading(true);
+      }
+    }
+  }, [router, path]);
+  if (loading) {
+      return <>{children}</>;
+  }
+};
+
+export default ProtectedRoute;

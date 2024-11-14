@@ -141,3 +141,62 @@ export interface FormDataEditUser  {
  email: string;
 
 };
+
+
+export interface Company {
+  province_code: string
+  province_name: string
+  districts: District[]
+}
+
+export interface District {
+  district_code: string
+  district_name: string
+  wards: Ward[]
+}
+
+export interface Ward {
+  code: string
+  name: string
+  name_en: string
+  full_name: string
+  full_name_en: string
+  code_name: string
+  district_code: string
+  administrative_unit_id: number
+}
+export interface FormEditCompany {
+ description: string; Company_name: string; district_code: string; wards_code: string; provinces_code: string; Address: string;
+}
+interface AnyPresentValue{
+}
+export interface FormCreateFarm {
+Name: string; Address: string; description: string; Area_type: string; Image: AnyPresentValue;
+}
+
+export interface FormVerify {
+  code:string
+}
+export interface UserInfo {
+  id: number;
+  Phone: number;
+  email: string;
+}
+
+export interface Users {
+  id: number;
+  username: string;
+  password: string;
+  verification_code: string | null;
+  verify: boolean;
+  expires_at: string | null;
+  user_info_id: number;
+  company_info_id: number;
+  role_id: number;
+}
+
+interface Data {
+  userInfo: UserInfo;
+  user: Users;
+  token: string;
+}

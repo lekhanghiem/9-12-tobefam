@@ -1,10 +1,11 @@
 import { getToken } from "@/app/utility/auth";
-import { FormDataEditUser, FormDataPassword } from "@/types/types";
+import { FormCreateFarm, FormDataEditUser, FormDataPassword, FormEditCompany, FormVerify } from "@/types/types";
 import axios from "axios";
 
-export const NEXT_BASE_URL = "https://192.168.0.106:3002/";
+export const NEXT_BASE_URL = "https://192.168.1.20:3002/";
 
 const API = axios.create({
+  // timeout:10000,
   baseURL: NEXT_BASE_URL,
 });
 
@@ -86,7 +87,7 @@ export const SearchProduct = {
   doSearchProduct: (payload: { category: number; search: string },page:number) => {
      const token = localStorage.getItem('accessToken');
 
-    return API.post(`search/19/product?page=${page}`, payload, {   headers:{
+    return API.post(`search/21/product?page=${page}`, payload, {   headers:{
     Authorization: token,
 } });
   },
@@ -133,6 +134,50 @@ export const EditUser = {
      const token = localStorage.getItem('accessToken');
 
     return API.put(`account/edit-user-info`, data, {
+       headers:{
+    Authorization: token,
+}
+    });
+  },
+};
+
+export const EditCompany = {
+  doEditCompany: ( data :FormEditCompany ) => {
+     const token = localStorage.getItem('accessToken');
+
+    return API.put(`company/edit`, data, {
+       headers:{
+    Authorization: token,
+}
+    });
+  },
+};
+export const CreateFarm = {
+  doCreateFarm: ( data :FormCreateFarm ) => {
+     const token = localStorage.getItem('accessToken');
+
+    return API.post(`area/create`, data, {
+       headers:{
+    Authorization: token,
+}
+    });
+  },
+};
+
+export const Verify = {
+  doVerify: ( data :FormVerify ) => {
+
+    return API.post(`account/verify`, data, {
+
+    });
+  },
+};
+
+export const Logout = {
+  doLogout: ( ) => {
+     const token = localStorage.getItem('accessToken');
+
+    return API.put(`account/logout`, {}, {
        headers:{
     Authorization: token,
 }
