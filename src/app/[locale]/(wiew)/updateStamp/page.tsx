@@ -1,6 +1,6 @@
 // FormRegister.js
 'use client'
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import {
   TextField,
   Button,
@@ -10,9 +10,9 @@ import {
   FormControl,
   Typography,
   Box,
-  Grid,
-} from '@mui/material';
-import Image from 'next/image';
+  Grid
+} from '@mui/material'
+import Image from 'next/image'
 
 const FormRegister = () => {
   const [formData, setFormData] = useState({
@@ -20,18 +20,17 @@ const FormRegister = () => {
     email: '',
     phone: '',
     quantity: '',
-    printOption: 'auto',
-  });
+    printOption: 'auto'
+  })
 
-  const handleChange = (e:any) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  const handleChange = (e: any) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
 
-  const handleSubmit = (e:any) => {
-    e.preventDefault();
-    console.log(formData); // Thay bằng logic xử lý thực tế khi cần gửi form
-  };
+  const handleSubmit = (e: any) => {
+    e.preventDefault()
+  }
 
   const handleReset = () => {
     setFormData({
@@ -39,9 +38,9 @@ const FormRegister = () => {
       email: '',
       phone: '',
       quantity: '',
-      printOption: 'auto',
-    });
-  };
+      printOption: 'auto'
+    })
+  }
 
   return (
     <Box sx={{ flexGrow: 1, py: 3 }}>
@@ -65,7 +64,7 @@ const FormRegister = () => {
               mx: 'auto',
               border: '1px solid #a7f3a4',
               borderRadius: 2,
-              backgroundColor: '#f8f8f8',
+              backgroundColor: '#f8f8f8'
             }}
           >
             <Typography
@@ -76,13 +75,13 @@ const FormRegister = () => {
                 bgcolor: '#4a8f00',
                 color: '#FFFFFF',
                 py: '5px',
-                borderRadius: '4px 4px 0 0',
+                borderRadius: '4px 4px 0 0'
               }}
             >
               THÔNG TIN ĐĂNG KÝ SỬ DỤNG TEM:
             </Typography>
 
-            <form onSubmit={handleSubmit} className='p-10'>
+            <form onSubmit={handleSubmit} className="p-10">
               <TextField
                 label="Họ và tên"
                 name="name"
@@ -141,7 +140,8 @@ const FormRegister = () => {
               </FormControl>
 
               <Typography variant="body2" sx={{ mt: 2 }}>
-                Sau khi tiếp nhận thông tin của quý khách sớm nhất có thể chúng tôi sẽ liên hệ với quý khách để tiến hành bước tiếp theo.
+                Sau khi tiếp nhận thông tin của quý khách sớm nhất có thể chúng
+                tôi sẽ liên hệ với quý khách để tiến hành bước tiếp theo.
               </Typography>
 
               <Box sx={{ mt: 3, display: 'flex', gap: 2 }}>
@@ -168,7 +168,7 @@ const FormRegister = () => {
         </Grid>
       </Grid>
     </Box>
-  );
-};
+  )
+}
 
-export default FormRegister;
+export default FormRegister

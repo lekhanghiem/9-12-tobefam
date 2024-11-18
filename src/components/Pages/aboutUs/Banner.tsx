@@ -1,9 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
+import Hr from '@/components/Global/Hr'
 import { useTranslations } from 'next-intl'
 
 const Page = () => {
   const t = useTranslations('All')
+
   return (
     <div className="relative">
       <div className=" ">
@@ -12,18 +14,22 @@ const Page = () => {
           alt=""
           width={1000}
           height={1000000}
-          className="w-full h-[300px] md:h-full "
+          className="w-full md:h-full h-[300px] "
           property="loading"
         />
-        <div className="container w-11/12 mx-auto">
+        <div className="container mx-auto">
           <div className="absolute inset-0 flex items-center justify-center flex-col gap-5">
-            <div className="text-gradient text-center text-6xl  font-bold z-40">
-              {t('What are the benefits of food traceability?')}
+            <div className="text-gradient text-center text-6xl font-bold ">
+              {t('About us')}
             </div>
-            <div className="w-[20%] h-2 bg-white mx-auto rounded-xl"></div>
+            <Hr />
+            <div className="text-gradient text-center text-4xl  font-bold ">
+              {t('Continuously improving to better serve customers')}
+            </div>
           </div>
         </div>
       </div>
+      <div></div>
     </div>
   )
 }

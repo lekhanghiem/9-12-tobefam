@@ -1,18 +1,18 @@
-import * as React from 'react';
-import { Menu, MenuItem, MenuList, Divider, ListItemIcon } from '@mui/material';
-import SettingsIcon from '@mui/icons-material/Settings';
-import AddIcon from '@mui/icons-material/Add';
+import * as React from 'react'
+import { Menu, MenuItem, MenuList, Divider, ListItemIcon } from '@mui/material'
+import SettingsIcon from '@mui/icons-material/Settings'
+import AddIcon from '@mui/icons-material/Add'
 
 interface CustomSettingsMenuProps {
-  open: boolean;
-  anchorEl: HTMLButtonElement | null;
-  handleMenuClose: () => void;
-  handleLeave: (event: React.MouseEvent<HTMLUListElement>) => void;
-  handleEnter: () => void;
+  open: boolean
+  anchorEl: HTMLButtonElement | null
+  handleMenuClose: () => void
+  handleLeave: (event: React.MouseEvent<HTMLUListElement>) => void
+  handleEnter: () => void
 }
 
 function CustomSettingsMenu(props: CustomSettingsMenuProps) {
-  const { open, anchorEl, handleMenuClose, handleEnter, handleLeave } = props;
+  const { open, anchorEl, handleMenuClose, handleEnter, handleLeave } = props
 
   return (
     <Menu
@@ -21,13 +21,13 @@ function CustomSettingsMenu(props: CustomSettingsMenuProps) {
       slotProps={{
         root: {
           sx: {
-            pointerEvents: 'none',
-          },
-        },
+            pointerEvents: 'none'
+          }
+        }
       }}
       anchorOrigin={{
         horizontal: 'right',
-        vertical: 'top',
+        vertical: 'top'
       }}
     >
       <MenuList
@@ -35,7 +35,7 @@ function CustomSettingsMenu(props: CustomSettingsMenuProps) {
         disablePadding
         sx={{ pointerEvents: 'auto' }}
         onMouseEnter={() => {
-          handleEnter();
+          handleEnter()
         }}
         onMouseLeave={handleLeave}
       >
@@ -43,55 +43,50 @@ function CustomSettingsMenu(props: CustomSettingsMenuProps) {
         <MenuItem onClick={handleMenuClose}>My account</MenuItem>
       </MenuList>
     </Menu>
-  );
+  )
 }
 
 export default function CustomMenu() {
-  const handleMenuNavigation = (route: string) => () => {
-    console.log(
-      'Toolpad Core Account Demo --- CustomMenuItems --- handleMenuNavigation --- route: ',
-      route,
-    );
-  };
+  const handleMenuNavigation = (route: string) => () => {}
 
-  const mouseOnSubMenu = React.useRef<boolean>(false);
+  const mouseOnSubMenu = React.useRef<boolean>(false)
 
   const [subMenuAnchorEl, setSubMenuAnchorEl] =
-    React.useState<HTMLButtonElement | null>(null);
-  const subMenuOpen = Boolean(subMenuAnchorEl);
+    React.useState<HTMLButtonElement | null>(null)
+  const subMenuOpen = Boolean(subMenuAnchorEl)
 
   const handleTriggerEnter = React.useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
-      setSubMenuAnchorEl(event.currentTarget);
+      setSubMenuAnchorEl(event.currentTarget)
     },
-    [],
-  );
+    []
+  )
 
   const handleTriggerLeave = React.useCallback(() => {
     // Wait for 300ms to see if the mouse has moved to the sub menu
     setTimeout(() => {
       if (mouseOnSubMenu.current) {
-        return;
+        return
       }
-      setSubMenuAnchorEl(null);
-    }, 300);
-  }, []);
+      setSubMenuAnchorEl(null)
+    }, 300)
+  }, [])
 
   const handleSubMenuEnter = React.useCallback(() => {
-    mouseOnSubMenu.current = true;
-  }, []);
+    mouseOnSubMenu.current = true
+  }, [])
 
   const handleSubMenuLeave = (event: React.MouseEvent<HTMLUListElement>) => {
-    mouseOnSubMenu.current = false;
+    mouseOnSubMenu.current = false
     if (subMenuAnchorEl?.contains(event.relatedTarget as Node)) {
-      return;
+      return
     }
-    setSubMenuAnchorEl(null);
-  };
+    setSubMenuAnchorEl(null)
+  }
 
   const handleSubMenuClose = React.useCallback(() => {
-    setSubMenuAnchorEl(null);
-  }, []);
+    setSubMenuAnchorEl(null)
+  }, [])
 
   return (
     <MenuList dense disablePadding>
@@ -101,7 +96,7 @@ export default function CustomMenu() {
         component="button"
         sx={{
           justifyContent: 'flex-start',
-          width: '100%',
+          width: '100%'
         }}
       >
         <ListItemIcon>
@@ -114,7 +109,7 @@ export default function CustomMenu() {
         component="button"
         sx={{
           justifyContent: 'flex-start',
-          width: '100%',
+          width: '100%'
         }}
       >
         <ListItemIcon>
@@ -132,5 +127,5 @@ export default function CustomMenu() {
         handleMenuClose={handleSubMenuClose}
       />
     </MenuList>
-  );
+  )
 }
