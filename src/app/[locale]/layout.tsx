@@ -26,19 +26,21 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body>
-        <NextIntlClientProvider messages={messages}>
-          <ReduxProvider>
-            <AppProvider>
-              <Header />
-              <ProtectedRoute>{children}</ProtectedRoute>
-              <Footer />
-            </AppProvider>
-            <div className="fixed bottom-10 right-20">
-              <ScrollToTop />
-            </div>
-            <Toaster />
-          </ReduxProvider>
-        </NextIntlClientProvider>
+        <div className="w-full">
+          <NextIntlClientProvider messages={messages}>
+            <ReduxProvider>
+              <AppProvider>
+                <Header />
+                <ProtectedRoute>{children}</ProtectedRoute>
+                <Footer />
+              </AppProvider>
+              <div className="fixed bottom-10 right-20">
+                {/* <ScrollToTop /> */}
+              </div>
+              <Toaster />
+            </ReduxProvider>
+          </NextIntlClientProvider>
+        </div>
       </body>
     </html>
   )

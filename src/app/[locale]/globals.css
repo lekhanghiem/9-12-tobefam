@@ -9,19 +9,26 @@
   height: 72px;
   right: 281px;
   top: 308px;
-  background: #FFFFFF;
+  background: #ffffff;
   border: 1px solid #000000;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 36px;
 }
 
 .btlog {
-  background: linear-gradient(90deg, #00FB91 2.09%, #2AFCFF 100%);
+  background: linear-gradient(90deg, #00fb91 2.09%, #2afcff 100%);
   border-radius: 50px;
 }
 
 .bgheader {
-  background: linear-gradient(90deg, #15FCC8 0%, #82FFD5 46.5%, #5BFEE7 70.01%, #48FDF0 81.54%, #2AFCFF 100%);
+  background: linear-gradient(
+    90deg,
+    #15fcc8 0%,
+    #82ffd5 46.5%,
+    #5bfee7 70.01%,
+    #48fdf0 81.54%,
+    #2afcff 100%
+  );
 }
 
 .loader {
@@ -40,7 +47,7 @@
 }
 
 .shawdow {
-  text-shadow: 2px 4px 5.6px #FFFFFF;
+  text-shadow: 2px 4px 5.6px #ffffff;
 }
 
 .background {
@@ -85,8 +92,6 @@
   clip-path: polygon(3% 0%, 100% 0%, 100% 100%, 0% 100%);
 }
 
-
-
 .dropdown {
   position: relative;
   display: inline-block;
@@ -100,9 +105,6 @@
   z-index: 1000;
 }
 
-
-
-
 .dropdown:hover .dropdown-content {
   display: block;
 }
@@ -115,23 +117,17 @@
 }
 
 .text-gradient {
-
-
-
-
-  background: linear-gradient(90deg, #2AFCFF 16.04%, #9FF756 51%, #02FFAB 100%);
+  background: linear-gradient(90deg, #2afcff 16.04%, #9ff756 51%, #02ffab 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-fill-color: transparent;
-
 }
 
 .video {
   left: 50%;
   top: 50%;
 }
-
 
 .container {
   max-width: 1500px;
