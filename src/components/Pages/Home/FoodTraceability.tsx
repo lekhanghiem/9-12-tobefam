@@ -18,13 +18,13 @@ const FoodTraceability = () => {
     <div>
       <div className="  relative h-full">
         <Image
-          className="absolute right-0 w-6/12 h-full "
+          className="absolute right-0 w-6/12 h-full z-0 "
           src="/images/HOME/bgRightFood.png"
           alt=""
           width={1395}
           height={5000000}
         />
-        <FadeLeft className=" w-full  h-full  mx-auto">
+        <FadeLeft className=" w-full  h-full  mx-auto z-40">
           <div className="  w-6/12 text-white pl-5 py-10">
             <p className="py-3 font-bold text-4xl  leading-9">
               {t(

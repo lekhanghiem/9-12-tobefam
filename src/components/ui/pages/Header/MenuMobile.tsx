@@ -1,34 +1,36 @@
-'use client';
-import Link from 'next/link';
-import { useTranslations } from 'next-intl';
-import Image from 'next/image';
-import React, { useState } from 'react';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import Divider from '@mui/material/Divider';
-import User from '../../../Pages/profile/User';
-import { IoMenu } from "react-icons/io5";
-import { MdOutlineMenuOpen } from "react-icons/md";
+'use client'
+import Link from 'next/link'
+import { useTranslations } from 'next-intl'
+import Image from 'next/image'
+import React, { useState } from 'react'
+import Box from '@mui/material/Box'
+import Drawer from '@mui/material/Drawer'
+import IconButton from '@mui/material/IconButton'
+import Divider from '@mui/material/Divider'
+import User from '../../../Pages/profile/User'
+import { IoMenu } from 'react-icons/io5'
+import { MdOutlineMenuOpen } from 'react-icons/md'
 
-const drawerWidth = 240;
+const drawerWidth = 240
 
 const MenuMobile = () => {
-  const t = useTranslations('All');
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [dropdownState, setDropdownState] = useState<{ [key: string]: boolean }>({});
+  const t = useTranslations('All')
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [dropdownState, setDropdownState] = useState<{
+    [key: string]: boolean
+  }>({})
 
   const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState);
-  };
+    setMobileOpen(prevState => !prevState)
+  }
 
   const handleMouseEnter = (label: string) => {
-    setDropdownState((prev) => ({ ...prev, [label]: true }));
-  };
+    setDropdownState(prev => ({ ...prev, [label]: true }))
+  }
 
   const handleMouseLeave = (label: string) => {
-    setDropdownState((prev) => ({ ...prev, [label]: false }));
-  };
+    setDropdownState(prev => ({ ...prev, [label]: false }))
+  }
 
   const Items = [
     { label: 'HOME', path: '/' },
@@ -41,13 +43,13 @@ const MenuMobile = () => {
         { label: 'Seek an origin', path: '/seek' },
         { label: 'Consumer phone application', path: '#' },
         { label: 'Point of sale', path: '#' },
-        { label: 'Privacy Policy', path: '#' },
-      ],
+        { label: 'Privacy Policy', path: '#' }
+      ]
     },
     { label: 'ABOUT US', path: '#' },
     { label: 'NEWS', path: '#' },
-    { label: 'CONTACT', path: '#' },
-  ];
+    { label: 'CONTACT', path: '#' }
+  ]
 
   return (
     <div>
@@ -58,7 +60,11 @@ const MenuMobile = () => {
         onClick={handleDrawerToggle}
         sx={{ mr: 2 }}
       >
-        {mobileOpen ? <MdOutlineMenuOpen fontSize={50} /> : <IoMenu fontSize={50} />}
+        {mobileOpen ? (
+          <MdOutlineMenuOpen fontSize={50} />
+        ) : (
+          <IoMenu fontSize={50} />
+        )}
       </IconButton>
       <Drawer
         variant="temporary"
@@ -66,12 +72,17 @@ const MenuMobile = () => {
         onClose={handleDrawerToggle}
         ModalProps={{ keepMounted: true }}
         sx={{
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth }
         }}
       >
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'start' }}>
           <Link className="flex w-[70%] mx-auto justify-center py-5" href="/">
-            <Image src="/img/header/LogoTobe.svg" alt="Logo" width={287} height={91} />
+            <Image
+              src="/img/header/LogoTobe.svg"
+              alt="Logo"
+              width={287}
+              height={91}
+            />
           </Link>
           <Divider />
           <nav className="bg-lightblue p-4">
@@ -117,7 +128,7 @@ const MenuMobile = () => {
         </Box>
       </Drawer>
     </div>
-  );
-};
+  )
+}
 
-export default MenuMobile;
+export default MenuMobile

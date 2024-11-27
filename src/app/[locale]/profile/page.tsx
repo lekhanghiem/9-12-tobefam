@@ -2,7 +2,6 @@
 import * as React from 'react'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
-import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import { FaHome } from 'react-icons/fa'
 import Account from '@/components/Pages/profile/Account'
@@ -30,7 +29,7 @@ function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props
 
   return (
-    <div
+    <Box
       role="tabpanel"
       hidden={value !== index}
       id={`vertical-tabpanel-${index}`}
@@ -46,7 +45,7 @@ function TabPanel(props: TabPanelProps) {
           {children}
         </Box>
       )}
-    </div>
+    </Box>
   )
 }
 
@@ -140,8 +139,6 @@ export default function VerticalTabs() {
           <Contact />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          {/* <EditCompany/> */}
-
           <Brand />
         </TabPanel>
         <TabPanel value={value} index={3}>
