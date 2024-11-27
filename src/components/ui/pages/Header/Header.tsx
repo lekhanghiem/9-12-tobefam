@@ -23,7 +23,7 @@ const Item = styled(Paper)(({ theme }) => ({
   justifyContent: 'center'
 }))
 
-const Page = () => {
+const Header = () => {
   const path = usePathname()
   const locale = useLocale()
   const t = useTranslations('All')
@@ -86,11 +86,13 @@ const Page = () => {
   }
 
   return (
-    <div className="w-full bg-[#ffffff]  z-50 sticky top-0">
+    <div className="w-full bg-[#ffffff] sticky top-[-55px] z-50">
       <Header1 />
-      <div className="">
+      <div className="   ">
         <Box
           sx={{
+            position: 'sticky',
+            top: '0px',
             background:
               'linear-gradient(115.36deg, rgba(12, 244, 250, 0.2) 30%, rgba(64, 119, 247, 0.2) 80.55%, rgba(86, 67, 246, 0.2) 99.86%)',
             borderRadius: '40px'
@@ -228,4 +230,4 @@ const Page = () => {
   )
 }
 
-export default Page
+export default Header

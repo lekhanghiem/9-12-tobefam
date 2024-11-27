@@ -7,8 +7,8 @@ const Header1 = () => {
   const t = useTranslations('All')
 
   return (
-    <div>
-      <div className="flex lg:flex-row flex-col justify-between bgheader py-3 lg:px-20 px-10 w-full gap-y-3">
+    <div className="">
+      <div className="flex lg:flex-row flex-col justify-between bgheader py-3 lg:px-20 px-10 w-full gap-y-3   ">
         <nav className="grid grid-cols-3 gap-3 lg:gap-10">
           {[
             ['/img/header/Vector.svg', t('Download the application')],
