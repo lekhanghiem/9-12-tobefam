@@ -26,7 +26,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body>
-        <div>
+        <div className="w-full">
           <NextIntlClientProvider messages={messages}>
             <ReduxProvider>
               <AppProvider>
@@ -35,7 +35,7 @@ export default async function RootLayout({
                 <Footer />
               </AppProvider>
               <div className="fixed bottom-10 right-20">
-                <ScrollToTop />
+                {/* <ScrollToTop /> */}
               </div>
               <Toaster />
             </ReduxProvider>

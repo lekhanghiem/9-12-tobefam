@@ -79,7 +79,7 @@ const Functions = () => {
                                 alt={item.imageSrc}
                                 width={item.imageWidth}
                                 height={item.imageHeight}
-                                className="w-full"
+                                className="w-[61px]"
                               />
                             </div>
                           </Box>
