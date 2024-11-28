@@ -1,9 +1,9 @@
-import Verify from '@/components/Pages/user/verify'
+import Resgister from '@/components/Pages/user/register'
 import React from 'react'
 const page = () => {
   return (
     <div>
-      <Verify />
+      <Resgister />
     </div>
   )
 }
